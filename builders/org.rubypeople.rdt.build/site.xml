@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site pack200="true" digestURL="http://update.aptana.com/update/rdt"> 
+	<description url="http://update.aptana.com/update/rdt">Ruby Development Tools</description>
+	<feature url="features/org.rubypeople.rdt_{version.full}.jar" id="org.rubypeople.rdt" version="{version.full}">
+		<category name="Ruby"/>
+	</feature>
+	<feature url="features/org.rubypeople.rdt.doc_feature_{version.full}.jar" id="org.rubypeople.rdt.doc_feature" version="{version.full}">
+		<category name="Ruby"/>
+	</feature>
+	<category-def name="Ruby" label="Ruby Development Tools">
+        <description>Adds support for Ruby development to Eclipse</description>
+	</category-def>
+</site>

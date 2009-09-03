@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<introContent>
+  <!-- Extension to the SDK Tutorials Page. -->
+  <extensionContent id="org.eclipse.rdt.tutorials" alt-style="css/rdt.properties" style="css/rdtTutorials.css" name="Ruby Development" path="tutorials/@">
+    <group style-id="content-group" id="ruby-introduction-group">
+      <link url="http://org.eclipse.ui.intro/showStandby?partId=org.eclipse.platform.cheatsheet&amp;input=org.rubypeople.rdt.cheatsheets.webservices" label="Introduction to RDT" id="ruby-introduction" style-id="content-link">
+        <text>Learn how to create ruby projects and how to run and debug ruby programs using soap4r as an example</text>
+      </link>
+    </group>
+  </extensionContent>
+</introContent>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="%view.name.0"
+            icon="icons/ast_view.gif"
+            category="org.rubypeople.rdt.ui.ruby"
+            class="org.rubypeople.rdt.astviewer.views.AstView"
+            id="org.rubypeople.rdt.astviewer.views.AstView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.ui.resourcePerspective">
+         <view
+               ratio="0.5"
+               relative="org.eclipse.ui.views.TaskList"
+               relationship="right"
+               id="org.rubypeople.rdt.astviewer.views.AstView">
+         </view>         
+      </perspectiveExtension>
+      <perspectiveExtension targetID="org.rubypeople.rdt.ui.PerspectiveRuby">
+      	<viewShortcut id="org.rubypeople.rdt.astviewer.views.AstView"/>
+      </perspectiveExtension>
+      <perspectiveExtension targetID="org.radrails.rails.ui.PerspectiveRails">
+      	<viewShortcut id="org.rubypeople.rdt.astviewer.views.AstView"/>
+      </perspectiveExtension>
+   </extension>
+   <extension point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.rubypeople.rdt.ui.preferences.PreferencePageRubyBase"
+            class="org.rubypeople.rdt.astviewer.preferences.AstViewerPreferencePage"
+            id="org.rubypeople.rdt.astviewer.preferences.AstViewerPreferencePage"
+            name="%page.name.0"/>
+   </extension>
+   <extension point="org.eclipse.core.runtime.preferences">
+      <initializer class="org.rubypeople.rdt.astviewer.preferences.PreferenceInitializer"/>
+   </extension>
+
+</plugin>

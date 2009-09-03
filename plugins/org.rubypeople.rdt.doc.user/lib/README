@@ -1,0 +1,13 @@
+The saxon lib was downloaded from http://saxon.sourceforge.net/.
+It has been modified not to prvide AElfred as XML parser by removing
+the jar file entry META-INF/services/javax.xml.parsers.SAXParserFactory.
+
+Aelfred seems to have a problem resolving the DTD mods. When  
+using an xmlcatalog for the docbook DTD, it produces the following  
+errormessage:
+
+java.net.MalformedURLException: no protocol: dbnotnx.mod
+
+: Fatal Error! 
+Failure reading file:///C:/workspaces/rdt-subversive-workspace/org.rubypeople.rdt.doc.user/docbook.xml 
+Cause: java.net.MalformedURLException: no protocol: dbnotnx.mod

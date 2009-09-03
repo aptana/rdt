@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+     <extension-point id="internalTestRunTabs" name="%testRunTabs.name" schema="schema/internal_testRunTabs.exsd"/>
+
+   <extension point="org.rubypeople.rdt.testunit.internalTestRunTabs">
+      <testRunTab class="org.rubypeople.rdt.internal.testunit.ui.FailureTab"/>
+      <testRunTab class="org.rubypeople.rdt.internal.testunit.ui.TestHierarchyTab"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="%view.name.0"
+            icon="icons/full/eview16/testunit.gif"
+            category="org.rubypeople.rdt.ui.ruby"
+            class="org.rubypeople.rdt.internal.testunit.ui.TestUnitView"
+            id="org.rubypeople.rdt.testunit.views.TestUnitView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.rubypeople.rdt.ui.PerspectiveRuby">
+         <viewShortcut id="org.rubypeople.rdt.testunit.views.TestUnitView"/> 
+         <newWizardShortcut id="org.rubypeople.rdt.testunit.wizards.RubyNewTestCaseWizard">
+         </newWizardShortcut>
+         <view
+               relative="org.eclipse.ui.views.ContentOutline"
+               relationship="stack"
+               id="org.rubypeople.rdt.testunit.views.TestUnitView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            label="%TestUnitShortcut.label"
+            icon="icons/full/obj16/tulaunch.gif"
+            helpContextId="org.rubypeople.rdt.testunit.launch_shortcut"
+            class="org.rubypeople.rdt.testunit.launcher.TestUnitLaunchShortcut"
+            modes="run,debug"
+            id="org.rubypeople.rdt.testunit.testunitShortcut">
+         <contextualLaunch>
+            <enablement>
+               <with
+                     variable="selection">
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                     <or>
+                        <test
+                              property="org.eclipse.debug.ui.matchesPattern"
+                              value="*.rb">
+                        </test>
+                        <test
+                              property="org.eclipse.debug.ui.matchesPattern"
+                              value="*.rbw">
+                        </test>
+                        <test
+                              property="org.eclipse.debug.ui.matchesPattern"
+                              value="*.cgi">
+                        </test>
+                     </or>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+         <perspective
+               id="org.rubypeople.rdt.ui.PerspectiveRuby">
+         </perspective>
+      </shortcut>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            name="%LaunchConfigurationTypeTestUnit.name"
+            delegate="org.rubypeople.rdt.testunit.launcher.TestUnitLaunchConfigurationDelegate"
+            modes="run,debug"
+            id="org.rubypeople.rdt.testunit.launchconfig">
+         <fileExtension
+               default="false"
+               extension="rb">
+         </fileExtension>
+         <fileExtension
+               default="false"
+               extension="rbw">
+         </fileExtension>
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            icon="icons/full/obj16/tulaunch.gif"
+            configTypeID="org.rubypeople.rdt.testunit.launchconfig"
+            id="org.rubypeople.rdt.debug.ui.LaunchConfigurationTypeImageTestUnit">
+      </launchConfigurationTypeImage>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            type="org.rubypeople.rdt.testunit.launchconfig"
+            helpContextId="org.rubypeople.rdt.testunit.testunit_tab_group"
+            class="org.rubypeople.rdt.internal.testunit.launcher.TestUnitTabGroup"
+            id="org.rubypeople.rdt.testunit.launchConfigurationTabGroup.testunit">
+         <launchMode
+               perspective="org.eclipse.debug.ui.DebugPerspective"
+               description="%TestUnitTabGroupDescription.debug"
+               mode="debug">
+         </launchMode>
+         <launchMode
+               description="%TestUnitTabGroupDescription.run"
+               mode="run">
+         </launchMode>
+      </launchConfigurationTabGroup>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            name="%TestUnitShortcut.description.run"
+            description="%TestUnitShortcut.description.run"
+            categoryId="org.eclipse.debug.ui.category.run"
+            id="org.rubypeople.rdt.testunit.testunitShortcut.run">
+      </command>
+      <command
+            name="%TestUnitShortcut.description.debug"
+            description="%TestUnitShortcut.description.debug"
+            categoryId="org.eclipse.debug.ui.category.run"
+            id="org.rubypeople.rdt.testunit.testunitShortcut.debug">
+      </command>
+      <command
+            categoryId="org.eclipse.debug.ui.category.run"
+            description="Rerun the last executed test"
+            id="org.rubypeople.rdt.testunit.rerunLastTest"
+            name="Rerun Last Test">
+      </command>
+   </extension>
+   <extension point="org.eclipse.ui.bindings">
+      <key
+            sequence="M3+M2+D U"
+            commandId="org.rubypeople.rdt.testunit.testunitShortcut.debug"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            sequence="M3+M2+X U"
+            commandId="org.rubypeople.rdt.testunit.testunitShortcut.run"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            commandId="org.rubypeople.rdt.testunit.rerunLastTest"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M3+M2+R">
+      </key>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            name="%NewWizardRubyTestCase.name"
+            icon="$nl$/icons/full/etool16/new_testcase.gif"
+            category="org.rubypeople.rdt.ui"
+            class="org.rubypeople.rdt.internal.testunit.wizards.NewTestCaseCreationWizard"
+            preferredPerspectives="org.rubypeople.rdt.ui.PerspectiveRuby"
+            id="org.rubypeople.rdt.testunit.wizards.RubyNewTestCaseWizard">
+          <description>
+            %wizard.description.0
+         </description>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+         <page
+            name="%PreferencePage.label"
+            category="org.rubypeople.rdt.ui.preferences.PreferencePageRubyBase"
+            class="org.rubypeople.rdt.internal.testunit.ui.TestUnitPreferencePage"
+            id="org.rubypeople.rdt.ui.preferences.TestUnit">
+            <keywordReference id="org.eclipse.rdt.ui.testunit"/>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="org.rubypeople.rdt.internal.testunit.ui.TestUnitPreferenceInitializer"/>
+   </extension>
+   
+<!-- =========================================================================== -->
+<!-- Templates                                                                   -->
+<!-- =========================================================================== -->
+   <extension point="org.eclipse.ui.editors.templates">
+      <include file="templates/rspec-templates.xml"/>
+   </extension>
+</plugin>

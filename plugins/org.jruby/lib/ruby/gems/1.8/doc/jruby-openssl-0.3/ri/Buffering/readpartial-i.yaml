@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+params: (maxlen, buf=nil)
+is_singleton: false
+block_params: 
+name: readpartial
+comment: 
+full_name: Buffering#readpartial
+visibility: public
+aliases: []
+

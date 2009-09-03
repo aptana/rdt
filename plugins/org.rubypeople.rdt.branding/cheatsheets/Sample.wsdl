@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<definitions name="webServiceExample" 
+   targetNamespace="http://www.rubypeople.org/xmlns/webServiceExample" 
+   xmlns:tns="http://www.rubypeople.org/xmlns/webServiceExample" 
+   xmlns="http://schemas.xmlsoap.org/wsdl/" 
+   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+   xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+   xmlns:apachesoap="http://xml.apache.org/xml-soap">
+  
+  <types>
+    <schema 
+      xmlns="http://www.w3.org/2001/XMLSchema" 
+      targetNamespace="http://www.rubypeople.org/xmlns/webServiceExample">
+
+      <complexType name="User">
+  	<all>
+    	  <element name="id" type="xsd:int"/>
+    	  <element name="name" type="string"/>
+  	</all>
+      </complexType>
+
+
+    </schema>
+  </types>
+
+  <message name="msg_user_request">
+    <part name="user" type="tns:User"/>
+  </message>
+
+  <message name="msg_user_response">
+    <part name="return" type="xsd:int"/>
+  </message>
+
+  <portType name="webServiceExamplePortType">
+    <operation name="addUser">
+      <input message="tns:msg_user_request"/>
+      <output message="tns:msg_user_response"/>
+    </operation>
+  </portType>
+
+  <binding name="webServiceExampleServicePortBinding" type="tns:webServiceExamplePortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+    <operation name="addUser">
+      <soap:operation soapAction=""/>
+      <input>
+	<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.rubypeople.org/xmlns/webServiceExample/"/>
+      </input>
+      <output>
+	<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.rubypeople.org/xmlns/webServiceExample/"/>
+      </output>
+    </operation>
+  </binding>
+
+  <service name="webServiceExampleService">
+    <port name="webServiceExamplePort" binding="tns:webServiceExampleServicePortBinding">
+      <soap:address location="http://localhost/webServiceExampleService"/>
+    </port>
+  </service>
+
+</definitions>

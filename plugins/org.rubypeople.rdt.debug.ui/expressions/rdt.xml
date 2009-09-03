@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<expressions>
+
+  <expression 
+	description="Show global variable names"
+	name="global variable names">global_variables
+  </expression>
+
+  <expression 
+	description="Global variables" 
+	name="global variables">h={}; global_variables.each { |v| h[v] = eval(v) }; h
+  </expression>
+
+  <expression 
+	description="instance methods, including methods from superclasses" 
+	name="instance methods incl. inherited">%s.class.instance_methods(true).sort
+  </expression>
+
+  <expression 
+	description="instance methods of the methods from superclasses" 
+	name="instance methods excl. inherited">%s.class.instance_methods(false).sort
+  </expression>
+	
+  <expression 
+	name="All constants" 
+	description="Show all constants">Module.constants.sort
+  </expression>
+	
+  <expression 
+	 name="Ancestors" 
+	 description="Shows all ancestors of a module">(%s.respond_to? :ancestors) ? %s.ancestors : %s.class.ancestors
+  </expression>
+
+</expressions>

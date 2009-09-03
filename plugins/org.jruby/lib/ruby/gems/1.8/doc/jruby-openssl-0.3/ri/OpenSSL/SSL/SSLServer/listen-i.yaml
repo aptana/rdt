@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+params: (backlog=5)
+is_singleton: false
+block_params: 
+name: listen
+comment: 
+full_name: OpenSSL::SSL::SSLServer#listen
+visibility: public
+aliases: []
+

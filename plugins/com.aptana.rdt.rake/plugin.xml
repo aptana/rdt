@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+         <objectContribution
+            adaptable="true"
+            id="com.aptana.rdt.RakeObjectContribution"
+            objectClass="org.eclipse.core.resources.IResource">
+         <menu
+               id="com.aptana.rdt.rake.RakeMenu"
+               label="%menu.label.0"
+               path="additions"/>
+         <action
+               class="com.aptana.rdt.internal.rake.actions.RakeAction"
+               icon="icons/rake.png"
+               id="com.aptana.rdt.rake.RakeAction"
+               label="%action.label.0"
+               menubarPath="com.aptana.rdt.rake.RakeMenu"
+               style="pulldown"/>
+         <filter
+               name="projectNature"
+               value="org.rubypeople.rdt.core.rubynature"/>
+      </objectContribution>
+   </extension>
+   <extension point="org.eclipse.ui.views">
+      <view
+            category="org.rubypeople.rdt.ui.ruby"
+            class="com.aptana.rdt.internal.rake.view.RakeTasksView"
+            icon="icons/rake.png"
+            id="com.aptana.rdt.ViewRakeTasks"
+            name="%view.name.0"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.viewActions">
+      <viewContribution
+            id="com.aptana.rdt.rake.viewActions.RakeTasks"
+            targetID="com.aptana.rdt.ViewRakeTasks">
+         <action
+               class="com.aptana.rdt.internal.rake.view.RefreshRakeTasksActionDelegate"
+               icon="icons/nav_refresh.gif"
+               id="com.aptana.rdt.rake.ActionRefreshRakeTasks"
+               label="%action.label.1"
+               style="push"
+               toolbarPath="additions"
+               tooltip="%action.tooltip.0"/>
+      </viewContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension targetID="org.rubypeople.rdt.ui.PerspectiveRuby">
+         <viewShortcut id="com.aptana.rdt.ViewRakeTasks"/>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.rubypeople.rdt.ui.preferences.PreferencePageRubyBase"
+            class="com.aptana.rdt.internal.rake.preferences.ConfigurationPreferencePage"
+            id="com.aptana.rdt.rake.ui.preferences.Rake"
+            name="%PreferencePage.Rake.name"/>
+   </extension>
+   <extension
+         point="org.rubypeople.rdt.ui.customRubyOutlinePages">
+      <page
+            class="com.aptana.rdt.internal.rake.RakeOutlinePage"
+            id="com.aptana.rdt.rake.outlinePage"
+            name="Rake Outline Page">
+      </page>
+   </extension>
+   <extension
+         point="com.aptana.rdt.gems">
+      <gem
+            auto-install="true"
+            compiles="false"
+            force-update="true"
+            name="rake"
+            path="gems/rake-0.8.4.gem"
+            platform="ruby"
+            version="0.8.4">
+      </gem>
+   </extension>
+
+</plugin>

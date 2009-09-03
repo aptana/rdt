@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+params: (hostname)
+is_singleton: false
+block_params: 
+name: post_connection_check
+comment: 
+full_name: OpenSSL::SSL::SSLSocket#post_connection_check
+visibility: public
+aliases: []
+

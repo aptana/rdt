@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cheatsheet title="Using RDT">
+	<intro href="/org.eclipse.platform.doc.user/reference/ref-cheatsheets.htm">
+		<description> This cheat sheet is an introduction to the Ruby Development Tools
+			(RDT) and uses a real world scenario to show how the RDT can be leveraged in your
+			work with ruby.<br/>
+			<br/>
+			To start working on this cheat 
+			sheet, click the &quot;Click to Begin&quot; button below. </description>
+	</intro>
+	<item title="Download SOAP4R" skip="true">
+       <description>As a prerequisite you will need to get and install soap4r.<br/>
+			<br/>
+			You can get it from the download section of: http://dev.ctor.org/soap4r<br/>
+			<br/>
+			Although soap4r is included within ruby since the 1.8.1 release, you will still need to 
+			download the library because we use the wsdl2ruby.rb file, which is not part of the installed 
+			library in ruby.<br/>
+			<br/>
+			To navigate to the homepage of SOAP4R to download the release, 
+			click the &quot;Click to Perform&quot; button below.<br/>
+			<br/>
+			If you already have a version of SOAP4R, please skip this and the following step.
+			</description>
+       <command serialization=
+          "org.eclipse.ui.browser.openBrowser(url=http://dev.ctor.org/soap4r)"/>
+    </item>
+    <item title="Install SOAP4R" skip="true">
+		<description>Please extract	the soap4r distribution and run install.rb.</description>
+	</item>
+	<item href="/org.rubypeople.rdt.doc.user/html/ch02.html#importantSettings"
+		title="Interpreter setup">
+		<description> Make sure you have registered at least one ruby interpreter in your preferences.
+		    We will try to autodetect your interpreter, but you should confirm the correct settings.
+			Click on the help button to the upper right if you don't know how to do that. </description>
+	</item>
+	<item title="Switch to Ruby Perspective">
+		<command
+			serialization="org.eclipse.ui.perspectives.showPerspective(org.eclipse.ui.perspectives.showPerspective.perspectiveId=org.rubypeople.rdt.ui.PerspectiveRuby)">
+		</command>
+		<description> Use the &quot;Click to Perform&quot; button to open the ruby
+			perspective. This can also be done manually by choosing &quot;Window-&gt;Open
+			Perspective-&gt;Other...&quot; from the main menu and selecting
+			&quot;Ruby&quot; from the dialog which opens. </description>
+	</item>
+	<item title="Create Ruby project on soap4r">
+		<action pluginId="org.rubypeople.rdt.branding" param1="soap4r"
+			class="org.rubypeople.rdt.internal.cheatsheets.webservice.OpenNewRubyProjectWizardAction"/>
+		<description> In order to run wsdl2ruby.rb from the soap4r package, you create a ruby
+			project called soap4r on top of the soap4r installation directory at first.
+			After clicking the &quot;Click to Perform&quot; button below, the &quot;New
+			Ruby Project&quot; wizard will open. The project name &quot;soap4r&quot; is
+			already entered. Select the &quot;Create project from existing source&quot; radio button in the Contents
+			area and use the browse button to select the directory to which you have
+			unzipped the soap4r tar/zip. Then click the "Finish button". </description>
+	</item>
+	<item title="Create MyWebservice project">
+		<action pluginId="org.rubypeople.rdt.branding" param1="MyWebservice"
+			class="org.rubypeople.rdt.internal.cheatsheets.webservice.OpenNewRubyProjectWizardAction"/>
+		<description> In this step you create a new project within your workspace, which will
+			be used to hold the wsdl file and the generated code from this file. The project is
+			called
+			&quot;MyWebservice&quot; The &quot;Click to Perform&quot; button opens the
+			&quot;New Ruby Project&quot; wizard again. This time you can leave the
+			&quot;Use Default&quot; checkbox enabled. This will create the project as a
+			subdirectory into your workspace location. </description>
+	</item>
+	<item title="Add wsdl file to MyWebservice">
+		<action pluginId="org.rubypeople.rdt.branding" param1="MyWebservice"
+			class="org.rubypeople.rdt.internal.cheatsheets.webservice.CreateWsdlFileAction"/>
+		<description> Add a new file called sample.wsdl to the MyWebservice project. In the
+			dialog which &quot;Click to Perform&quot; brings up you only have to enter the
+			file name
+			&quot;sample.wsdl&quot;. The MyWebservice project is already selected as the
+			container of this new resource. </description>
+	</item>
+	<item title="Add content to sample.wsdl">
+		<action pluginId="org.rubypeople.rdt.branding"
+			param1="/cheatsheets/Sample.wsdl" param2="/MyWebservice/sample.wsdl"
+			class="org.rubypeople.rdt.internal.cheatsheets.webservice.CopyContentAction"/>
+		<description>The &quot;Click to
+			Perform&quot; buttons copies sample content to the wsdl file. The content is
+			copied from the Sample.wsdl file which ships with RDT. </description>
+	</item>
+	<item title="Run wsdl2ruby.rb"
+		href="/org.rubypeople.rdt.doc.user/html/ch03s10.html">
+		<description> Open the soap4r project. Open the bin directory and right-click the
+			&quot;wsdl2ruby.rb&quot; file to open the context menu. Choose
+			&quot;Run As->Ruby Application&quot;. Check the console for the output of the
+			process. There you find the required command line options. </description>
+	</item>
+	<item title="Modify the run configuration for server generation">
+		<action pluginId="org.rubypeople.rdt.branding"
+			class="org.rubypeople.rdt.internal.cheatsheets.webservice.OpenRunConfigurationAction"/>
+		<description> &quot;Click to Perform&quot; opens the run configuration dialog,
+			which is also available as Run->Run... from the main menu. The running of
+			wsdl2ruby.rb in the last step has created a run-configuration named
+			&quot;wsdl2ruby.rb&quot;. Rename it to &quot;wsdl-gen-server&quot;.
+			<br/>
+			Now open the Arguments tab and add &quot;--wsdl
+			sample.wsdl --type server&quot; to the program arguments. Then change the
+			working directory to the directory of the MyWebservice project by unchecking "Use default working directory" 
+			and browsing to the location of the project on the filesystem. (Therefore you
+			must know where your workspace resides on the local disk. If you have forgotten
+			which workspace you are using or where it resides, you can choose
+			&quot;File->Switch Workspace&quot; to see teh directory where your projects are being created by default). <br/>
+			<br/>
+			Click "Run" to launch the script with it's new arguments.
+		</description>
+	</item>
+	<item title="Check generated server files">
+		<description> The execution of the last step should have generated three files.
+			Because they have been created on the file system from the outside, you must
+			execute
+			&quot;Refresh&quot; from the context menu of the MyWebservice project. Then
+			you should see the new files: webServiceExample.rb,
+			webServiceExampleServant.rb and webServiceExampleService.rb. If they are
+			not there or are empty, check the console for error messages. If there is a stack
+			trace in the console, you can double-click to open the specified file locations.
+			</description>
+	</item>
+	<item title="Create Run-Configuration for client generation">
+		<action pluginId="org.rubypeople.rdt.branding"
+			class="org.rubypeople.rdt.internal.cheatsheets.webservice.OpenRunConfigurationAction"/>
+		<description> &quot;Click to Perform&quot; opens the run configuration dialog
+			again. Perform &quot;Duplicate&quot; from the context menu of the
+			wsdl-gen-server run configuration. A duplicate &quot;wsdl-gen-server
+			(1)&quot; will be generated. Rename it to &quot;wsdl-gen-client&quot;,
+			change the argument &quot;--type server&quot; to
+			&quot;--type client&quot; and click &quot;Run&quot;. </description>
+	</item>
+	<item title="Check generated client files">
+		<description> Click &quot;Refresh&quot; on the MyWebservice project to display
+			the two newly generated files: webServiceExampleDriver.rb and
+			webServiceExampleServiceClient.rb. </description>
+	</item>
+	<item href="/org.rubypeople.rdt.doc.user/html/ch03s12.html#DebugKnownLimitations"
+		title="Check ruby version">
+		<description>Please note there are limitations in the ruby versions which are
+			suitable for debugging if you are not using the ruby-debug-ide based debugger. 
+            We strongly installing the <b>ruby-debug-ide</b> gem and using that as your debugging 
+			backend (once installed it should automatically become the default).
+			<br/>
+			For the "classic" debugger: On Linux there is a restriction to ruby 1.6, on windows
+			ruby 1.8.2 works fine but 1.8.1 does not. See Help->Help Contents for more
+			details. If your version of ruby does not meet these requirements, use
+			&quot;Run->Run Ruby Application&quot; instead of
+			&quot;Debug->Debug Ruby Application&quot; in the next step for starting the
+			server. </description>
+	</item>
+	<item title="Debug server">
+		<description> Open the editor for webServiceExampleServant.rb (by
+			double-clicking it in the &quot;Ruby Resources&quot; view) and set a
+			breakpoint in the line which raises the NotImplementedError. A breakpoint can
+			be set and removed either by double-clicking on the vertical bar at the left side
+			of the editor or by using the context menu on that bar. Start the debugger with
+			&quot;Debug->Debug Ruby Application&quot; from the context menu of
+			webServiceExampleService.rb. </description>
+	</item>
+	<item title="Modify the client">
+		<description> If you look at the client code in webServiceExampleServiceClient.rb
+			you will notice that the user variable is set to nil. Assign a new user object
+			instead, e.b. with User.new('myID', 'myName'). Save the editor with the icon
+			from the toolbar or ctrl+s.</description>
+	</item>
+	<item title="Run the client">
+		<action pluginId="org.rubypeople.rdt.branding"
+			class="org.rubypeople.rdt.internal.cheatsheets.webservice.OpenRunConfigurationAction"/>
+		<description> Use the &quot;Click to perform&quot; button or select
+			&quot;Run->Run...&quot; from the main menu to open the run configuration
+			dialog. Select &quot;Ruby Application&quot; and click &quot;New&quot;.
+			Rename the newly created run configuration to &quot;run-client&quot;. Select
+			webServiceExampleServiceClient.rb as the file to be run with the
+			&quot;Browse&quot; button. Go the Arguments Tab and add
+			&quot;http://localhost:10080/&quot; as program argument. Click Run.
+			</description>
+	</item>
+	<item href="/org.rubypeople.rdt.doc.user/html/ch03s12.html#startDebugSession"
+		title="Breakpoint hit">
+		<description> After a while the clients request will trigger the breakpoint in the
+			server process. If you haven't debugged before, you will be asked whether to
+			switch to the debug perspective or not. You should confirm the switch. In the
+			debug perspective you can see where the server process halted and examine the
+			program state. E.g. in the Variables view you can see the attribute values of
+			the user object. </description>
+	</item>
+	<item title="Edit the server code">
+		<description>If you have a look at
+			the wsdl file, you'll discover that the addUser method expects an integer as return
+			value. Therefore you can replace the raise command with &quot;return 0&quot; and
+			save the new code. When you save the code the ruby interpreter, which runs the
+			server, also reloads the code. Now resume the server with the resume button,
+			&quot;Run->Resume&quot; or F8.</description>
+	</item>
+	<item href="/org.rubypeople.rdt.doc.user/html/ch03s12.html#codeReload"
+			title="Check the output of the client">
+		<description> In the Debug view you can see that the client has terminated. In order to
+			see its output, select the terminated process. After that the Console shows the
+			output of the client, which is a stack trace showing the NotImplementedError:
+			although the interpreter has reloaded the new content of
+			webServiceExampleServant.rb it finished the stack with the old code.
+			Therefore we must run the client again.</description>
+	</item>
+	<item title="Run the client again">
+		<description> Now run the client again with &quot;Run->Run
+			History->run-client&quot;, wait for the breakpoint and resume again. The
+			console displays 0, the result of the addUser method, instead of the stack trace.
+			</description>
+	</item>
+	<item title="End">
+		<description> This tutorial has given you a short overview of RDT. Please mind that
+			RDT is an an open source project and needs the feedback and contributions
+			from the users. Please visit http://www.rubypeople.org/ if you want to help to
+			further improve RDT.</description>
+	</item>
+</cheatsheet>

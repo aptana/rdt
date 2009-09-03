@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<introContent>
+	<!-- Extension to the SDK Overview Page. -->
+  	<extensionContent id="org.eclipse.rdt.overview" alt-style="css/rdt.properties" style="css/rdtOverview.css" name="Ruby Development" path="overview/@">
+		<group style-id="content-group" id="content-group">
+       		<link label="Ruby Development" url="http://org.eclipse.ui.intro/showHelpTopic?id=/org.rubypeople.rdt.doc.user/html/index.html" id="ruby" style-id="content-link">
+          		<text>Get familiar with developing Ruby programs Using Eclipse</text>
+       		</link>
+       	</group>
+  	</extensionContent>
+</introContent>

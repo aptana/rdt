@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+params: ()
+is_singleton: false
+block_params: 
+name: random_iv
+comment: 
+full_name: OpenSSL::Cipher::Cipher#random_iv
+visibility: public
+aliases: []
+

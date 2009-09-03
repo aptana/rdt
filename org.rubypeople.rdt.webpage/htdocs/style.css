@@ -1,0 +1,153 @@
+@media print
+{
+  #container {  
+  }
+
+  #leftPart {
+    display: none ;
+  }
+ 
+  #mainPart {
+    min-height: 400px ;
+  }
+
+  #banner {
+    display: none ;
+  }
+
+
+}
+
+@media screen
+{
+  
+  #container {
+    width: 786px;
+    text-align: left ;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+   
+  }
+  
+  #banner {
+    position: relative ;
+  }
+
+  #leftPart {
+  	position: absolute;
+  	padding-top: 30px ;
+    width: 134px;
+	top: 125px;
+    left:0px;
+    z-index:2 ;     
+  }  
+  
+  #menuTop {
+    position: relative ;
+    overflow: hidden;
+    width: 134px;
+    height: 10px ;  
+    background-image: url(images/menuBorderTop.gif) ;
+    background-repeat: no-repeat;
+    background-position: 0px 0px ;  
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px ;
+    font-size: 0px;
+  }
+  
+  #menuBottom {
+    position: relative ;
+    overflow: hidden;
+    width: 134px;
+    height: 10px ;  
+    background-image: url(images/menuBorderBottom.gif) ;
+    background-repeat: no-repeat;
+    background-position: 0px 0px ;  
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px ;
+    font-size: 0px;
+  }
+  
+
+  #mainPart {
+        background-color: white;
+        border: 1px solid #777777;
+        position: relative;
+        margin: 20px 0 0 140px;
+        width: 643px;
+  }
+  
+  
+  #mainPartHeader {
+     background-color:#CC0000 ;
+     font-weight: bold ; 
+     color: #ffffff;
+     padding: 4 0 4 2 ; 
+     margin: 6 4 2 4 ;   
+  }
+
+  #banner {
+    position: relative ;
+	margin: 0 0 0 0 ;
+	padding: 0 0 0 0 ;
+  }
+
+ .menuEntry {
+     background-color: #FF6666 ;     
+     font-size: 0px;
+ }
+ 
+ .firstMenuEntry {
+   padding-top: 5px ;
+ }
+
+
+  .menuEntry A:link {text-decoration: none; color: 000000 }
+  .menuEntry A:visited {text-decoration: none; color: 000000 }
+  .menuEntry A:hover { text-decoration: none; color: 000000 }
+
+  #sfLogo {
+  	text-align: center ;
+  	padding: 50px 0px 30px 0 ;
+  	background-color: #FF6666 ;
+  }
+
+}
+
+.section {
+  margin-left: 8px ;
+}
+
+BODY, TD, TH  {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 12px;
+	font-weight : normal;
+	color : #000000;
+	
+}
+
+body {   
+    text-align: left ; 
+    margin: 0 0 0 0;   
+    background-color: #999999; 
+}
+
+A:LINK  {
+	color : #000000;
+	text-decoration : none;
+	font-weight: bold;
+}
+A:HOVER  {
+	text-decoration : underline;
+	font-weight: bold;
+}
+
+A:VISITED  {
+	color: #000000;
+	text-decoration : none;
+	font-weight : bold;
+}
+
+
+
+

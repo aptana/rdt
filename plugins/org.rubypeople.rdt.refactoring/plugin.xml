@@ -1,0 +1,420 @@
+<plugin>
+   <extension
+         point="org.rubypeople.rdt.ui.editorPopupExtender">
+        <rubyEditorPopupMenuExtension
+              class="org.rubypeople.rdt.refactoring.action.RefactoringActionGroup">
+        </rubyEditorPopupMenuExtension>
+   </extension>
+<extension
+      point="org.eclipse.ui.editorActions">
+      
+ 
+      
+   <editorContribution
+         id="org.rubypeople.rdt.refactoring.refactoringEditorActions"
+         targetID="org.rubypeople.rdt.ui.EditorRubyFile">
+         <menu
+               id="org.rubypeople.rdt.refactoring.refactoringMenu"
+               label="%rubyRefactoring.refactoringMenuLabel"
+               path="edit">
+            <separator name="org.rubypeople.rdt.refactoring.refactoringGroup"/>
+         </menu>
+<!-- experimental
+         <action
+               class="org.rubypeople.rdt.refactoring.action.FormatSourceAction"
+               enablesFor="*"
+               id="org.rubypeople.rdt.refactoring.renameFormatSourceAction"
+               label="%rubyRefactoring.FormatSourceLabel"
+               menubarPath="org.rubypeople.rdt.refactoring.sourceMenu/org.rubypeople.rdt.refactoring.sourceGeneratorGroup"
+               style="push"
+               tooltip="Formats the Sourcecode"/> -->
+<!-- Refactorings: -->
+         <action
+               class="org.rubypeople.rdt.refactoring.action.SplitTempAction"
+               definitionId="org.rubypeople.rdt.refactoring.command.SplitTemp"
+               id="org.rubypeople.rdt.refactoring.splitTempAction"
+               label="%rubyRefactoring.SplitTempLabel"
+               menubarPath="org.rubypeople.rdt.refactoring.refactoringMenu/org.rubypeople.rdt.refactoring.refactoringGroup"
+               tooltip="%action.tooltip.0"/>
+         <action
+               class="org.rubypeople.rdt.refactoring.action.RenameAction"
+               definitionId="org.rubypeople.rdt.refactoring.command.Rename"
+               id="org.rubypeople.rdt.refactoring.renameAction"
+               label="%rubyRefactoring.RenameLabel"
+               menubarPath="org.rubypeople.rdt.refactoring.refactoringMenu/org.rubypeople.rdt.refactoring.refactoringGroup"
+               tooltip="%action.tooltip.1"/>
+         <action
+               class="org.rubypeople.rdt.refactoring.action.PushDownAction"
+               definitionId="org.rubypeople.rdt.refactoring.command.PushDown"
+               id="org.rubypeople.rdt.refactoring.pushDownAction"
+               label="%rubyRefactoring.PushDownLabel"
+               menubarPath="org.rubypeople.rdt.refactoring.refactoringMenu/org.rubypeople.rdt.refactoring.refactoringGroup"
+               style="push"
+               tooltip="%action.tooltip.2"/>
+         <action
+               class="org.rubypeople.rdt.refactoring.action.PullUpAction"
+               definitionId="org.rubypeople.rdt.refactoring.command.PullUp"
+               id="org.rubypeople.rdt.refactoring.pullUpAction"
+               label="%rubyRefactoring.PullUpLabel"
+               menubarPath="org.rubypeople.rdt.refactoring.refactoringMenu/org.rubypeople.rdt.refactoring.refactoringGroup"
+               style="push"
+               tooltip="%action.tooltip.3"/>
+         <action
+               class="org.rubypeople.rdt.refactoring.action.MoveMethodAction"
+               definitionId="org.rubypeople.rdt.refactoring.command.MoveMethod"
+               id="org.rubypeople.rdt.refactoring.MoveMethod"
+               label="%rubyRefactoring.MoveMethodLabel"
+               menubarPath="org.rubypeople.rdt.refactoring.refactoringMenu/org.rubypeople.rdt.refactoring.refactoringGroup"
+               style="push"
+               tooltip="%action.tooltip.4"/>
+         <action
+               class="org.rubypeople.rdt.refactoring.action.MoveFieldAction"
+               definitionId="org.rubypeople.rdt.refactoring.command.MoveField"
+               id="org.rubypeople.rdt.refactoring.MoveField"
+               label="%rubyRefactoring.MoveFieldLabel"
+               menubarPath="org.rubypeople.rdt.refactoring.refactoringMenu/org.rubypeople.rdt.refactoring.refactoringGroup"
+               style="push"
+               tooltip="%action.tooltip.5"/>
+		 <action
+               class="org.rubypeople.rdt.refactoring.action.MergeWithExternalClassPartsAction"
+               definitionId="org.rubypeople.rdt.refactoring.command.MergeWithExternalClassParts"
+               id="org.rubypeople.rdt.refactoring.mergeWithExternalClassParts"
+               label="%rubyRefactoring.MergeWithExternalClassPartsLabel"
+               menubarPath="org.rubypeople.rdt.refactoring.refactoringMenu/org.rubypeople.rdt.refactoring.refactoringGroup"
+               style="push"
+               tooltip="%action.tooltip.6"/>
+         <action
+               class="org.rubypeople.rdt.refactoring.action.MergeClassPartsInFileAction"
+               definitionId="org.rubypeople.rdt.refactoring.command.MergeClassPartsInFile"
+               id="org.rubypeople.rdt.refactoring.mergeClassPartsInFile"
+               label="%rubyRefactoring.MergeClassPartsInFileLabel"
+               menubarPath="org.rubypeople.rdt.refactoring.refactoringMenu/org.rubypeople.rdt.refactoring.refactoringGroup"
+               style="push"
+               tooltip="%action.tooltip.7"/>
+         <action
+               class="org.rubypeople.rdt.refactoring.action.InlineMethodAction"
+               definitionId="org.rubypeople.rdt.refactoring.command.InlineMethod"
+               id="org.rubypeople.rdt.refactoring.inlineMethod"
+               label="%rubyRefactoring.InlineMethodLabel"
+               menubarPath="org.rubypeople.rdt.refactoring.refactoringMenu/org.rubypeople.rdt.refactoring.refactoringGroup"
+               style="push"
+               tooltip="%action.tooltip.8"/>
+         <action
+               class="org.rubypeople.rdt.refactoring.action.InlineTempAction"
+               definitionId="org.rubypeople.rdt.refactoring.command.InlineTemp"
+               id="org.rubypeople.rdt.refactoring.inlineTemp"
+               label="%rubyRefactoring.InlineTempLabel"
+               menubarPath="org.rubypeople.rdt.refactoring.refactoringMenu/org.rubypeople.rdt.refactoring.refactoringGroup"
+               style="push"
+               tooltip="%action.tooltip.9"/>
+         <action
+               class="org.rubypeople.rdt.refactoring.action.InlineClassAction"
+               definitionId="org.rubypeople.rdt.refactoring.command.InlineClass"
+               id="org.rubypeople.rdt.refactoring.inlineClassAction"
+               label="%rubyRefactoring.InlineClassLabel"
+               menubarPath="org.rubypeople.rdt.refactoring.refactoringMenu/org.rubypeople.rdt.refactoring.refactoringGroup"
+               style="push"
+               tooltip="%action.tooltip.10"/>
+         <action
+               class="org.rubypeople.rdt.refactoring.action.ExtractMethodAction"
+               definitionId="org.rubypeople.rdt.refactoring.command.ExtractMethod"
+               id="org.rubypeople.rdt.refactoring.extractMethodAction"
+               label="%rubyRefactoring.ExtractMethodLabel"
+               menubarPath="org.rubypeople.rdt.refactoring.refactoringMenu/org.rubypeople.rdt.refactoring.refactoringGroup"
+               style="push"
+               tooltip="%action.tooltip.11"/>
+        <action
+               class="org.rubypeople.rdt.refactoring.action.ExtractConstantAction"
+               definitionId="org.rubypeople.rdt.refactoring.command.ExtractConstant"
+               id="org.rubypeople.rdt.refactoring.extractConstantAction"
+               label="%rubyRefactoring.ExtractConstantLabel"
+               menubarPath="org.rubypeople.rdt.refactoring.refactoringMenu/org.rubypeople.rdt.refactoring.refactoringGroup"
+               style="push"
+               tooltip="%action.tooltip.12"/>
+         <action
+               class="org.rubypeople.rdt.refactoring.action.EncapsulateFieldAction"
+               definitionId="org.rubypeople.rdt.refactoring.command.EncapsulateField"
+               id="org.rubypeople.rdt.refactoring.extractMethod"
+               label="%rubyRefactoring.EncapsulateField"
+               menubarPath="org.rubypeople.rdt.refactoring.refactoringMenu/org.rubypeople.rdt.refactoring.refactoringGroup"
+               style="push"
+               tooltip="%action.tooltip.13"/>
+         <action
+               class="org.rubypeople.rdt.refactoring.action.ConvertTempToFieldAction"
+               definitionId="org.rubypeople.rdt.refactoring.command.ConvertTempToField"
+               id="org.rubypeople.rdt.refactoring.convertTempToFieldAction"
+               label="%rubyRefactoring.ConvertTempToFieldLabel"
+               menubarPath="org.rubypeople.rdt.refactoring.refactoringMenu/org.rubypeople.rdt.refactoring.refactoringGroup"
+               style="push"
+               tooltip="%action.tooltip.14"/>
+   </editorContribution>
+</extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <category
+         description="%category.description.0"
+         id="org.rubypeople.rdt.refactoring.commands.refactoring"
+         name="%category.name.0"/>
+   <category
+         description="%category.description.1"
+         id="org.rubypeople.rdt.refactoring.commands.source"
+         name="%category.name.1"/>
+<!-- Source: -->
+   <command
+         categoryId="org.rubypeople.rdt.refactoring.commands.source"
+         id="org.rubypeople.rdt.refactoring.command.GenerateAccessors"
+         name="%rubyRefactoring.GenerateAccessorLabel"/>
+   <command
+         categoryId="org.rubypeople.rdt.refactoring.commands.source"
+         id="org.rubypeople.rdt.refactoring.command.GenerateConstructor"
+         name="%rubyRefactoring.GenerateConstructorLabel"/>
+   <command
+         categoryId="org.rubypeople.rdt.refactoring.commands.source"
+         id="org.rubypeople.rdt.refactoring.command.OverrideMethod"
+         name="%rubyRefactoring.OverrideMethodLabel"/>
+<!-- Refactorings: -->
+   <command
+         categoryId="org.rubypeople.rdt.refactoring.commands.refactoring"
+         id="org.rubypeople.rdt.refactoring.command.Rename"
+         name="%rubyRefactoring.RenameLabel"/>
+   <command
+         categoryId="org.rubypeople.rdt.refactoring.commands.refactoring"
+         id="org.rubypeople.rdt.refactoring.command.SplitTemp"
+         name="%rubyRefactoring.SplitTempLabel"/>
+   <command
+         categoryId="org.rubypeople.rdt.refactoring.commands.refactoring"
+         id="org.rubypeople.rdt.refactoring.command.MergeClassPartsInFile"
+         name="%rubyRefactoring.MergeClassPartsInFileLabel"/>
+   <command
+         categoryId="org.rubypeople.rdt.refactoring.commands.refactoring"
+         id="org.rubypeople.rdt.refactoring.command.ConvertTempToField"
+         name="%rubyRefactoring.ConvertTempToFieldLabel"/>
+   <command
+         categoryId="org.rubypeople.rdt.refactoring.commands.refactoring"
+         id="org.rubypeople.rdt.refactoring.command.PushDown"
+         name="%rubyRefactoring.PushDownLabel"/>
+   <command
+         categoryId="org.rubypeople.rdt.refactoring.commands.refactoring"
+         id="org.rubypeople.rdt.refactoring.command.ExtractMethod"
+         name="%rubyRefactoring.ExtractMethodLabel"/>
+   <command
+         categoryId="org.rubypeople.rdt.refactoring.commands.refactoring"
+         id="org.rubypeople.rdt.refactoring.command.InlineMethod"
+         name="%rubyRefactoring.InlineMethodLabel"/>
+   <command
+         categoryId="org.rubypeople.rdt.refactoring.commands.refactoring"
+         id="org.rubypeople.rdt.refactoring.command.EncapsulateField"
+         name="%rubyRefactoring.EncapsulateField"/>
+   <command
+         categoryId="org.rubypeople.rdt.refactoring.commands.refactoring"
+         id="org.rubypeople.rdt.refactoring.command.MergeWithExternalClassParts"
+         name="%rubyRefactoring.MergeWithExternalClassPartsLabel"/>
+   <command
+         categoryId="org.rubypeople.rdt.refactoring.commands.refactoring"
+         id="org.rubypeople.rdt.refactoring.command.InlineTemp"
+         name="%rubyRefactoring.InlineTempLabel"/>
+   <command
+         categoryId="org.rubypeople.rdt.refactoring.commands.refactoring"
+         id="org.rubypeople.rdt.refactoring.command.MoveMethod"
+         name="%rubyRefactoring.MoveMethodLabel"/>
+   <command
+         categoryId="org.rubypeople.rdt.refactoring.commands.refactoring"
+         id="org.rubypeople.rdt.refactoring.command.MoveField"
+         name="%rubyRefactoring.MoveFieldLabel"/>
+   <command
+         categoryId="org.rubypeople.rdt.refactoring.commands.refactoring"
+         id="org.rubypeople.rdt.refactoring.command.InlineClass"
+         name="%rubyRefactoring.InlineClassLabel"/>
+</extension>
+
+<extension
+      point="org.eclipse.ui.bindings"> <!-- M1 == Ctrl, M2 == Shift M3 == Alt -->
+   <key
+   		 commandId="org.rubypeople.rdt.refactoring.command.ExtractMethod"
+   		 contextId="org.rubypeople.rdt.ui.rubyEditorScope"
+   		 schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+   		 sequence="M2+M3+M "/>
+   <key
+         commandId="org.rubypeople.rdt.refactoring.command.MoveField"
+         contextId="org.rubypeople.rdt.ui.rubyEditorScope"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="M2+M3+V F"/>
+   <key
+         commandId="org.rubypeople.rdt.refactoring.command.MoveMethod"
+         contextId="org.rubypeople.rdt.ui.rubyEditorScope"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="M2+M3+V M"/>
+   <key
+         commandId="org.rubypeople.rdt.refactoring.command.InlineClass"
+         contextId="org.rubypeople.rdt.ui.rubyEditorScope"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="M2+M3+I C"/>
+   <key
+         commandId="org.rubypeople.rdt.refactoring.command.InlineTemp"
+         contextId="org.rubypeople.rdt.ui.rubyEditorScope"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="M2+M3+I L"/>
+   <key
+         commandId="org.rubypeople.rdt.refactoring.command.InlineMethod"
+         contextId="org.rubypeople.rdt.ui.rubyEditorScope"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="M2+M3+I M"/>
+   <key
+         commandId="org.rubypeople.rdt.refactoring.command.Rename"
+         contextId="org.rubypeople.rdt.ui.rubyEditorScope"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="M2+M3+R"/>
+</extension>
+<extension
+      point="org.eclipse.ui.popupMenus">
+      
+   <objectContribution
+         id="org.rubypeople.rdt.refactoring.refactoringContext"
+         objectClass="org.rubypeople.rdt.internal.core.LocalVariable">
+      <action
+            class="org.rubypeople.rdt.refactoring.action.ConvertTempToFieldAction"
+            id="org.rubypeople.rdt.refactoring.action.ConvertTempToFieldAction"
+            label="%rubyRefactoring.ConvertTempToFieldLabel"
+            menubarPath="additions" />
+      <action
+            class="org.rubypeople.rdt.refactoring.action.InlineTempAction"
+            id="org.rubypeople.rdt.refactoring.action.InlineTempAction"
+            label="%rubyRefactoring.InlineTempLabel"
+            menubarPath="additions" />
+      <action
+            class="org.rubypeople.rdt.refactoring.action.SplitTempAction"
+            id="org.rubypeople.rdt.refactoring.action.SplitTempAction"
+            label="%rubyRefactoring.SplitTempLabel"
+            menubarPath="additions" />
+      <action
+            class="org.rubypeople.rdt.refactoring.action.RenameAction"
+            id="org.rubypeople.rdt.refactoring.action.RenameAction"
+            label="%rubyRefactoring.RenameLabel"
+            menubarPath="additions" />
+   </objectContribution>       
+   
+   <objectContribution
+         id="org.rubypeople.rdt.refactoring.refactoringContext"
+         objectClass="org.rubypeople.rdt.internal.core.RubyType">
+      <action
+            class="org.rubypeople.rdt.refactoring.action.RenameAction"
+            id="org.rubypeople.rdt.refactoring.action.RenameAction"
+            label="%rubyRefactoring.RenameLabel"
+            menubarPath="additions" />
+   </objectContribution> 
+   
+   <objectContribution
+         id="org.rubypeople.rdt.refactoring.refactoringContext"
+         objectClass="org.rubypeople.rdt.internal.core.RubyInstVar">
+      <action
+            class="org.rubypeople.rdt.refactoring.action.EncapsulateFieldAction"
+            id="org.rubypeople.rdt.refactoring.action.EncapsulateFieldAction"
+            label="%rubyRefactoring.EncapsulateField"
+            menubarPath="additions" />  
+      <action
+            class="org.rubypeople.rdt.refactoring.action.MoveFieldAction"
+            id="org.rubypeople.rdt.refactoring.action.MoveFieldAction"
+            label="%rubyRefactoring.MoveFieldLabel"
+            menubarPath="additions" />
+      <action
+            class="org.rubypeople.rdt.refactoring.action.RenameAction"
+            id="org.rubypeople.rdt.refactoring.action.RenameAction"
+            label="%rubyRefactoring.RenameLabel"
+            menubarPath="additions" />
+   </objectContribution>  
+     
+   <objectContribution
+         id="org.rubypeople.rdt.refactoring.refactoringContext"
+         objectClass="org.rubypeople.rdt.internal.core.RubyClassVar">
+      <action
+            class="org.rubypeople.rdt.refactoring.action.EncapsulateFieldAction"
+            id="org.rubypeople.rdt.refactoring.action.EncapsulateFieldAction"
+            label="%rubyRefactoring.EncapsulateField"
+            menubarPath="additions" />
+      <action
+            class="org.rubypeople.rdt.refactoring.action.MoveFieldAction"
+            id="org.rubypeople.rdt.refactoring.action.MoveFieldAction"
+            label="%rubyRefactoring.MoveFieldLabel"
+            menubarPath="additions" />
+      <action
+            class="org.rubypeople.rdt.refactoring.action.RenameAction"
+            id="org.rubypeople.rdt.refactoring.action.RenameAction"
+            label="%rubyRefactoring.RenameLabel"
+            menubarPath="additions" />
+   </objectContribution>      
+   
+   <objectContribution
+         id="org.rubypeople.rdt.refactoring.refactoringContext"
+         objectClass="org.rubypeople.rdt.internal.core.RubyMethod">
+      <action
+            class="org.rubypeople.rdt.refactoring.action.MoveMethodAction"
+            id="org.rubypeople.rdt.refactoring.action.MoveMethodAction"
+            label="%rubyRefactoring.MoveMethodLabel"
+            menubarPath="additions" />
+      <action
+            class="org.rubypeople.rdt.refactoring.action.RenameAction"
+            id="org.rubypeople.rdt.refactoring.action.RenameAction"
+            label="%rubyRefactoring.RenameLabel"
+            menubarPath="additions" />
+   </objectContribution>    
+
+</extension>
+
+<extension
+         point="org.eclipse.ltk.ui.refactoring.changePreviewViewers">
+         <changePreviewViewer
+            class="org.rubypeople.rdt.internal.ui.refactoring.CreateTextFileChangePreviewViewer"
+    		id="org.rubypeople.rdt.refactoring.preview.RubyTextEditChangePreviewViewer">
+         <enablement>
+            <instanceof value="org.rubypeople.rdt.internal.corext.refactoring.nls.changes.CreateTextFileChange"/>
+         </enablement>
+      </changePreviewViewer>
+   </extension>
+<extension
+      point="org.eclipse.ui.actionSets">
+   <actionSet
+         id="org.rubypeople.rdt.ui.RefactoringActionSet"
+         label="%actionSet.label.0"
+         visible="false">
+      <action
+            class="org.rubypeople.rdt.refactoring.action.GenerateConstructorAction"
+            definitionId="org.rubypeople.rdt.refactoring.command.GenerateConstructor"
+            id="org.rubypeople.rdt.refactoring.generateConstructorAction"
+            label="%rubyRefactoring.GenerateConstructorLabel"
+            menubarPath="org.rubypeople.rdt.ui.source.menu/generateGroup"
+            style="push"
+            tooltip="%action.tooltip.15"/>
+      <action
+            class="org.rubypeople.rdt.refactoring.action.GenerateAccessorsAction"
+            definitionId="org.rubypeople.rdt.refactoring.command.GenerateAccessors"
+            id="org.rubypeople.rdt.refactoring.generateaccessors"
+            label="%rubyRefactoring.GenerateAccessorLabel"
+            menubarPath="org.rubypeople.rdt.ui.source.menu/generateGroup"
+            style="push"
+            tooltip="%action.tooltip.16"/>
+      <action
+            class="org.rubypeople.rdt.refactoring.action.OverrideMethodAction"
+            definitionId="org.rubypeople.rdt.refactoring.command.OverrideMethod"
+            id="org.rubypeople.rdt.refactoring.overrideMethodAction"
+            label="%rubyRefactoring.OverrideMethodLabel"
+            menubarPath="org.rubypeople.rdt.ui.source.menu/generateGroup"
+            style="push"
+            tooltip="%action.tooltip.17"/>
+   </actionSet>
+</extension>
+<extension
+      point="org.eclipse.ui.actionSetPartAssociations">
+   <actionSetPartAssociation targetID="org.rubypeople.rdt.ui.RefactoringActionSet">
+      <part id="org.rubypeople.rdt.ui.EditorRubyFile"/>
+   </actionSetPartAssociation>
+</extension>
+<extension
+      point="org.eclipse.core.runtime.adapters">
+      		<factory 
+            class="org.rubypeople.rdt.internal.ui.refactoring.RefactoringAdapterFactory" 
+            adaptableType="org.rubypeople.rdt.internal.corext.refactoring.changes.RubyScriptChange">
+            
+            <adapter type="org.eclipse.ltk.ui.refactoring.TextEditChangeNode"/>
+		</factory>
+</extension>
+</plugin>

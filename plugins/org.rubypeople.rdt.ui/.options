@@ -1,0 +1,9 @@
+# Debugging options for org.rubypeople.rdt.ui
+
+# Turn on debugging for RDocUtility
+org.rubypeople.rdt.ui/generaterdoc=false
+
+org.rubypeople.rdt.ui/perf/content_assist/extensions=true
+
+org.rubypeople.rdt.ui/debug/ResultCollector=true
+org.rubypeople.rdt.ui/debug/ASTProvider=true

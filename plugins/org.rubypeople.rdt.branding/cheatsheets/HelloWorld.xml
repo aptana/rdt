@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet title="Create a Hello World application">
+   <intro href="/org.eclipse.platform.doc.user/reference/ref-cheatsheets.htm">
+      <description>
+         This cheat sheet shows you how to create the famous &quot;Hello World&quot;application and try it out. You will create a Ruby project and a Ruby class that will print &quot;Hello world!&quot; in the console when run.<br/><br/>If you need help at any step, click the (?) to the right. Let&apos;s getstarted!
+      </description>
+   </intro>
+   <item title="Open the Ruby perspective" dialog="false" skip="false" href="/org.eclipse.platform.doc.user/concepts/concepts-4.htm">
+      <description>
+         If you&apos;re not already in the Ruby perspective, in the main menu select <b>Window</b> &gt; <b>Open Perspective</b> &gt; <b>Ruby</b>or click on the &quot;Click to Perform&quot; link below.
+      </description>
+      <command serialization="org.eclipse.ui.perspectives.showPerspective(org.eclipse.ui.perspectives.showPerspective.perspectiveId=org.rubypeople.rdt.ui.PerspectiveRuby)" confirm="false">
+      </command>
+   </item>
+   <item title="Create a Ruby project" dialog="true" skip="false" href="/org.eclipse.jdt.doc.user/concepts/concepts-3.htm">
+      <description>
+         Before creating a class, we need a project to put it in. In the main toolbar, click on the <b>New Ruby Project</b> button, or click on the link below. Enter <b>HelloWorld</b> for the project name, then click <b>Finish</b>.
+      </description>
+      <command serialization="org.eclipse.ui.newWizard(newWizardId=org.rubypeople.rdt.ui.wizards.NewWizardProjectCreation)" confirm="false">
+      </command>
+   </item>
+   <item title="Create your HelloWorld script" dialog="false" skip="false">
+      <description>
+         The next step is to create a new ruby script. In the main menu select <b>File</b> &gt; <b>New</b> &gt; <b>File</b> (or the link below). Select the HelloWorld project as the folder, enter <b>helloworld.rb</b> for the file name, then click <b>Finish</b>.<br/><br/>The Ruby editor will automatically open showing your new script.
+      </description>
+      <command serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.ui.wizards.new.file)" confirm="false">
+      </command>
+   </item>
+   <item title="Add a print statement" dialog="false" skip="false" href="/org.eclipse.jdt.doc.user/concepts/concepts-7.htm">
+      <description>
+         Now that you have your helloworld.rb script, add the following statement:<br/><br/>puts &quot;Hello world!&quot;<br/><br/>Then <b>save</b> your changes.
+      </description>
+   </item>
+   <item title="Run your Ruby application" dialog="false" skip="false" href="/org.eclipse.jdt.doc.user/gettingStarted/qs-12.htm">
+      <description>
+         To <b>run</b> your application, right-click on the helloworld.rb file in the Ruby Resources view and select <b>Run As</b> &gt; <b>Ruby Application</b>. The <b>Console</b> view should appear at the bottom and display the &quot;Hello, world!&quot; output.<br/><br/>Congratulations! You have successfully created a Hello World application!
+      </description>
+   </item>
+</cheatsheet>

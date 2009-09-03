@@ -1,0 +1,2 @@
+a#ruby-introduction img { background-image : url(graphics/rdt_tutorial.gif); }
+a#ruby-introduction:hover img { background-image : url(graphics/rdt_tutorialhov.gif); }

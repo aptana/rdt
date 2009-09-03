@@ -1,0 +1,1001 @@
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook V3.1//EN" 
+	"file:///docbook/dtd/docbookx.dtd">
+<book>
+	<title>Ruby Development Tools</title>
+	<chapter id="GettingStarted">
+		<title>Getting Started</title>
+		<section id="preparingTheWorkbench">
+			<title> Preparing the Workbench </title>
+			<para> In this section, you will verify that the workbench is 
+				properly set up for Ruby development. </para>
+			<para> The following is assumed: </para>
+			<itemizedlist>
+				<listitem>
+					<para>You are starting with a new workbench installation 
+						with default settings.</para>
+				</listitem>
+				<listitem>
+					<para>You are familiar with the basic workbench mechanisms, 
+						such as views and perspectives. </para>
+				</listitem>
+			</itemizedlist>
+			<para> If you&#39;re not familiar with the basic workbench 
+				mechanisms, please see the Getting Started chapter of the 
+				Workbench User Guide. </para>
+			<section id="importantSettings">
+				<title>Important Settings</title>
+				<orderedlist>
+					<listitem>
+						<para> Open the workbench preferences by selecting the 
+							menu item <emphasis>Window &gt; 
+							Preferences</emphasis>. </para>
+					</listitem>
+					<listitem>
+						<para> Go to the <emphasis>Installed 
+							Interpreters</emphasis> preference page by 
+							selecting <emphasis>Ruby &gt; Installed 
+							Interpreters</emphasis> in the tree pane on the 
+							left. Click the <emphasis>Add button</emphasis> to 
+							define the location of your ruby executable. A 
+							dialog opens where you can specify a name and the path to 
+							a ruby interpreter. 
+							Example settings are: name="ruby 1.6.7", 
+							path="/usr/bin/ruby". The name can be chosen freely.</para>
+					</listitem>
+					<listitem>
+						<para> Leave the preferences by clicking on 
+							<emphasis>OK</emphasis>. </para>
+					</listitem>
+				</orderedlist>
+			</section>
+		</section>
+			</chapter>
+	<chapter id="Concepts">
+		<title>Concepts</title>
+		<section id="rubyProjects">
+			<title>Ruby projects</title>
+			<para>A Ruby project contains source code and related files for 
+				building a Ruby program.</para>
+			<para>A Ruby project also maintains a model of its contents. This 
+				model includes information about the type hierarchy, references 
+				and declarations of Ruby elements. This information is 
+				constantly updated as the user changes the Ruby source 
+				code.</para>
+			<para>You can organize Ruby projects in one way 
+				currently:<itemizedlist> <listitem> Using the project as the 
+				source container. This is the recommended organization for 
+				simple projects. </listitem> </itemizedlist> </para>
+		</section>
+		<section id="RubyPerspectives">
+			<title>Ruby perspectives</title>
+			<para>The Ruby development tools contribute the following 
+				perspectives to the workbench:</para>
+			<section id="RubyPerspectives_Ruby">
+				<title>Ruby</title>
+				<para>A perspective designed for working with Ruby projects. It 
+					consists of an editor area and the following views:</para>
+				<itemizedlist>
+					<listitem> Ruby Resources View </listitem>
+					<listitem>Outline </listitem>
+					<listitem>Console </listitem>
+					<listitem>Task List</listitem>
+					<listitem>Problems View</listitem>
+				</itemizedlist>
+			</section>
+			<section id="RubyPerspectives_RubyDebug">
+				<title>Debug</title>
+				<para>A perspective designed for debugging your Ruby program. 
+					It includes an editor area and the following views.</para>
+				<itemizedlist>
+					<listitem> Debug </listitem>
+					<listitem> Breakpoints </listitem>
+					<listitem> Expressions </listitem>
+					<listitem> Variables </listitem>
+					<listitem> Display </listitem>
+					<listitem> Outline </listitem>
+					<listitem> Console </listitem>
+				</itemizedlist>
+			</section>
+			<section id="RubyPerspectives_RubyBrowsing">
+				<title>Ruby Browsing</title>
+				<para>A perspective designed for browsing the classes in your workspace. 
+				     The browsing is organized with three interconnected views:
+				     </para>
+				<itemizedlist>
+					<listitem> Projects </listitem>
+					<listitem> Types </listitem>
+					<listitem> Members </listitem>
+				</itemizedlist>
+				Every view contains a tree view with a hierarchy of Ruby elements. The project view shows all
+				projects of the workspace. The selection of projects influences the content of the Types view.
+				In the same manner an element selection in the Types view shows its containing elements in the 
+				Members view.
+				Double clicking elements which are file based opens an editor and highlights the position of the element.
+			</section>			
+		</section>
+		<section id="RubyResourcesView">
+			<title>Ruby Resources View</title>
+			<para>The Ruby Resources View provides the same features as the 
+				regular navigator does (e.g. optional linking between editor 
+				and Ruby Resources View, customizable Filtering, collapsing the 
+				tree, context menu). In addition to that, there is a toggle to 
+				show only ruby resources (.rb, .rbw and .cgi files).</para>
+			<para> As for the regular navigator, there can also be a filter 
+				defined for the Ruby Resources View. Per default there are two 
+				entries, *.class and .*, in the filter list. This can be 
+				customized. For example, if you are sick of xml files, you can 
+				add the following declaration to a plugin descriptor, e.g. to 
+				ECLIPSE_HOME/plugins/org.rubypeople.rdt.ui/plugin.xml:</para>
+			<programlisting><![CDATA[ 
+<extension point="org.eclipse.ui.ide.resourceFilters"> 
+    <filter selected="false" pattern="*.xml"></filter> 
+</extension> ]]> </programlisting>
+			<figure>
+				<title>Ruby Resources View</title>
+				<graphic fileref="../images/rubyResources.png" format="PNG"/>
+			</figure>
+		</section>
+		<section id="RubyEditor">
+			<title>Ruby Editor</title>
+			<para>The Ruby editor provides specialized features for editing 
+				Ruby code.</para>
+			<para>Associated with the editor is a Ruby-specific Outline view, 
+				which shows the structure of the active Ruby script. It is 
+				updated as the user edits the script.</para>
+			<para>The editor includes the following features:</para>
+			<itemizedlist>
+				<listitem>Syntax highlighting</listitem>
+				<listitem>Content/code assist</listitem>
+				<listitem>Code formatting</listitem>
+				<listitem>Integrated debugging features</listitem>
+			</itemizedlist>
+			<para>The most common way to invoke the Ruby editor is to open a 
+				Ruby file from the Navigator or Ruby Resource View using pop-up 
+				menus or by clicking the file (single or double-click depending 
+				on the user preferences). You can also open the editor by 
+				opening Ruby elements, such as types, methods, or fields, from 
+				other views.</para>
+			<section id="CodeCompletion">
+				<title>Code completion</title>
+				<para> If you press Ctrl+space in the ruby editor, a list with 
+					information from the current ruby file is displayed. This 
+					information includes classes, modules, globals, methods and 
+					variables. There are also suggestions for keywords and some 
+					pre-defined globals. The keywords and globals are only 
+					shown if you have already typed at least one character. If 
+					the "token" preceding the cursor does match the beginning 
+					of any suggestions you will get no suggestions.
+				</para>
+			</section>
+			<section id="CodeFormatting">
+				<title>Code formatting</title>
+				<para>The code formatter formats either the whole file or the 
+					current selection, if there is one. In the latter case all 
+					the lines, which are covered from the selection, are 
+					formatted. The code formatter does not insert new lines but 
+					only indents existing lines. </para>
+				<para>There are two options to customize the behaviour of the 
+					formatter:</para>
+				<itemizedlist>
+					<listitem>
+						<para>The number of characters per indentation 
+							level</para>
+					</listitem>
+					<listitem>
+						<para>The character used for indentation can either be 
+							space or tab</para>
+					</listitem>
+				</itemizedlist>
+				<para>E.g. if you format a if/then/else block, the lines of the 
+					if and else blocks have an indentation level of 1 while the 
+					lines with keywords have an indentation level of 0. The 
+					default is to use spaces and two characters per indentation 
+					level, which indents the if and else blocks with two 
+					spaces. If you changed the second option to use tabs, the 
+					if and else blocks would be indented with two tabs.</para>
+				<para> When the second options is set to use spaces, typing a 
+					tab character in the editor inserts spaces instead of a 
+					tabs, too. The number of spaces used to replace the tab is 
+					dependent on the current cursor position.  Spaces will be added
+					to move the cursor to a "tabstop", based on the number of characters
+					per indentation level. By 
+					configuring the tab replacing settings with the code 
+					formatter settings, the difference between rawly entered 
+					code and formatted code can be minimized. </para>
+				<warning>
+					<para>In the current version the code formatter 
+						does not recognize regular expressions which are 
+						spread over multiple lines. That implies that these 
+						regular expressions might be indented.</para>
+				</warning>
+			</section>
+		</section>
+		<section id="Refactoring">
+			<title>Refactoring</title>
+			<para>RDT contains several automated refactorings for improving your code and 
+				making some tasks easier, like the generation of accessors. The refactorings
+				are available through the menu bar as well as the context menu of the editor
+				and the outline view. The following refactorings are available:</para>
+			<itemizedlist>
+				<listitem>Convert Local Variable to Field</listitem>
+				<listitem>Encapsulate Field</listitem>
+				<listitem>Extract Method</listitem>
+				<listitem>Generate Accessors</listitem>
+				<listitem>Generate Constructor using Fields</listitem>
+				<listitem>Inline Class</listitem>
+				<listitem>Inline Method</listitem>
+				<listitem>Inline Temp</listitem>
+				<listitem>Merge Class Parts</listitem>
+				<listitem>Move Field</listitem>
+				<listitem>Move Method</listitem>
+				<listitem>Override Method</listitem>
+				<listitem>Push Down Method</listitem>
+				<listitem>Rename Class, Field, Method and Local Variable</listitem>
+				<listitem>Split Local Variable</listitem>
+			</itemizedlist>
+			<section id="ConvertLocalVariableToField">
+				<title>Convert Local Variable to Field</title>
+				<para>This refactoring converts a local variable into a field. This will 
+					grant access to a variable that was only accessible inside a method or 
+					block to the whole class.</para>
+			</section>
+			<section id="EncapsulateField">
+				<title>Encapsulate Field</title>
+				<para>The Encapsulate Field refactoring encapsulates a field by 
+					hiding access to the field behind getter and setter methods. This is often 
+					used to enable external access, but can be useful to encapsulate a field 
+					internally within a class.</para>
+			</section>
+			<section id="ExtractMethod">
+				<title>Extract Method</title>
+				<para>Extract Method removes a block of statements and moves them into a 
+				    new method that contains this functionality. The new method
+					will be called from the location where the original statements appeared. 
+					Any local variables in scope of the extracted code that are used by the
+					affected statements are passed to the new method as parameters.
+					If one of those local variables is set inside the extracted block it will
+					be returned from the new method as its return value.</para>
+			</section>
+			<section id="GenerateAccessors">
+				<title>Generate Accessors</title>
+				<para>Generate Accessors can be used to generate getter and setter methods for 
+					fields of a class. The user can choose whether reader and / or writers
+					are generated and if they should be inserted as methods or in the short
+					form (using <varname>attr_reader</varname>, <varname>attr_writer</varname>
+					or <varname>attr_accessor</varname>).</para>
+			</section>
+			<section id="GenerateConstructorUsingFields">
+				<title>Generate Constructor using Fields</title>
+				<para>The code generator Generate Constructor Using Fields creates a new constructor.
+					The constructor will have a variable number of arguments, which can be 
+					selected from a list of the existing fields in the class. In the constructor's
+					body, the class fields will be initialized with the values of the constructor's
+					parameters.</para>
+			</section>
+			<section id="InlineClass">
+				<title>Inline Class</title>
+				<para>The Inline Class refactoring integrates the code from an existing class (which 
+					typically has few responsibilities) into another class. Typically the target class uses 
+					the inlined class.</para>
+			</section>
+			<section id="InlineMethod">
+				<title>Inline Method</title>
+				<para>The Inline Method refactoring removes a method and replaces the call with its content.
+					This might make sense if you have almost empty methods without much logic, perhaps
+					after applying other refactorings. Generally having multiple methods with clear
+					names is better than one big chunk of code.</para>
+			</section>
+			<section id="InlineTemp">
+				<title>Inline Temp</title>
+				<para>The Inline Temp refactoring replaces all occurrences of a local variable with the value
+					it was once assigned and removes the initial assignment. Usually this refactoring is
+					used to simplify the existing code and lay the groundowrk for future refactorings.</para>
+			</section>
+			<section id="MergeClassParts">
+				<title>Merge Class Parts</title>
+				<para>The Merge Ruby Class Parts refactoring pulls multiple class declarations together and merges them
+					into one single part. This is used to gather all instances of a re-opened class into a single area.</para>
+			</section>
+			<section id="MoveField">
+				<title>Move Field</title>
+				<para>This refactoring moves a field from one class into another one. This 
+					is useful if you realize that the responsibility for a field is not in the owning class,
+					but in another one. In this case, the field is better moved to the new class.</para>
+			</section>
+			<section id="MoveMethod">
+				<title>Move Method</title>
+				<para>The Move Method refactoring behaves almost like the Move Field refactoring, except that it
+					moves methods instead of fields. This is useful if you come across a method in a class
+					that is not really responsible for the functionality provided by this method.</para>
+			</section>
+			<section id="OverrideMethod">
+				<title>Override Method</title>
+				<para>The Override Method code generator creates method bodies for a class. You can
+					choose among the methods of the super class and those methods will be overridden
+					in the class. The added methods will have the same signature as the one from the
+					super class and call super.</para>
+			</section>
+			<section id="PushDownMethod">
+				<title>Push Down Method</title>
+				<para>The Push Down Method refactoring removes a method from the super class and pushes it
+					into all its child classes.</para>
+			</section>
+			<section id="Rename">
+				<title>Rename Class, Field, Method and Local Variable</title>
+				<para>The rename refactorings can be used to change the name of various elements of your code.</para>
+			</section>
+			<section id="SplitLocalVariable">
+				<title>Split Local Variable</title>
+				<para>Programmers sometimes tend to assign a temporary variable several 
+					times (the fact that Ruby does not have typed references might misleadingly encourage this). 
+					This is not recommendable because this means that the temporary variable takes various 
+					responsibilities and thus can not be named properly. The Split Temporary Variables refactoring 
+					helps avoiding this by creating a new temporary variable for each responsibility.</para>
+			</section>
+		</section>
+		<section id ="ConsoleView">
+			<title>Console View</title>
+			<para>The console view contains the output of a program. If the 
+				output of a ruby program contains a stack trace, every stack 
+				frame is clickable: When you place the mouse over a line in a 
+				stack trace, the pointer changes to the hyperlink symbol and 
+				clicking the hyperlink opens the associated file and moves to 
+				the appropriate line. If the file does not exist in the 
+				workspace, the Ruby External Editor is opened, which displays 
+				the file content read-only. </para>
+			<figure>
+				<title>Console stack Trace with hyperlinks</title>
+				<graphic fileref="../images/clickableStackTrace.png" 
+					format="PNG"/>
+			</figure>
+		</section>
+		<section id="OutlineView">
+			<title>Outline View</title>
+			<para> The outline view displays the structure of the currently 
+				selected editor. </para>
+			<figure>
+				<title>Outline View</title>
+				<graphic fileref="../images/outline.png" format="PNG"/>
+			</figure>
+		</section>
+		<section id="RiView">
+			<title>RI View</title>
+			<para>
+				The RI View is a frontend for ruby's RI command. It now uses an included version of the FastRI library to generate its results.
+				<figure>
+				<title>RI View</title>
+				<graphic fileref="../images/riView.png" format="PNG"/>
+			</figure>
+			</para>
+		</section>		
+		<section id="SyntaxErrorsAndProblemsView">
+			<title>Syntax Errors and the Problems View</title>
+			<para> After saving a ruby file it is parsed and syntax errors are displayed. The
+				errors show up in the vertical ruler on the left side of the editor and in the
+				Problems View. </para>
+			<figure>
+				<title>Syntax errors in the problem view</title>
+				<graphic fileref="../images/syntaxError.png" format="PNG"/>
+			</figure>
+			<para> The error position is often not very exact, which results in long red
+				underlings of text in the editor. The underlining can be switched off in the
+				preferences: right click on the vertical ruler on the left side of the editor
+				and select <emphasis>Preferences...</emphasis>. The screenshot below
+				shows the settings for the error annotations. In the upper right part
+				deselect <emphasis>Text as squiggles</emphasis>.</para>
+			<figure>
+				<title>Configure error annotations</title>
+				<graphic fileref="../images/configureErrorAnnotations.png"
+					format="PNG"/>
+			</figure>
+		</section>
+		<section id="TaskList">
+			<title>Task List</title>
+			<para> The task list shows you a list of tasks in your workspace. Tasks can be
+				related to keywords (tags) in ruby comments. The tags which will add a task to
+				the task list can be defined in <emphasis>Preferences...->Ruby->Task
+				Tags</emphasis>. Per default TODO and FIXME are defined as task
+				tags.</para>
+			<figure>
+				<title>Tasks</title>
+				<graphic fileref="../images/tasks.png" format="PNG"/>
+			</figure>
+		</section>
+		<section id="RunningARubyApplication">
+			<title>Running a Ruby application</title>
+			<section id="ContextMenu"><title>Starting from Ruby Resource View</title>
+				<para> The context menu of a ruby file in the Ruby Resource 
+					View has a run entry from which the file can be started in 
+					run or debug mode. </para>			
+			<figure>
+				<title>Run from context menu</title>
+				<graphic fileref="../images/runContextMenu.png" format="PNG"/>
+			</figure>
+			</section>
+			<section id="MainMenu"><title>Starting from main menu</title>
+				<para>The Run main menu also offers a menu point for starting a
+					ruby application. Which file is started is determined by the 
+					active part (marked with the blue border). This can be
+					the editor or the Ruby Resource View for example. If the Ruby Resource
+					View is active, the file selected in the resource tree is started.
+					If the editor is the active part, the file in the active editor is 
+					started.</para>			
+			<figure>
+				<title>Run from main menu</title>
+				<graphic fileref="../images/runMenu.png" format="PNG"/>
+			</figure>
+			</section>
+			<section id="Configuration">
+				<title>Run configuration</title>
+				<para>Every time a file is started from one of the described 
+					menu items, a run configuration is created. If the file is 
+					started a second time, this run configuration is used 
+					again. That allows to add parameters for the start, change 
+					the working directory or the interpreter to start with. 
+					</para>
+				<para> The following library paths are always added when the 
+					application is started (using the -I option of the ruby 
+					interpreter) and are not listed in the configuration 
+					dialog:</para>
+				<itemizedlist>
+					<listitem>
+						<para>The directory in which the started file 
+							resides</para>
+					</listitem>
+					<listitem>
+						<para>The path of the project in which the started file 
+							resides</para>
+					</listitem>
+					<listitem>
+						<para>The path of all dependent projects of the started 
+							file's project</para>
+					</listitem>
+				</itemizedlist>
+				<figure>
+					<title>Run from configuration</title>
+					<graphic fileref="../images/runConfiguration.png" 
+						format="PNG"/>
+				</figure>
+			</section>
+		</section>
+		<section id="RunningATest::UnitTest">
+			<title>Running a Test::Unit Test</title>
+			<section id="TestUnitContextMenu"><title>Starting from Ruby Resource View</title>
+				<para> The context menu of a ruby file in the Ruby Resource 
+					View has a Test::Unit entry from which the file can be started in 
+					run mode. </para>			
+			<figure>
+				<title>Run Test::Unit Test from context menu</title>
+				<graphic fileref="../images/runTestContextMenu.png" format="PNG"/>
+			</figure>
+			</section>
+			<section id="TestUnitMainMenu"><title>Starting from main menu</title>
+				<para>The Run main menu also offers a menu point for starting a
+					Test::Unit Test. Which file is started is determined by the 
+					active file (marked with the blue border). This can be
+					the file selected in the editor or the Ruby Resource View. If the Ruby Resource
+					View is active, the file selected in the resource tree is started.
+					If the editor is the active part, the file in the active editor is 
+					started.</para>			
+			<figure>
+				<title>Run Test::Unit Test from main menu</title>
+				<graphic fileref="../images/runTestMenu.png" format="PNG"/>
+			</figure>
+			</section>
+			<section id="Test::UnitTestConfiguration">
+				<title>Test::Unit Test Run Configuration</title>
+				<para>Every time a test is started from one of the described 
+					menu items, a Test::Unit run configuration is created. If the test is 
+					started a second time, this run configuration is used 
+					again. That allows to add parameters for the start, change 
+					the working directory or the interpreter to start with. 
+					</para>
+				<para> The following library paths are always added when the 
+					application is started (using the -I option of the ruby 
+					interpreter) and are not listed in the configuration 
+					dialog:</para>
+				<itemizedlist>
+					<listitem>
+						<para>The directory in which the started file 
+							resides</para>
+					</listitem>
+					<listitem>
+						<para>The path of the project in which the started file 
+							resides</para>
+					</listitem>
+					<listitem>
+						<para>The path of all dependent projects of the started 
+							file's project</para>
+					</listitem>
+				</itemizedlist>
+				<figure>
+					<title>Run Test::Unit Test from configuration</title>
+					<graphic fileref="../images/runTestConfiguration.png" 
+						format="PNG"/>
+				</figure>
+			</section>
+		</section>
+		<section id="usingTheDebugger">
+			<title>Debugger</title>
+			<section id="DebuggingPrerequisites">
+				<title>Prerequisites</title>
+				<para>If you can debug your ruby application depends on the version of the
+					ruby interpreter you are using. Ruby 1.6.8 works on both Linux and
+					Windows, 1.8.0 and 1.8.2 works also on Windows. </para>
+				
+			</section>
+			<section id="startDebugSession">
+				<title>Start a debug session</title>
+				<itemizedlist>
+					<listitem>
+						<para>Open your ruby file and set a breakpoint like you would set a
+							breakpoint in a java file</para>
+					</listitem>
+					<listitem>
+						<para>Select <emphasis>Run &gt; Debug As &gt; Ruby
+							Application</emphasis>. The Debug perspective will
+							open:</para>
+						
+					</listitem>
+					<listitem>
+						<para>In the launch view use <emphasis> step into, step over, step
+							return</emphasis> to step through the code. Use the
+							<emphasis>resume button </emphasis> to resume the
+							application. </para>
+					</listitem>
+				</itemizedlist>
+				<figure>
+					<title>Debug Perspective</title>
+					<graphic fileref="../images/debug.png" format="PNG"/>
+				</figure>
+			</section>
+			<section id="views">
+				<title>Debug views</title>
+				<para>The debug perspective contains the following views per default:
+					Debug, Variables, Breakpoints, Editor, Outline, Console and Tasks.
+					In addition to these there are two more view for the debug perspective:
+					the Expression and Display view. The Expression view will be opened for
+					displaying the results of inspect commands (runtime evaluation). The
+					Display view allows to enter arbitrary ruby commands for evalutaion.
+					</para>
+				
+				<section id="VariablesView">
+					<title>Variables view</title>
+					<para>The variables view shows the variables available in the stack
+						trace which is selected in the Debug view </para>
+					<section id="ShowConstantsAndClasses">
+						<title>Show Constants and Classes</title>
+						<para>Check <emphasis>Show Constants</emphasis> to display
+							constants, check <emphasis>Show Class
+							Variables</emphasis> to display class variables </para>
+						
+						<para> If you compare the default variable view with the
+							screenshot above you will notice that there are a lot more menu
+							commands available. They are for java debug targets. You can
+							customize the variable view to show ruby debug commands only:
+							Go to<emphasis> Window &gt; Preferences &gt; General &gt;
+							Capabilities</emphasis> and deselect
+							<emphasis>Development</emphasis>. It is a little
+							bewildering to switch off Development here, but it means only
+							to disable Java development and not Ruby development</para>
+						<figure>
+							<title>Variables View with type names mode on</title>
+							<graphic
+								fileref="../images/variableViewShowClassesAndConstants.png"
+								format="PNG"/>
+						</figure>
+					</section>
+					<section id="ShowTypeName">
+						<title>Show Type Names</title>
+						<figure>
+							<title>Variables View with type names mode on</title>
+							<graphic
+								fileref="../images/variableViewWithTypes.png"
+								format="PNG"/>
+						</figure>
+						<para> In the above screenshot there is a variable barney of type
+							person. The object is represented by the return value of the
+							to_s method, in this case "#&lt;Person:0x2ae7d20&gt;".
+							There is one instance variable @name of type String and value
+							"Barney".</para>
+					</section>
+					<section>
+						<title>Arrays</title>
+						<para>Assume the following code:</para>
+						
+						
+						<programlisting> <![CDATA[
+class Person 
+  def initialize(name)
+   @name = name
+  end
+  
+  def to_s()
+    return @name.to_s
+  end
+end
+
+persons = [] 
+persons &lt;&lt; Person.new('Barney')
+persons &lt;&lt; Person.new('Moe')           
+]]> </programlisting>
+						<para> After the last assignment the variable view shows the
+							content of the array. Note that the name appears as
+							description for the object, because to_s is
+							overriden.</para>
+						<figure>
+							<title>Array presentation in Variables View</title>
+							<graphic fileref="../images/arrayInVariablesView.png"
+								format="PNG"/>
+						</figure>
+					</section>
+					<section>
+						<title>Hashes</title>
+						<para> In order to show how hashes are presented in the variables
+							view, a hash is created:</para>
+						
+						
+						<programlisting><![CDATA[
+persons = Hash[ Person.new('Lisa') =&gt; Person.new('Marge'), 
+                            Person.new('Maggie') =&gt; Person.new('Marge')]
+]]> </programlisting>
+						<para>The view shows the name of the hash with the number of
+							elements in the first place. If you expand the item, there will
+							be a line for every key/value pair in the hash. Expanding a
+							key/value pair will show the content of the value. If you want
+							to know more about the key, select "Inspect key" from the
+							context menu:</para>
+						<figure>
+							<title>Hash presentation in Variables View</title>
+							<graphic fileref="../images/hashInVariablesView.png"
+								format="PNG"/>
+						</figure>
+					</section>
+				</section>
+				<section id="BreakpointsView">
+					<title>Breakpoints view</title>
+					<para>Use the Breakpoints view to remove ruby breakpoints.</para>
+				</section>
+				<section id="ExpressionsView">
+					<title>Expressions view</title>
+					<para> Results of ruby expression evaluation are displayed here.
+						Evaluation takes place: </para>
+					<itemizedlist>
+						<listitem>
+							<para>If you select text in the editor, open the context menu
+								and run "Inspect" or a quick inspect expression with
+								"Inspect..."</para>
+						</listitem>
+						<listitem>
+							<para>If you use the display view to enter ruby
+								expressions</para>
+						</listitem>
+						<listitem>
+							<para>If you select "inspect key" in the context menu of a hash
+								value in the variable view</para>
+						</listitem>
+					</itemizedlist>
+					<figure id="expressionViewWithInspectResult">
+						<title>Expression view with result from quick inspect</title>
+						<graphic
+							fileref="../images/expressionViewWithInspectResult.png"
+							format="PNG"/>
+					</figure>
+				</section>
+				<section id="DisplayView">
+					<title>Display view</title>
+					<para> Enter your text in the Display view and run "Ruby inspect" from
+						the context menu. The Expression view will open and show the
+						resitemizedlistt of the expression. The expression is evaluated
+						in the context of the selected stack frame in the Launch
+						view.</para>
+					<para> The following example shows an expression which creates a hash
+						with all global variables mapped to their values (the "Content
+						Assist" menu entry is only valid in the context of a java
+						program):</para>
+					<figure>
+						<title>Display View</title>
+						<graphic fileref="../images/displayView.png"
+							format="PNG"/>
+					</figure>
+					<para>The Expressions view shows the resitemizedlistt:</para>
+					<figure>
+						<title>Global variables in Expression View</title>
+						<graphic
+							fileref="../images/expressionViewWithGlobalVariables.png"
+							format="PNG"/>
+					</figure>
+				</section>
+			</section>
+			<section id="codeReload">
+				<title>Automatic code reload</title>
+				<para>If there is a debug session every file you edit and save will be
+					reloaded from the interpreter. This allows to debug and change a ruby
+					application without restarting. While this is a convenient feature,
+					there are some drawbacks to consider:</para>
+				<itemizedlist>
+					<listitem>
+						<para>The code reload does not affect the current stack trace. The
+							current stack frame will not be reentered and will be finished
+							with the old code. So, if you change the code of a method this
+							method will be finished with old code and the next call to this
+							method will use the new code. That means that Drop to Frame
+							functionality is not available.</para>
+					</listitem>
+					<listitem>
+						<para>The interpreter reloads the file with the updated content
+							and therefore also executes the code at the main level. That
+							might turn the application in an undesirable state. </para>
+					</listitem>
+					<listitem>
+						<para>You cannot delete methods by reloading. </para>
+					</listitem>
+				</itemizedlist>
+			</section>
+			<section id="quickInspect">
+				<title>Inspection shortcuts</title>
+				
+				<para> In a debug session the display view allows to enter arbitrary
+					expressions and have them evaluated. Inspection shortcuts are a more
+					convenient way to evaluate frequently used expression. They can be
+					applied directly to a selection in the editor without using the Display
+					view. The shortcuts are defined in
+					<emphasis>Preferences->Ruby->Evaluation
+					Expressions</emphasis>. There you can create, delete and modify
+					expressions. Every expression has a name, description and ruby code.
+					The ruby code may contain the placeholder <emphasis>%s</emphasis>
+					which will be replaced with the selection before evaluation. There are
+					some examples in the following table.</para>
+				<table frame="topbot">
+					<title></title>
+					<tgroup cols="3">
+						<thead>
+							<row>
+								<entry>name</entry>
+								<entry>ruby code</entry>
+								<entry>explanation</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry>Global variables</entry>
+								<entry>h={}; global_variables.each { |v| h[v] =
+									eval(v) }; h</entry>
+								<entry>This is an expression without context </entry>
+								
+							</row>
+							
+							<row>
+								<entry>instance methods incl. inherited</entry>
+								<entry>
+									%s.class.instance_methods(true).sort</entry>
+								<entry>In this expression %s will be replaced with the
+									current selection in the editor</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+				
+				<para>See <xref linkend="expressionViewWithInspectResult"/> for an
+					usage example. </para>
+				
+			</section>
+			<section id="debuggingRubyLibraries">
+				<title>Debugging into ruby libraries</title>
+				<para> If there are exceptions in a ruby library file, the program halts
+					there and the ruby file is opened read only. That is because the library
+					file is not part of the eclipse workspace. In order to edit such a file, a
+					ruby project can be created upon the library directory: </para>
+				<itemizedlist>
+					<listitem>
+						<para>Select <emphasis>New &gt; Project &gt; Ruby
+							Project</emphasis></para>
+					</listitem>
+					<listitem>
+						<para>Enter project name, e.g site-ruby</para>
+					</listitem>
+					<listitem>
+						<para>In the section <emphasis>Project contents</emphasis>
+							deselect <emphasis>Use Default</emphasis> and enter the
+							directory, e.g /usr/local/lib/site-ruby/1.6. Note, that
+							there must be write access to that directory, because eclipse
+							wants to create a .project file. </para>
+					</listitem>
+				</itemizedlist>
+			</section>				
+			<section id="DebugKnownLimitations">
+				<title>Known limitations</title>
+				<para>The ruby debugger is still under development and there are some
+					limitations, which must be considered when debugging your
+					application:</para>
+				<itemizedlist>
+					<listitem>
+						<para>In order to get the debug information about the running
+							program, eclipse starts a ruby debugger before the execution
+							of your application and talks to that ruby debugger via
+							socket. Currently this socket is set to 1098 and if this socket
+							is bound already debugging is not possible. (The java
+							debugger searches for a free socket before; that behaviour
+							should be implemented for the ruby debugger as well)</para>
+					</listitem>
+					<listitem>
+						<para>Threads are not refreshed regularly, i.e. you do not see the
+							threads your application creates before a breakpoint (or
+							exception or end of step) is reached</para>
+					</listitem>
+					<listitem>
+						<para>Only one ruby program can be debugged concurrently (there
+							is a socket bind exception if you try to debug more than on ruby
+							program at the same time)</para>
+					</listitem>
+					<listitem>
+						<para>Breakpoints are not saved when eclipse is closed</para>
+					</listitem>
+				</itemizedlist>
+				<section>
+					<title>Writing Bug Reports</title>
+					<para>In order to provide useful information in case of errors, you
+						shoitemizedlistd turn on verbose mode for the ruby
+						debugger:</para>
+					<orderedlist>
+						<listitem>
+							<para>open file
+								ECLIPSE_HOME/plugins/org.rubypeople.rdt.launching/ruby/classic-debug.rb</para>
+						</listitem>
+						<listitem>
+							<para>set ECLIPSE_VERBOSE = true</para>
+						</listitem>
+						<listitem>
+							<para>save file</para>
+						</listitem>
+						<listitem>
+							<para>After you started debugging, the console shows
+								additional information (appears red, if stderr is
+								printed red): </para>
+							<figure>
+								<title>Verbose debug information in console</title>
+								<graphic fileref="../images/verboseConsole.png"
+									format="PNG"/>
+							</figure>
+						</listitem>
+						<listitem>
+							<para>go to <ulink
+									url="http://sourceforge.net/projects/rubyeclipse">
+								</ulink> and add the console output to your bug
+								report.</para>
+						</listitem>
+					</orderedlist>
+				</section>
+			</section>
+		</section>
+	</chapter>
+	<chapter id="WhatsNew">
+		<title>What's new</title>
+		<para>New in RDT 0.9.0:</para>
+		<itemizedlist>		
+		    <listitem> Adds an initial catalog of refactorings thanks to Mirko Stocker, Thomas Corbat, and Lukas Felber.</listitem>
+		    <listitem> Better integration with Ruby interpreters: Now integrates loadpaths of the interpreter in backend, also hooks core libraries and standard libraries into the model for code completion/go to declaration, etc.</listitem>
+		    <listitem> Preliminary support for ruby-debug as the debugging backend</listitem>
+		    <listitem> Generate constructor</listitem>
+		    <listitem> Generate accessors</listitem>
+		    <listitem> Improved code completion</listitem>
+		    <listitem> Integration of type inferrencing work done by Jason morrison for Google Summer of Code</listitem>
+		    <listitem> Initial version of Mark occurences support</listitem>
+		    <listitem> Goto Declaration(F3) support</listitem>
+		    <listitem> Hyperlink navigation in source code - similar to F3 - Go To Declaration. Hold Ctrl (or Apple key on macs) and hover over source. Click a link to be taken to it's source.</listitem>
+		    <listitem> Integration with latest JRuby parser: speedier, positioning fixes</listitem>
+			<listitem> Syntax coloring of the Merge/compare view</listitem>	
+		</itemizedlist>	
+		
+		<para>New in RDT 0.8.0:</para>
+		<itemizedlist>		
+			<listitem> Compatible with Eclipse 3.1 and 3.2</listitem>	
+			<listitem> New Ruby Browsing Perspective</listitem>	
+			<listitem> New Class Wizard</listitem>	
+			<listitem> Apply code formatting (indentation) to templates</listitem>	
+			<listitem> Auto-insertion of templates</listitem>	
+			<listitem> Distinct syntax highlighting of globals</listitem>	
+			<listitem> Distinct syntax highlighting of instance/class variables</listitem>	
+			<listitem> Goto matching bracket action</listitem>	
+			<listitem> Right-clicking on "ruler" to left of ruby file's contents now allows user to add bookmark or task</listitem>	
+			<listitem> Auto-extend comments under particular conditions (abov method/class/module definitions, above attr_, above alias, above constant assignment, as first lines of file)</listitem>	
+			<listitem> Allow user to customize font used by Ruby Editor</listitem>	
+			<listitem> Allow user to turn on/off smart auto-closing of strings, brackets and braces on new preference page (was always enabled by default before)</listitem>	
+			<listitem> A number of bugfixes (see <ulink url="http://rubyeclipse.mktec.com/cgi-bin/trac.py/query?status=closed&amp;milestone=0.8.0&amp;type=defect&amp;order=priority">http://rubyeclipse.mktec.com/cgi-bin/trac.py/query?status=closed&amp;milestone=0.8.0&amp;type=defect&amp;order=priority</ulink>)</listitem>	
+		</itemizedlist>	
+		
+		<para>New in RDT 0.7.0:</para>
+		<itemizedlist>		
+			<listitem> Multiple debugger session possible because a free port will be used for the debugger communication. The port is written to a
+    temporary file and conveyed to the ruby process with "-r&lt;tmpFile&gt;". The fixed port used in the past (1098) is still the default 
+    port in the case that a temporary file can not be created</listitem>
+			<listitem> Catchpoints:
+			  <itemizedlist>	
+			    <listitem> The default was to halt at every type of StandardError, the new default is *not* to halt when exceptions are raised</listitem>
+			    <listitem> There is a menu entry in the debug perspective and a toolbar button in the breakpoint view which starts the Catchpoint dialog</listitem>
+			    <listitem> The catchpoint dialog allows to add a ruby exception breakpoint</listitem>
+			    <listitem> There can be at most one exception breakpoint; the breakpoint can be enabled, disabled and removed in the breakpoint view</listitem>
+			    <listitem> Added ability to distinctly color characters</listitem>
+			    <listitem> Added ability to distinctly color Fixnums (numbers)</listitem>
+			    <listitem> Added ability to distinctly color Symbols</listitem>
+			  </itemizedlist>	</listitem>
+			<listitem> Fixed arguments in alias template to refer to methods in ocrrect order (first arg is new name, second is old)</listitem>
+			<listitem> Always suggests Kernel methods (unless user has typed text which would eliminate all of them as possibilities)</listitem>
+			<listitem> Suggest Class and Module names from current project and any projects referenced by it</listitem>
+			<listitem> Added outline support for aliasing methods using the format 'alias :new_method :old_method'</listitem>
+			<listitem> Fixed bug where current visibility was never reset when opening a new class</listitem>
+			<listitem> Fix broken link between RubyProjects and RubyScripts. RubyProjects didn't properly find and add all RubyScripts as children. 
+    					It should do so now (according to RubyFileMatcher's behavior).</listitem>
+			<listitem> Started to implement ElementChangeListeners/RubyDelta/RubyModelOperation core model machinery</listitem>
+			<listitem> Now allows code folding of class methods (self.method)</listitem>
+			<listitem> Now updates code folding points as user edits the ruby script</listitem>
+			<listitem> Double-click now selects text more logically (Try double-clicking a method call or variable in a method chain. 
+    					It used to select until it hit a space or bracket. Now it will stop at periods as well [and more characters too])</listitem>
+			<listitem> New extension point for template proposals</listitem>
+			<listitem> New extension point for text hovers  </listitem>
+		</itemizedlist>	
+		
+		<para>New in RDT 0.6.0:</para>
+		<itemizedlist>		
+			<listitem> Code folding </listitem>	
+			<listitem> Syntax error <link linkend='SyntaxErrorsAndProblemsView'>Annotations and Problems View</link></listitem>	
+			<listitem> The <link linkend='RiView'>RI View</link> is a frontend for ruby's ri command</listitem>
+			<listitem> <link linkend='TaskList'>Task tags</link> (like TODO) are recognized and displayed in the Tasks View</listitem>
+			<listitem> Auto-complete of brackets, parens, and single/double quotes </listitem> 
+			<listitem> Debugger: <link linkend='codeReload'>Code reload</link> and <link linkend='quickInspect'>inspection shortcuts</link> </listitem> 
+    		<listitem> <ulink url="http://jruby.sourceforge.net/">JRuby</ulink> does the parsing behind the scenes </listitem>
+		</itemizedlist>				
+		<para>New in RDT 0.5.0:</para>
+		<itemizedlist>			
+			<listitem> <link linkend='RunningATest::UnitTest'> Test::Unit view </link> </listitem>			
+    		<listitem> RegExp view (originates from  
+				<ulink	url="http://e-p-i-c.sourceforge.net">EPIC</ulink>)</listitem>
+			<listitem> Editor: code completion with templates </listitem>
+			<listitem> Introductory Tutorial (Cheat Sheet) </listitem>
+		</itemizedlist>		
+		<para>New in RDT 0.4.2:</para>
+		<itemizedlist>			
+			<listitem> Runs with Eclipse 3.0 final</listitem>
+			<listitem> Editor: uses Workbench preferences for Quick Diff and Annotations  </listitem>
+    		<listitem> Outline: symbols updated (closer to java symbols) </listitem>
+			<listitem> Debugger: debug with 1.8.2 on windows </listitem>
+		</itemizedlist>
+		<para>New in RDT 0.4.1:</para>
+		<itemizedlist>			
+			<listitem> Clickable stack traces in console (click to open editor) </listitem>
+			<listitem> Ruby Resources View updated, now more like regular navigator </listitem>
+    		<listitem> Outline: improved and faster </listitem>
+			<listitem> Warnings and error annotations for ruby code (experimental, enable in preferences to try) </listitem>			    		
+			<listitem> Editor: convert typed tab to spaces </listitem>
+			<listitem> Code Formatter: use tabs or spaces for indentation </listitem>			
+			<listitem> Debugger: debug with 1.8.0 on windows </listitem>
+		</itemizedlist>
+		<para>New in RDT 0.4.0:</para>
+		<itemizedlist>
+			<listitem> Runs with Eclipse 3.0 </listitem>
+			<listitem> Code-completion </listitem>
+			<listitem> keywords </listitem>
+			<listitem> All elements of current script. </listitem>
+			<listitem> Classes and modules from library. </listitem>
+			<listitem> Outline View </listitem>
+			<listitem> Show globals </listitem>
+			<listitem> Show require statements </listitem>
+			<listitem> Show instance variables </listitem>
+			<listitem> Show class variables </listitem>
+			<listitem> Selecting an element selects the text and reveals it in 
+				the editor </listitem>
+			<listitem> Ruby Preferences </listitem>
+			<listitem> Ruby Library Page to select a directory for ruby library 
+				installation </listitem>
+			<listitem> Ruby Perspective </listitem>
+			<listitem> Shows Outline View </listitem>
+			<listitem> Offers Outline view shortcut (in show view menu) 
+				</listitem>
+			<listitem> Shows new ruby project, new file, new folder when 
+				clicking "New wizard" icon </listitem>
+			<listitem> Ruby Resource View </listitem>
+			<listitem> Offers new ruby project, new file, new folder on right 
+				click of an element </listitem>
+		</itemizedlist>
+	</chapter>
+</book>

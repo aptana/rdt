@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+params: (s, *args)
+is_singleton: false
+block_params: 
+name: printf
+comment: 
+full_name: Buffering#printf
+visibility: public
+aliases: []
+

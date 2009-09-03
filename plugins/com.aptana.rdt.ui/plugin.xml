@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension targetID="org.rubypeople.rdt.ui.RubyBrowsingPerspective">
+         <perspectiveShortcut id="org.radrails.rails.ui.PerspectiveRails"/>
+      </perspectiveExtension>
+      <perspectiveExtension targetID="org.eclipse.debug.ui.DebugPerspective">
+         <perspectiveShortcut id="org.radrails.rails.ui.PerspectiveRails"/>
+      </perspectiveExtension>
+   	 <perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+       <perspectiveShortcut id="org.radrails.rails.ui.PerspectiveRails"/>
+     </perspectiveExtension>
+     <perspectiveExtension targetID="org.rubypeople.rdt.ui.PerspectiveRuby">
+       <perspectiveShortcut id="org.radrails.rails.ui.PerspectiveRails"/>
+       <viewShortcut id="com.aptana.rdt.ui.views.RubyStdLibAPIView"/>   
+       <viewShortcut id="com.aptana.rdt.ui.views.RubyCoreAPIView"/>
+       <viewShortcut
+             id="com.aptana.gems.ui.ViewGems">
+       </viewShortcut> 
+     </perspectiveExtension>
+     <perspectiveExtension targetID="org.radrails.rails.ui.PerspectiveRails">
+       <view
+             id="com.aptana.gems.ui.ViewGems"
+             relationship="stack"
+             relative="org.eclipse.ui.console.ConsoleView"
+             visible="true"/>
+     </perspectiveExtension>
+   </extension>
+  <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="%view.name.0"
+            icon="icons/full/elcl16/rubydoc.gif"
+            category="org.rubypeople.rdt.ui.ruby"
+            class="com.aptana.rdt.internal.ui.infoviews.RubyCoreAPIView"
+            id="com.aptana.rdt.ui.views.RubyCoreAPIView">
+      </view>
+      <view
+            name="%view.name.1"
+            icon="icons/full/elcl16/rubydoc.gif"
+            category="org.rubypeople.rdt.ui.ruby"
+            class="com.aptana.rdt.internal.ui.infoviews.RubyStdLibAPIView"
+            id="com.aptana.rdt.ui.views.RubyStdLibAPIView">
+      </view>
+      <view
+            category="org.rubypeople.rdt.ui.ruby"
+            class="com.aptana.rdt.ui.gems.GemsView"
+            icon="icons/rubygems.png"
+            id="com.aptana.gems.ui.ViewGems"
+            name="%view.name.2"/>
+  </extension>
+   
+   <extension
+         point="org.rubypeople.rdt.ui.quickFixProcessors">
+      <quickFixProcessor
+            name="%defaultQuickFixProcessor"
+            class="com.aptana.rdt.internal.ui.text.correction.QuickFixProcessor"
+            id="com.aptana.rdt.ui.text.correction.QuickFixProcessor">
+      </quickFixProcessor>
+   </extension>
+   
+    <extension
+         point="org.eclipse.ui.viewActions">
+      <viewContribution
+            id="com.aptana.gems.ui.ViewActions"
+            targetID="com.aptana.gems.ui.ViewGems">
+   <action
+         class="com.aptana.rdt.internal.ui.actions.RefreshGemsActionDelegate"
+         icon="icons/nav_refresh.gif"
+         id="com.aptana.gems.ui.ActionRefreshGems"
+         label="%action.label.0"
+         style="push"
+         toolbarPath="additions"
+         tooltip="%action.tooltip.0">
+   </action>
+   <action
+         class="com.aptana.rdt.internal.ui.actions.CleanupGemsActionDelegate"
+         icon="icons/cleanup.gif"
+         id="com.aptana.gems.ui.ActionCleanupGems"
+         label="%action.label.1"
+         style="push"
+         toolbarPath="additions"
+         tooltip="%action.tooltip.1">
+   </action>
+   <action
+         class="com.aptana.rdt.internal.ui.actions.UpdateAllActionDelegate"
+         icon="icons/upgrade.gif"
+         id="com.aptana.gems.ui.ActionUpdateAllGems"
+         label="%action.label.2"
+         style="push"
+         toolbarPath="additions"
+         tooltip="%action.tooltip.2">
+   </action>
+   <action
+         class="com.aptana.rdt.internal.ui.actions.UpdateGemActionDelegate"
+         enablesFor="1"
+         icon="icons/ruby_get.png"
+         id="com.aptana.gems.ui.ActionUpdateGem"
+         label="%action.label.3"
+         style="push"
+         toolbarPath="additions"
+         tooltip="%action.tooltip.3">
+   </action>
+   <action
+         class="com.aptana.rdt.internal.ui.actions.RemoveGemActionDelegate"
+         disabledIcon="icons/delete_disabled.png"
+         enablesFor="1"
+         icon="icons/delete.png"
+         id="com.aptana.gems.ui.ActionRemoveGem"
+         label="%action.label.4"
+         style="push"
+         toolbarPath="additions"
+         tooltip="%action.tooltip.4">
+   </action>
+   <action
+         class="com.aptana.rdt.internal.ui.actions.InstallGemActionDelegate"
+         disabledIcon="icons/add_disabled.png"
+         icon="icons/add.png"
+         id="com.aptana.gems.ui.ActionInstallGem"
+         label="%action.label.5"
+         style="push"
+         toolbarPath="additions"
+         tooltip="%action.tooltip.5">
+   </action>
+      </viewContribution>
+   </extension>
+   
+     <extension
+           point="org.rubypeople.rdt.ui.quickAssistProcessors">
+        <quickAssistProcessor
+              class="com.aptana.rdt.internal.ui.text.correction.QuickAssistProcessor"
+              id="com.aptana.rdt.ui.quickAssistProcessor"
+              name="%quickAssistProcessor.name.0"/>
+     </extension>
+      <extension
+            id="RailsCompletionProposalComputer"
+            point="org.rubypeople.rdt.ui.rubyCompletionProposalComputer">
+         <rubyCompletionProposalComputer
+               activate="true"
+               categoryId="org.rubypeople.rdt.ui.defaultProposalCategory"
+               class="com.aptana.rdt.internal.ui.text.HashKeyHeuristicProposalComputer">
+            <partition type="__dftl_partition_content_type"/>
+         </rubyCompletionProposalComputer>
+      </extension>
+      <extension
+            point="org.rubypeople.rdt.ui.customRubyOutlinePages">
+         <page
+               class="com.aptana.rdt.internal.ui.rspec.RSpecOutlinePage"
+               id="com.aptana.rdt.ui.rspecOutlinePage"
+               name="RSpec Outline">
+         </page>
+      </extension>
+      <extension
+            point="org.eclipse.ui.preferencePages">
+         <page
+               category="org.rubypeople.rdt.ui.preferences.PreferencePageRubyBase"
+               class="com.aptana.rdt.internal.ui.preferences.GemPreferencePage"
+               id="com.aptana.rdt.ui.GemPreferencePage"
+               name="Gems">
+         </page>
+         <page
+               category="org.rubypeople.rdt.ui.preferences.ProblemSeveritiesPreferencePage"
+               class="com.aptana.rdt.internal.ui.preferences.DuplicateCodePreferencePage"
+               id="com.aptana.rdt.ui.DuplicateCodePreferencePage"
+               name="Duplicate Code">
+         </page>
+      </extension>
+      <extension
+            point="org.eclipse.core.runtime.preferences">
+         <initializer
+               class="com.aptana.rdt.internal.ui.preferences.PreferenceInitializer">
+         </initializer>
+      </extension>
+</plugin>

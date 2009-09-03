@@ -1,0 +1,15 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+name: DH
+constants: []
+
+comment: 
+attributes: []
+
+instance_methods: []
+
+full_name: OpenSSL::PKey::DH
+superclass: PKey
+class_methods: []
+

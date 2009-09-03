@@ -1,0 +1,23 @@
+<refentry id="eclipse.plugin.version">
+<refmeta>
+<refentrytitle>eclipse.plugin.version</refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>eclipse.plugin.version</refname>
+<refpurpose>Eclipse Help plugin version</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='eclipse.plugin.version.frag'>
+<xsl:param name="eclipse.plugin.version">1.0.0</xsl:param>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Eclipse Help plugin version. You should change this version to something
+unique for each release.</para>
+
+</refsect1>
+</refentry>

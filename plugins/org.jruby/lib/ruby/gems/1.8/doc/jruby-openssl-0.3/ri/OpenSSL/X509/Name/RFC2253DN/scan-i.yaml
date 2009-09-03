@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+params: (dn)
+is_singleton: false
+block_params: 
+name: scan
+comment: 
+full_name: OpenSSL::X509::Name::RFC2253DN#scan
+visibility: public
+aliases: []
+

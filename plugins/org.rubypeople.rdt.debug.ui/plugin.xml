@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension-point id="evaluationContextManagers" name="%evaluationContextManagers" schema="schema/evaluationContextManagers.exsd"/>
+    <extension point="org.eclipse.ui.views">
+      <view
+            name="%displayViewName"
+            icon="$nl$/icons/full/etool16/disp_sbook.gif"
+            category="org.eclipse.debug.ui"
+            class="org.rubypeople.rdt.internal.debug.ui.display.DisplayView"
+            id="org.rubypeople.rdt.debug.ui.DisplayView">
+      </view>
+    </extension>
+	<extension point="org.eclipse.ui.preferencePages">
+		<page name="%PreferencePage.RubyInterpreter.name"
+			category="org.rubypeople.rdt.ui.preferences.PreferencePageRubyBase"
+			class="org.rubypeople.rdt.internal.debug.ui.preferences.RubyInterpreterPreferencePage"
+			id="org.rubypeople.rdt.debug.ui.preferences.PreferencePageRubyInterpreter">
+		</page>
+	</extension>
+	<extension point="org.eclipse.ui.preferencePages">
+		<page name="%PreferencePage.EvaluationExpressions.name"
+			category="org.rubypeople.rdt.ui.preferences.PreferencePageRubyBase"
+			class="org.rubypeople.rdt.internal.debug.ui.preferences.EvaluationExpressionsPreferencePage"
+			id="org.rubypeople.rdt.debug.ui.preferences.PreferencePageEvaluationExpressions">
+		</page>
+	</extension>
+	<extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+		<launchConfigurationTypeImage icon="icons/full/ctool16/run_ruby.gif"
+			configTypeID="org.rubypeople.rdt.launching.LaunchConfigurationTypeRubyApplication"
+			id="org.rubypeople.rdt.debug.ui.LaunchConfigurationTypeImageRubyApplication">
+		</launchConfigurationTypeImage>
+	</extension>
+	<extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+		<launchConfigurationTabGroup
+			type="org.rubypeople.rdt.launching.LaunchConfigurationTypeRubyApplication"
+			class="org.rubypeople.rdt.internal.debug.ui.launcher.RubyApplicationTabGroup"
+			id="org.rubypeople.rdt.debug.ui.LaunchConfigurationTabGroupRubyApplication">
+		</launchConfigurationTabGroup>
+  <launchConfigurationTabGroup
+        class="org.rubypeople.rdt.internal.debug.ui.launcher.RemoteRubyApplicationTabGroup"
+        description="%remoteRubyApplicationTabGroupDescription"
+        id="org.rubypeople.rdt.debug.ui.launchConfigurationTabGroup.remoteRubyApplication"
+        type="org.rubypeople.rdt.launching.remoteRubyApplication">
+  </launchConfigurationTabGroup>
+	</extension>
+	<extension point="org.eclipse.debug.ui.debugModelPresentations">
+		<debugModelPresentation
+			class="org.rubypeople.rdt.internal.debug.ui.DebugModelPresentation"
+			id="org.rubypeople.rdt.debug">
+		</debugModelPresentation>
+	</extension>
+	<extension point="org.eclipse.debug.core.sourceLocators">
+		<sourceLocator name="%sourceLocator.name.0"
+			class="org.rubypeople.rdt.internal.debug.ui.RubySourceLocator"
+			id="org.rubypeople.rdt.debug.ui.rubySourceLocator">
+		</sourceLocator>
+	</extension>
+	<extension point="org.eclipse.ui.viewActions">
+		<viewContribution targetID="org.eclipse.debug.ui.VariableView"
+			id="org.rubypeople.rdt.ui.debug.VariableViewActions">
+			<action label="%showStaticVariables" style="toggle"
+				class="org.rubypeople.rdt.internal.debug.ui.actions.ShowStaticVariablesAction"
+				state="false" tooltip="%action.tooltip.0"
+				menubarPath="rubyActions"
+				id="org.rubypeople.rdt.ui.variableViewActions.ShowStatic">
+			</action>
+			<action label="%showConstants" style="toggle"
+				class="org.rubypeople.rdt.internal.debug.ui.actions.ShowConstantsAction"
+				state="false" tooltip="%action.tooltip.1"
+				menubarPath="rubyActions"
+				id="org.rubypeople.rdt.ui.variableViewActions.ShowConstants">
+			</action>
+		</viewContribution>
+  <viewContribution
+        id="org.rubypeople.rdt.debug.ui.BreakpointViewActions"
+        targetID="org.eclipse.debug.ui.BreakpointView">
+     <action
+           class="org.rubypeople.rdt.internal.debug.ui.breakpoints.AddExceptionAction"
+           disabledIcon="icons/full/elcl16/exc_catch.gif"
+           helpContextId="add_exception_action_context"
+           hoverIcon="icons/full/elcl16/exc_catch.gif"
+           icon="icons/full/elcl16/exc_catch.gif"
+           id="org.rubypeople.rdt.debug.ui.actions.AddException"
+           label="%modifyCatchpoint.label"
+           style="push"
+           toolbarPath="rdtExceptions"
+           tooltip="%modifyCatchpoint.tooltip"/>
+  </viewContribution>
+  <viewContribution
+        id="org.rubypeople.rdt.debug.ui.DisplayViewActions"
+        targetID="org.rubypeople.rdt.debug.ui.DisplayView">
+      <action
+               toolbarPath="evaluationGroup"
+               id="org.rubypeople.rdt.debug.ui.displayViewToolbar.Execute"
+               hoverIcon="$nl$/icons/full/etool16/run_sbook.gif"
+               class="org.rubypeople.rdt.internal.debug.ui.actions.ExecuteAction"
+               disabledIcon="$nl$/icons/full/dtool16/run_sbook.gif"
+               enablesFor="+"
+               icon="$nl$/icons/full/etool16/run_sbook.gif"
+               helpContextId="execute_action_context"
+               label="%Execute.label"
+               tooltip="%Execute.tooltip">
+            <enablement>
+               <and>
+                  <systemProperty
+                           name="org.rubypeople.rdt.debug.ui.debuggerActive"
+                           value="true">
+                  </systemProperty>
+                  <objectClass
+                        name="org.eclipse.jface.text.ITextSelection">
+                  </objectClass>
+               </and>
+            </enablement>
+         </action>
+  </viewContribution>
+	</extension>
+	<extension point="org.eclipse.ui.contexts">
+		<context name="%context.name.0" description="%context.description.0"
+			id="org.rubypeople.rdt.debug.ui.debugging"
+			parentId="org.eclipse.debug.ui.debugging">
+		</context>
+	</extension>
+	<extension point="org.eclipse.debug.ui.debugModelContextBindings">
+		<modelContextBinding debugModelId="org.rubypeople.rdt.debug"
+			contextId="org.rubypeople.rdt.debug.ui.debugging">
+		</modelContextBinding>
+	</extension>
+	<extension point="org.eclipse.ui.popupMenus">
+		<viewerContribution
+           id="org.rubypeople.rdt.debug.ui.RulerPopupActions"
+           targetID="org.rubypeople.rdt.ui.rubyeditor.rulerContextMenu">
+         <action
+               label="%AddBreakpoint.label"
+               class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"
+               menubarPath="debug"
+               id="org.rubypeople.rdt.debug.ui.actions.ToggleBreakpointAction">
+         </action>
+      </viewerContribution>
+		<viewerContribution
+			targetID="org.rubypeople.rdt.ui.rubyeditor.contextMenu"
+			id="org.rubypeople.rdt.debug.ui.RubyEditorPopupActions">
+			<!--
+         <action
+               label="%RubyBreakpointProperties.label"
+               helpContextId="breakpoint_properties_action_context"
+               class="org.rubypeople.rdt.debug.ui.actions.RubyBreakpointPropertiesRulerActionDelegate"
+               menubarPath="group.properties"
+               id="org.rubypeople.rdt.debug.ui.actions.RubyBreakpointPropertiesRulerActionDelegate">
+         </action>
+         -->
+         <action
+               label="%EnableBreakpoint.label"
+               helpContextId="enable_disable_breakpoint_action_context"
+               class="org.eclipse.debug.ui.actions.RulerEnableDisableBreakpointActionDelegate"
+               menubarPath="debug"
+               id="org.rubypeople.rdt.debug.ui.actions.EnableDisableBreakpointRulerActionDelegate">
+         </action>
+         <action
+               class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"
+               helpContextId="manage_breakpoint_action_context"
+               icon="icons/full/obj16/brkp_obj.gif"
+               id="org.rubypeople.rdt.debug.ui.actions.BreakpointRulerActionDelegate"
+               label="%AddBreakpoint.label"
+               menubarPath="debug">
+         </action>
+			<action label="%Inspect.label"
+				class="org.rubypeople.rdt.internal.debug.ui.actions.InspectAction"
+				menubarPath="additions" enablesFor="+"
+				id="org.rubypeople.rdt.debug.ui.cuPopup.Inspect">
+				<enablement>
+					<systemProperty
+						name="org.rubypeople.rdt.debug.ui.debuggerActive"
+						value="true">
+					</systemProperty>
+				</enablement>
+			</action>
+		</viewerContribution>
+		<viewerContribution targetID="org.eclipse.jdt.debug.ui.DisplayView"
+			id="org.rubypeople.rdt.debug.DisplayEvaluationActions">
+			<visibility>
+				<systemProperty name="org.rubypeople.rdt.debug.ui.debuggerActive"
+					value="true">
+				</systemProperty>
+			</visibility>
+			<action label="%RubyInspect.label"
+				helpContextId="inspect_action_context"
+				class="org.rubypeople.rdt.internal.debug.ui.actions.InspectAction"
+				menubarPath="evaluationGroup" enablesFor="+"
+				id="org.rubypeople.rdt.debug.ui.displayView.Inspect">
+				<enablement>
+					<and>
+						<or>
+							<systemProperty
+								name="org.rubypeople.rdt.debug.ui.debuggerActive"
+								value="true">
+							</systemProperty>
+						</or>
+						<objectClass
+							name="org.eclipse.jface.text.ITextSelection">
+						</objectClass>
+					</and>
+				</enablement>
+			</action>
+		</viewerContribution>
+		<viewerContribution targetID="org.eclipse.debug.ui.VariableView"
+			id="org.rubypeople.rdt.ui.debug.VariableViewActions">
+			<action label="%InspectHashKey.label"
+				helpContextId="inspect_action_context"
+				class="org.rubypeople.rdt.internal.debug.ui.actions.InspectHashKeyAction"
+				menubarPath="rdtActions" enablesFor="+"
+				id="org.rubypeople.rdt.ui.variableViewActions.InspectAction">
+				<enablement>
+					<and>
+						<objectClass
+							name="org.rubypeople.rdt.internal.debug.core.model.RubyVariable">
+						</objectClass>
+						<objectState name="isHashValue" value="true">
+						</objectState>
+					</and>
+				</enablement>
+			</action>
+		</viewerContribution>
+	</extension>
+	<extension point="org.eclipse.debug.ui.consoleLineTrackers">
+		<consoleLineTracker
+			class="org.rubypeople.rdt.internal.debug.ui.console.RubyConsoleTracker"
+			processType="ruby"
+			id="org.rubypeople.rdt.debug.ui.RubyConsoleTracker">
+		</consoleLineTracker>
+  <consoleLineTracker
+        class="org.rubypeople.rdt.internal.debug.ui.console.URLConsoleLineTracker"
+        id="org.rubypeople.rdt.debug.ui.URLConsoleLineTracker"
+        processType="ruby">
+  </consoleLineTracker>
+	</extension>
+	<extension point="org.eclipse.debug.ui.launchShortcuts">
+		<shortcut label="%RubyApplicationShortcut.label"
+			icon="icons/full/ctool16/run_ruby.gif"
+			class="org.rubypeople.rdt.internal.debug.ui.launcher.RubyApplicationShortcut"
+			modes="run, debug" id="org.rubypeople.rdt.debug.ui.RubyShortcut">
+			<contextualLaunch>
+				<enablement>
+					<with variable="selection">
+						<count value="1">
+						</count>
+						<iterate>
+							<or>
+								<test value="*.rb"
+									property="org.eclipse.debug.ui.matchesPattern">
+								</test>
+								<test value="*.rbx"
+									property="org.eclipse.debug.ui.matchesPattern">
+								</test>
+								<test value="*.rbw"
+									property="org.eclipse.debug.ui.matchesPattern">
+								</test>
+								<and>
+               	    				<test property="org.rubypeople.rdt.launching.isContainer"/>
+               	     				<test property="org.rubypeople.rdt.launching.hasProjectNature" args="org.rubypeople.rdt.core.rubynature"/>
+               	  				</and>
+							</or>
+						</iterate>
+					</with>
+				</enablement>
+				<contextLabel label="%LaunchShortcut.Ruby.label" mode="run">
+				</contextLabel>
+				<contextLabel label="%LaunchShortcut.Ruby.label" mode="debug">
+				</contextLabel>
+			</contextualLaunch>
+			<perspective id="org.rubypeople.rdt.ui.PerspectiveRuby">
+			</perspective>
+		</shortcut>
+	</extension>
+	<extension point="org.eclipse.ui.commands">
+		<command name="%ContextualRunRubyApplication.label"
+			description="%ContextualRunRubyApplication.label"
+			categoryId="org.eclipse.debug.ui.category.run"
+			id="org.rubypeople.rdt.debug.ui.RubyShortcut.run">
+		</command>
+		<command name="%ContextualDebugRubyApplication.label"
+			description="%ContextualDebugRubyApplication.label"
+			categoryId="org.eclipse.debug.ui.category.run"
+			id="org.rubypeople.rdt.debug.ui.RubyShortcut.debug">
+		</command>
+  <command
+        categoryId="org.eclipse.debug.ui.category.run"
+        id="org.rubypeople.rdt.debug.ui.commands.ModifyCatchpoint"
+        name="%command.name.0"/>
+	</extension>
+	<extension point="org.eclipse.ui.bindings">
+		<key sequence="M3+M2+D R"
+			commandId="org.rubypeople.rdt.debug.ui.RubyShortcut.debug"
+			schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+		<key sequence="M3+M2+X R"
+			commandId="org.rubypeople.rdt.debug.ui.RubyShortcut.run"
+			schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+	</extension>
+	
+	<extension point="org.rubypeople.rdt.ui.editorPopupExtender">
+		<rubyEditorPopupMenuExtension
+			class="org.rubypeople.rdt.internal.debug.ui.RubyEditorPopupMenuExtension">
+			<enablement>
+				<systemProperty name="org.rubypeople.rdt.debug.ui.debuggerActive"
+					value="true"/>
+			</enablement>
+		</rubyEditorPopupMenuExtension>
+	</extension>
+	<extension point="org.eclipse.ui.commands">
+		<command name="%command.name.1"
+			id="org.rubypeople.rdt.debug.ui.TemplateInspectCommand"/>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.preferences">
+		<initializer
+			class="org.rubypeople.rdt.internal.debug.ui.DebugUiPreferenceInitializer"/>
+	</extension>
+	<extension point="org.eclipse.ui.actionSets">
+		<actionSet
+        description="%actionSet.description.0"
+        id="org.rubypeople.rdt.debug.ui.RDTDebugActionSet"
+        label="%actionSet.label.0"
+        visible="true">
+			<action
+				definitionId="org.rubypeople.rdt.debug.ui.commands.ModifyCatchpoint"
+				label="%modifyCatchpoint.label"
+				icon="icons/full/elcl16/exc_catch.gif"
+				helpContextId="add_exception_action_context"
+				class="org.rubypeople.rdt.internal.debug.ui.breakpoints.AddExceptionAction"
+				menubarPath="org.eclipse.ui.run/breakpointGroup"
+				id="org.rubypeople.rdt.debug.ui.actions.ModifyCatchpoint">
+			</action>
+		</actionSet>
+	</extension>
+	
+	<extension
+         point="org.eclipse.ui.actionSetPartAssociations">
+      <actionSetPartAssociation
+            targetID="org.eclipse.debug.ui.launchActionSet">
+         <part
+               id="org.rubypeople.rdt.ui.RubyExplorer">
+         </part>
+         <part
+               id="org.rubypeople.rdt.ui.TypeHierarchy">
+         </part>
+         <part
+               id="org.rubypeople.rdt.ui.EditorRubyFile">
+         </part>
+         <part
+               id="org.rubypeople.rdt.ui.ExternalRubyEditor">
+         </part>
+         <part
+               id="org.rubypeople.rdt.ui.ProjectsView">
+         </part>
+         <part
+               id="org.rubypeople.rdt.ui.TypesView">
+         </part>
+         <part
+               id="org.rubypeople.rdt.ui.MembersView">
+         </part>
+      </actionSetPartAssociation>
+   </extension>
+	
+ <extension
+       point="org.eclipse.ui.perspectiveExtensions">
+    <perspectiveExtension targetID="org.eclipse.debug.ui.DebugPerspective">
+       <view
+             id="org.rubypeople.rdt.debug.ui.DisplayView"
+             relationship="stack"
+             relative="org.eclipse.ui.console.ConsoleView"
+             visible="false"/>
+       <viewShortcut id="org.rubypeople.rdt.debug.ui.DisplayView"/>
+       <view
+             id="org.rubypeople.rdt.ui.TypeHierarchy"
+             relationship="stack"
+             relative="org.eclipse.debug.ui.DebugView"
+             visible="false"/>
+       <view
+             id="org.eclipse.search.SearchResultView"
+             relationship="stack"
+             relative="org.eclipse.ui.console.ConsoleView"
+             visible="false"/>
+       <view
+             id="org.rubypeople.rdt.ui.RubyExplorer"
+             relationship="stack"
+             relative="org.eclipse.debug.ui.DebugView"
+             visible="false"/>
+    </perspectiveExtension>
+ </extension>
+ 
+	<!-- Adapters for contextual launch -->
+	<extension point="org.eclipse.core.runtime.adapters">
+         <factory 
+            class="" 
+            adaptableType="org.rubypeople.rdt.core.IRubyElement">
+            <adapter type="org.eclipse.debug.ui.actions.ILaunchable"/>
+         </factory>
+         <factory 
+            class="" 
+            adaptableType="org.eclipse.core.resources.IResource">
+            <adapter type="org.eclipse.debug.ui.actions.ILaunchable"/>
+         </factory>
+<!--         <factory 
+            class="" 
+            adaptableType="org.rubypeople.rdt.internal.ui.rubyeditor.IRubyScriptEditorInput">
+            <adapter type="org.eclipse.debug.ui.actions.ILaunchable"/>
+         </factory>      -->    
+         
+         <factory 
+            class="org.rubypeople.rdt.internal.debug.ui.actions.RetargettableActionAdapterFactory" 
+            adaptableType="org.rubypeople.rdt.internal.ui.rubyeditor.RubyEditor">
+           <!-- <adapter type="org.eclipse.debug.ui.actions.IRunToLineTarget"/> -->
+            <adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget"/>
+         </factory>         
+         <factory 
+            class="org.rubypeople.rdt.internal.debug.ui.actions.RetargettableActionAdapterFactory" 
+            adaptableType="org.rubypeople.rdt.core.IMethod">
+            <adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget"/>
+         </factory>         
+         <factory 
+            class="org.rubypeople.rdt.internal.debug.ui.actions.RetargettableActionAdapterFactory" 
+            adaptableType="org.rubypeople.rdt.core.IField">
+            <adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget"/>
+         </factory>
+    </extension>
+ <extension
+       point="org.eclipse.debug.core.watchExpressionDelegates">
+    <watchExpressionDelegate
+          debugModel="org.rubypeople.rdt.debug"
+          delegateClass="org.rubypeople.rdt.internal.debug.ui.RubyWatchExpressionDelegate">
+    </watchExpressionDelegate>
+ </extension>
+ <extension
+       point="org.rubypeople.rdt.debug.ui.evaluationContextManagers">
+    <evaluationContextManager
+          class="org.rubypeople.rdt.internal.debug.ui.EvaluationContextManager"
+          id="org.rubypeople.rdt.debug.ui.evaluationContextManager">
+    </evaluationContextManager>
+ </extension>
+ <extension
+       point="org.eclipse.ui.editorActions">
+    <editorContribution
+          id="org.rubypeople.rdt.debug.RubyEditor.BreakpointRulerActions"
+          targetID="org.rubypeople.rdt.ui.EditorRubyFile">
+       <action
+             actionID="RulerDoubleClick"
+             class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"
+             id="org.rubypeople.rdt.debug.ui.actions.ManageBreakpointRulerAction"
+             label="%AddBreakpoint.label">
+       </action>
+    </editorContribution>
+ </extension>
+</plugin>

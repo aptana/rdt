@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<introContent>
+	<!-- Extension to the SDK What's New Page. -->
+	<extensionContent id="org.eclipse.rdt.news" name="Ruby Development Tools" path="whatsnew/@">
+		<group style-id="content-group" id="content-group">
+    		<link label="Ruby Development Tools" url="http://org.eclipse.ui.intro/showHelpTopic?id=/org.rubypeople.rdt.doc.user/html/ch03.html" id="rdt-noteworthy" style-id="content-link">
+      			<text>News about RDT for this release</text>
+    		</link>
+    	</group>
+	</extensionContent>
+</introContent>

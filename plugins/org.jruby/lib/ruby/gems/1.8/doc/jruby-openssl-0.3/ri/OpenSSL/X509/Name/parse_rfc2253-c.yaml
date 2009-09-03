@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+params: (str, template=OBJECT_TYPE_TEMPLATE)
+is_singleton: true
+block_params: 
+name: parse_rfc2253
+comment: 
+full_name: OpenSSL::X509::Name::parse_rfc2253
+visibility: public
+aliases: []
+

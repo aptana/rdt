@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+params: (size=nil, buf=nil)
+is_singleton: false
+block_params: 
+name: read
+comment: 
+full_name: Buffering#read
+visibility: public
+aliases: []
+

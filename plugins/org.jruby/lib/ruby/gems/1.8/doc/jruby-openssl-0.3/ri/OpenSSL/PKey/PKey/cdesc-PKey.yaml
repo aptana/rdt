@@ -1,0 +1,16 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+name: PKey
+constants: []
+
+comment: 
+attributes: []
+
+instance_methods: []
+
+full_name: OpenSSL::PKey::PKey
+superclass: Object
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new

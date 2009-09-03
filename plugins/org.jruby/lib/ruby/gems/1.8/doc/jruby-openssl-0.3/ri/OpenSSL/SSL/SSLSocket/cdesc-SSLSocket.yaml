@@ -1,0 +1,21 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Buffering
+- !ruby/object:RI::IncludedModule 
+  name: SocketForwarder
+- !ruby/object:RI::IncludedModule 
+  name: Nonblock
+name: SSLSocket
+constants: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: post_connection_check
+full_name: OpenSSL::SSL::SSLSocket
+superclass: Object
+class_methods: []
+

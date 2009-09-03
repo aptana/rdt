@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+params: ()
+is_singleton: false
+block_params: 
+name: getc
+comment: 
+full_name: Buffering#getc
+visibility: public
+aliases: []
+

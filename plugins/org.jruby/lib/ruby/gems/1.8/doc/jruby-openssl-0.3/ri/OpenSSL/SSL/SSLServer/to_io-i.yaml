@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+params: ()
+is_singleton: false
+block_params: 
+name: to_io
+comment: 
+full_name: OpenSSL::SSL::SSLServer#to_io
+visibility: public
+aliases: []
+

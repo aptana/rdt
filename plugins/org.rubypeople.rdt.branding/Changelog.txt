@@ -1,0 +1,121 @@
+Release 0.9.0:
+* Initial Refactoring support
+  * Adds an initial catalog of refactorings
+  * Also adds some basic source manipulation
+    * Generate accessors
+    * Generate constructor
+* Better integration with Ruby interpreters
+  * Now "links" the standard and core libraries of ruby interpreters into new ruby projects - so they are used in code completion
+* Preliminary support for ruby-debug as the debugging backend
+* Integration of type inferrencing work done by Jason morrison for Google Summer of Code
+  * Improved code completion
+  * Initial version of Mark occurences support
+* Preliminary Goto Declaration(F3) support
+* Preliminary hyperlink navigation in source code - similar to F3 - Go To Declaration. Hold Ctrl (or Apple key on macs) and hover over source. Click a link to be taken to it's source.
+* Integration with latest JRuby parser
+  * positioning fixes
+  * improved speed
+* Syntax coloring of the Merge/compare view
+
+Release 0.8.0:
+* Compatible with Eclipse 3.1 and 3.2
+* New Ruby Browsing Perspective
+* New Class Wizard
+* Apply code formatting (indentation) to templates
+* Auto-insertion of templates
+* Distinct syntax highlighting of globals
+* Distinct syntax highlighting of instance/class variables
+* Goto matching bracket action
+* Right-clicking on "ruler" to left of ruby file's contents now allows user to add bookmark or task
+* Auto-extend comments under particular conditions (abov method/class/module definitions, above attr_, above alias, above constant assignment, as first lines of file)
+* Allow user to customize font used by Ruby Editor
+* Allow user to turn on/off smart auto-closing of strings, brackets and braces on new preference page (was always enabled by default before)
+* A number of bugfixes (see http://rubyeclipse.mktec.com/cgi-bin/trac.py/query?status=closed&milestone=0.8.0&type=defect&order=priority)
+
+Release 0.7.0:
+* Debugger
+  * Multiple debugger session possible because a free port will be used for the debugger communication. The port is written to a
+    temporary file and conveyed to the ruby process with "-r<tmpFile>". The fixed port used in the past (1098) is still the default 
+    port in the case that a temporary file can not be created
+  * Catchpoints:
+	  * The default was to halt at every type of StandardError, the new default is *not* to halt when exceptions are raised
+	  * There is a menu entry in the debug perspective and a toolbar button in the breakpoint view which starts the Catchpoint dialog
+	  * The catchpoint dialog allows to add a ruby exception breakpoint
+	  * There can be at most one exception breakpoint; the breakpoint can be enabled, disabled and removed in the breakpoint view
+* Ruby Search
+* Syntax Highlighting
+  * Added ability to distinctly color characters
+  * Added ability to distinctly color Fixnums (numbers)
+  * Added ability to distinctly color Symbols
+* Code completion
+  * Fixed arguments in alias template to refer to methods in ocrrect order (first arg is new name, second is old)
+  * Always suggests Kernel methods (unless user has typed text which would eliminate all of them as possibilities)
+  * Suggest Class and Module names from current project and any projects referenced by it
+* Ruby Model / AST
+  * Added outline support for aliasing methods using the format 'alias :new_method :old_method'
+  * Fixed bug where current visibility was never reset when opening a new class
+  * Fix broken link between RubyProjects and RubyScripts. RubyProjects didn't properly find and add all RubyScripts as children. 
+    It should do so now (according to RubyFileMatcher's behavior).
+  * Started to implement ElementChangeListeners/RubyDelta/RubyModelOperation core model machinery
+* Editor 
+  * Code Folding
+    * Now allows folding of class methods (self.method)
+    * Now updates code folding points as user edits the ruby script
+  * Double-click now selects text more logically (Try double-clicking a method call or variable in a method chain. 
+    It used to select until it hit a space or bracket. Now it will stop at periods as well [and more characters too])
+* Extension Points
+  * New extension point for template proposals
+  * NEw extension point for text hovers  
+  
+Changes merged from SRB 0.6.1:
+* SRB_0-6-1_1: Enable/Disable breakpoints, move breakpoints 
+* SRB_0-6-1_2: Highlighting: added here docs, fixed ?#, fixed =begin =end with keywords not starting on first column
+* SRB_0-6-1_3: Fixed Test::Unit problems with finding a free port
+               Fixed interpreter error for Test::Unit configuration created from the run configuration dialog with new 
+               (instead of Run As->Test::Unit which uses the Shortcut)
+
+Release 0.6.0:
+* Code folding:
+    * Ability to enable/disable
+    * Preference page allows you to choose to auto-collapse
+        * Inner types
+        * Methods
+        * RDoc (not really working yet)
+* Much more intelligent parsing
+    *  Annotations and highlights of syntax errors
+    *  Annotations and highlights of warnings created by JRuby parser
+* Auto-complete of brackets, parens, and single/double quotes
+* Task tag recognition
+    * Ability to set multiple tags
+    * Ability to set low, normal or high priorities for tags
+    * Early versions from Head (no official releases) would install a TODO marker that
+      would not be removed. This bug was fixed, but if you've got "stuck Tasks" that 
+      don't match actual task tags in your source file, there are two ways to remove them.
+      1) open the file in the text editor (right-click on the file in Resource Navigator, and 
+      select Open With - Text Editor).  You can then right click on the task tag in the left margin
+      and select Remove Task
+      2) If this doesn't work, you need to basically delete the file, and create a new one in its place.
+* Added shortcuts for inspection during debug session:
+    * Extension to the editor's pop-up menu
+    * Preference page
+* Added RI view
+* Fixed bug in Debugger which crashed Eclipse (no more handles)
+* Fixed bug [1078036]: Cursor moves to document start when formatting whole document (i.e. there is no selection)
+* Fixed bug [1090687]: Uncomment broken
+* Fixed bug [1079795]: Warning in variable view
+* Saving an editor in debug session triggers code reload of ruby interpreter
+* Tab jumps to correct position
+* Fixed bug [1098315]: Incorrect formatting if semicolon are used directly attached to keywords, i.e. no separating spaces
+* Test::Unit tests can be launched in debug mode
+* Syntax highlighting (and customization) of regular expressions and commands
+* Committed patch by Khaled Agrama so Eclipse 3.1 would recognize .rb files with Ruby Editor
+* Committed patch for bug 959808. Singleton methods are now recognized correctly in the outlinew view
+* Create commands for launch short cuts so keys could be bound to them.  Configured default key bindings.
+* Changed default key bindings for Comment, Uncomment and ToggleComment to be consistent with JDT.  Changed the keybinding
+  category to "Ruby Source" so it doesn't clash with JDT.
+* Fixed source positioning bug for outline view.
+* Updated RI view w/ patch from Khaled Agrama (Aug. 7, 2005) which allows user to start typing, and matches to show as the user types
+* Updated jruby.jar (to 1.9). Includes fix for random Syntax Error issues dealing with quotes. 
+* Updated jruby.jar (1.9). Disables the "useless use of literal ... in void context" warning.
+* Widen scope of what is considered a "ruby file" for the Ruby resources view - recognize .yml, Rakefile and any file starting with '#!' and 'ruby' in the first line
+* Added "Generate Rdoc" action which will generate RI compatible rdoc for a project and auto-update the RI view

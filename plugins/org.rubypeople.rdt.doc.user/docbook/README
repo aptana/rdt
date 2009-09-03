@@ -1,0 +1,7 @@
+Place the docbook dtd's and xsl scripts as zip file into this directory.
+The build process will unpack the xsl zip file into a folder docbook-xsl
+(by renaming the original directory entry which contains the version
+number). The dtds will be extracted into the folder dtd.
+
+Download the xsl files from http://sourceforge.net/projects/docbook/
+and the docbook dtds from http://www.docbook.org/xml.

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+params: (str)
+is_singleton: false
+block_params: 
+name: create_ext_from_string
+comment: 
+full_name: OpenSSL::X509::ExtensionFactory#create_ext_from_string
+visibility: public
+aliases: []
+

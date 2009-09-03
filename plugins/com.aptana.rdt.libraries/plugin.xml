@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="com.aptana.rdt.gems">
+      <gem
+	  		auto-install="true"
+            name="linecache"
+            path="lib/linecache-0.43.gem"
+            platform="ruby"
+            compiles="true"
+            version="0.43"/>
+      <gem
+	  		auto-install="true"
+            name="ruby-debug-base"
+            path="lib/ruby-debug-base-0.10.3.gem"
+            platform="ruby"
+            compiles="true"
+            version="0.10.3">
+            <dependency name="linecache" version="&gt;= 0.3"/>
+      </gem>
+      <gem
+	  		auto-install="true"
+            name="ruby-debug-ide"
+            path="lib/ruby-debug-ide-0.4.5.gem"
+            platform="ruby"
+            version="0.4.5">
+			<dependency name="ruby-debug-base" version="&gt;= 0.10.3"/>
+	  </gem>
+   </extension>
+
+</plugin>

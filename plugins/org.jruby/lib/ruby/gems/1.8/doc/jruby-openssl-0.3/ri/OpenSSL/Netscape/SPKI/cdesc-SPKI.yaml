@@ -1,0 +1,15 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+name: SPKI
+constants: []
+
+comment: 
+attributes: []
+
+instance_methods: []
+
+full_name: OpenSSL::Netscape::SPKI
+superclass: Object
+class_methods: []
+

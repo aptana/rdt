@@ -1,0 +1,16 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Comparable
+name: BN
+constants: []
+
+comment: 
+attributes: []
+
+instance_methods: []
+
+full_name: OpenSSL::BN
+superclass: Object
+class_methods: []
+

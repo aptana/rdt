@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="org.rubypeople.rdt.doc.user" default="nodefault" basedir=".">
+	
+	<target name="nodefault">		
+		<echo message="Please always call this script from build.xml"/>
+	</target>
+
+    <property name="docbook.xsl.dir" value="docbook/docbook-xsl"/>
+    <property name="docbook.dtd.dir" value="docbook/dtd"/>	
+
+	<available type="dir" file="${docbook.xsl.dir}" property="is.docbook.unpacked"/>
+	
+	<target name="docbook.unpack" unless="is.docbook.unpacked">
+		<property name="docbook.xsl.version" value="1.70.1"/>
+		<unzip src="docbook/docbook-xsl-${docbook.xsl.version}.zip" dest="docbook"/>
+		<move file="docbook/docbook-xsl-${docbook.xsl.version}" tofile="${docbook.xsl.dir}" />
+		<mkdir dir="${docbook.dtd.dir}"/>
+		<unzip src="docbook/docbook-xml-4.2.zip" dest="${docbook.dtd.dir}"/>
+		<copy file="modifications/eclipse/eclipse.xsl" tofile="${docbook.xsl.dir}/eclipse/eclipse.xsl"/>
+		<copy file="modifications/html/param.ent" tofile="${docbook.xsl.dir}/html/param.ent"/>
+		<copy file="modifications/html/param.xml" tofile="${docbook.xsl.dir}/html/param.xml"/>
+		<copy file="modifications/html/param.xsl" tofile="${docbook.xsl.dir}/html/param.xsl"/>
+		<copy file="modifications/html/param.xweb" tofile="${docbook.xsl.dir}/html/param.xweb"/>
+		<copy file="modifications/params/eclipse.plugin.version.xml" tofile="${docbook.xsl.dir}/params/eclipse.plugin.version.xml"/>
+		<copy file="modifications/xhtml/param.xsl" tofile="${docbook.xsl.dir}/xhtml/param.xsl"/>
+	</target>
+	
+	<target name="init" depends="docbook.unpack">
+		<fail unless="version" message="Property version must be set. Please always call this script from build.xml"/>
+		<available type="dir" file="${docbook.xsl.dir}" property="did.unpack.work" />
+		<fail unless="did.unpack.work" message="Docbook xsl directory ${} was not created."/>
+	</target>
+
+	<target name="clean.docbook.generated">		
+	    <delete file="toc.xml"/>
+	    <delete file="docbook.done"/>
+	    <delete>
+	      <fileset dir="html" includes="*.html"/>
+	    </delete>
+	    <delete file="customizationLayerCopy.xsl"/>
+	    <delete file="plugin.xml"/>
+	</target>
+	
+	<target name="replaceVarInCustomizationLayer">
+	   <copy file="customizationLayer.xsl" tofile="customizationLayerCopy.xsl"/>
+	   <replace file="customizationLayerCopy.xsl">	   
+	     <replacefilter token="@@VERSION@@" value="${version}"/>
+      </replace>
+	</target>
+
+	<target name="html" depends="init,clean.docbook.generated,replaceVarInCustomizationLayer">
+	 <!-- docbook recommends to use the saxon comiler. With jdk1.4 we could also use xalan (which ships with jdk1.4)
+	      but with the jdk1.5 built-in XSLTC we get errors related to chunks. 
+	      
+	      Please also note that the saxon_6.6.5.jar has been modified *not* to register the AElfred parser as XML parser
+	     -->
+      <style classpath="lib/saxon_6.6.5.jar"
+      		 includes="docbook.xml" 
+      		 basedir="${basedir}"
+      		 destdir="${basedir}"
+      	     extension=".done" 
+      	     style="customizationLayerCopy.xsl"
+      	     processor="trax">
+        <param name="base.dir" expression="html/"/>
+        <param name="manifest.in.base.dir" expression="0"/>
+        <param name="eclipse.plugin.id" expression="org.rubypeople.rdt.doc.user"/>
+        <param name="eclipse.plugin.name" expression="%Plugin.name"/>
+        <param name="eclipse.plugin.provider" expression="%providerName"/>
+      	<param name="eclipse.plugin.version" expression="${version.full}"/>
+      	<xmlcatalog id="docbook.catalog">
+     	 <dtd publicId="-//OASIS//DTD DocBook V3.1//EN" location="${docbook.dtd.dir}/docbookx.dtd"/>
+        </xmlcatalog>
+       </style>
+     </target>
+
+	 <target name="clean">
+	 	<delete dir="${docbook.xsl.dir}"/>
+	    <delete dir="${docbook.dtd.dir}"/>		
+	 	<antcall target="clean.docbook.generated"/>
+	 </target>
+
+</project>

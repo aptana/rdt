@@ -1,0 +1,27 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: SocketForwarder
+name: SSLServer
+constants: []
+
+comment: 
+attributes: 
+- !ruby/object:RI::Attribute 
+  name: start_immediately
+  comment: 
+  rw: RW
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: accept
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: listen
+- !ruby/object:RI::MethodSummary 
+  name: to_io
+full_name: OpenSSL::SSL::SSLServer
+superclass: Object
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new

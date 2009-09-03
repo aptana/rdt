@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+params: ()
+is_singleton: false
+block_params: 
+name: peeraddr
+comment: 
+full_name: OpenSSL::SSL::SocketForwarder#peeraddr
+visibility: public
+aliases: []
+

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<templates>
+
+<template 
+	context="ruby" 
+	description="rspec - after" 
+    id="org.rubypeople.rdt.rspec.templates.after"
+	name="a4">after(:${each}) do
+  ${cursor}
+end</template>
+
+<template 
+	context="ruby" 
+	description="rspec - before" 
+	id="org.rubypeople.rdt.rspec.templates.before"
+	name="b4">before(:${each}) do
+  ${cursor}
+end</template>
+
+<template 
+	context="ruby" 
+	description="rspec - describe (Generic Controller)" 
+	id="org.rubypeople.rdt.rspec.templates.describe.generic.controller"
+	name="cdes">require File.dirname(__FILE__) + '/../spec_helper'
+
+describe ${controller} do
+    ${cursor}
+  end
+end</template>
+
+<template 
+	context="ruby" 
+	description="rspec - describe (RESTful Controller)" 
+	id="org.rubypeople.rdt.rspec.templates.describe.restful.controller"
+	name="cdes">require File.dirname(__FILE__) + '/../spec_helper'
+
+describe ${controller},  "Requesting ${some_path}  using ${GET_POST_PUT_DELETE} ${with_some_parameters}"  do
+   ${cursor}
+end</template>
+
+<template 
+	context="ruby" 
+	description="rspec - Set Controller for Spec" 
+	id="org.rubypeople.rdt.rspec.templates.controller_name"
+	name="cnn">controller_name :${controller}</template>
+
+<template 
+	context="ruby" 
+	description="rspec - describe &quot;description&quot;" 
+	id="org.rubypeople.rdt.rspec.templates.describe.description"
+	name="de">describe "${description1}" do
+  it "should ${description2}" do
+    ${cursor}
+  end
+end</template>
+
+<template 
+	context="ruby" 
+	description="rspec - describe (type)" 
+	id="org.rubypeople.rdt.rspec.templates.describe.type"
+	name="desct">describe ${type} do
+  it "should ${description}" do
+     ${cursor}
+  end
+end</template>
+
+<template 
+	context="ruby" 
+	description="rspec - describe (type,string)"
+	id="org.rubypeople.rdt.rspec.templates.describe.type_string" 
+	name="descts">describe ${type}, "${description1}" do
+  it "should ${description2}" do
+     ${cursor}
+  end
+end</template>
+
+<template 
+	context="ruby" 
+	description="rspec - it" 
+	id="org.rubypeople.rdt.rspec.templates.it"
+	name="it">it "${should} ${description}" do
+  ${cursor}
+end</template>
+
+<template 
+	context="ruby" 
+	description="rspec - Custom Matcher" 
+	id="org.rubypeople.rdt.rspec.templates.custom_matcher"
+	name="matcher">class ${ReverseTo}
+  def initialize(${var})
+    @${var} = ${var}
+  end
+
+  def matches?(actual)
+    @actual = actual
+    # Satisfy expectation here. Return false or raise an error if it's not met.
+    @actual.reverse.should == @${var}
+    true
+  end
+
+  def failure_message
+    "expected #{@actual.inspect} to ${counter} #{@${var}.inspect}, but it didn't"
+  end
+  
+  def negative_failure_message
+    "expected #{@actual.inspect} not to ${counter} #{@${var}.inspect}, but it did"
+  end
+end
+
+def ${reverse_to}(${expected})
+  ${ReverseTo}.new(${var})
+end</template>
+
+<template 
+	context="ruby" 
+	description="rspec - mock" 
+	id="org.rubypeople.rdt.rspec.templates.mock"
+	name="mock">${var} = mock("${mock_name}" ${options})
+${cursor}</template>
+
+<template 
+	context="ruby" 
+	description="rspec - and_raise" 
+	id="org.rubypeople.rdt.rspec.templates.and_raise"
+	name="mra">and_raise(${exception})</template>
+
+<template context="ruby" description="rspec - and_return { }" id="org.rubypeople.rdt.rspec.templates.and_return" name="mret">and_return { ${block} }</template>
+
+<template context="ruby" description="rspec - and_return(value)" id="org.rubypeople.rdt.rspec.templates.and_return.value" name="mret">and_return(${value})</template>
+
+<template context="ruby" description="rspec - and_throw(sym...)" id="org.rubypeople.rdt.rspec.templates.and_throw" name="mthr">and_throw(${sym})</template>
+
+<template context="ruby" description="rspec - and_yield(values)" id="org.rubypeople.rdt.rspec.templates.and_yield" name="mthr">and_yield(${values})</template>
+
+<template context="ruby" description="rspec - any_number_of_times" id="org.rubypeople.rdt.rspec.templates.any_number_of_times" name="recc">any_number_of_times</template>
+
+<template context="ruby" description="rspec - at_least" id="org.rubypeople.rdt.rspec.templates.at_least" name="recc">at_least(${n}).times</template>
+
+<template context="ruby" description="rspec - at_least_once" id="org.rubypeople.rdt.rspec.templates.at_least_once" name="recc">at_least(:once)</template>
+
+<template context="ruby" description="rspec - at_least_twice" id="org.rubypeople.rdt.rspec.templates.at_least_twice" name="recc">at_least(:twice)</template>
+
+<template context="ruby" description="rspec - at_most" id="org.rubypeople.rdt.rspec.templates.at_most" name="recc">at_most(${n}).times</template>
+
+<template context="ruby" description="rspec - at_most_once" id="org.rubypeople.rdt.rspec.templates.at_most_once" name="recc">at_most(:once)</template>
+
+<template context="ruby" description="rspec - at_most_twice" id="org.rubypeople.rdt.rspec.templates.at_most_twice" name="recc">at_most(:twice)</template>
+
+<template context="ruby" description="rspec - exactly" id="org.rubypeople.rdt.rspec.templates.exactly" name="recc">exactly(${n}).times</template>
+
+<template context="ruby" description="rspec - once" id="org.rubypeople.rdt.rspec.templates.once" name="recc">once</template>
+
+<template context="ruby" description="rspec - twice" id="org.rubypeople.rdt.rspec.templates.twice" name="recc">twice</template>
+
+<template context="ruby" description="rspec - should predicate" id="org.rubypeople.rdt.rspec.templates.should_predicate" name="sh">${target}.should ${be_}${predicate} ${args}
+${cursor}</template>
+
+<template context="ruby" description="rspec - should be_close" id="org.rubypeople.rdt.rspec.templates.should_be_close" name="shbc">${target}.should be_close(${result}, ${tolerance})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not be_close" id="org.rubypeople.rdt.rspec.templates.should_not_be_close" name="shbc">${target}.should_not be_close(${result}, ${tolerance})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should be" id="org.rubypeople.rdt.rspec.templates.should_be" name="shbe">${target}.should be(${result})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not be" id="org.rubypeople.rdt.rspec.templates.should_not.be" name="shbe">${target}.should_not be(${result})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should ==" id="org.rubypeople.rdt.rspec.templates.should.double_equals" name="she">${target}.should == ${value}
+${cursor}</template>
+
+<template context="ruby" description="rspec - should eql" id="org.rubypeople.rdt.rspec.templates.shoud.eql" name="she">${target}.should eql(${value})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should equal" id="org.rubypeople.rdt.rspec.templates.should.equal" name="she">${target}.should equal(${value})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not ==" id="org.rubypeople.rdt.rspec.templates.should_not.double_equals" name="she">${target}.should_not == ${value}
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not eql" id="org.rubypeople.rdt.rspec.templates.should_not.eql" name="she">${target}.should_not eql(${value})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not equal" id="org.rubypeople.rdt.rspec.templates.should_not.equal" name="she">${target}.should_not equal(${value})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should have" id="org.rubypeople.rdt.rspec.templates.should.have" name="shha">${target}.should have(${num}).${things}
+${cursor}</template>
+
+<template context="ruby" description="rspec - should have_at_least" id="org.rubypeople.rdt.rspec.templates.should.have_at_least" name="shha">${target}.should have_at_least(${num}).${things}
+${cursor}</template>
+
+<template context="ruby" description="rspec - should have_at_most" id="org.rubypeople.rdt.rspec.templates.should.have_at_most" name="shha">${target}.should have_at_most(${num}).${things}
+${cursor}</template>
+
+<template context="ruby" description="rspec - should include" id="org.rubypeople.rdt.rspec.templates.should.include" name="shinc">${target}.should include(${value})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not include" id="org.rubypeople.rdt.rspec.templates.should_not.include" name="shinc">${target}.should_not include(${value})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should be_an_instance_of" id="org.rubypeople.rdt.rspec.templates.should.be_an_instance_of" name="shiof">${target}.should be_instance_of(${class})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not be_an_instance_of" id="org.rubypeople.rdt.rspec.templates.should_not.be_an_instance_of" name="shiof">${target}.should_not be_instance_of(${class})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should be_a_kind_of" id="org.rubypeople.rdt.rspec.templates.should.be_a_kind_of" name="shkof">${target}.should be_a_kind_of(${class})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not be_a_kind_of" id="org.rubypeople.rdt.rspec.templates.should_not.be_a_kind_of" name="shkof">${target}.should_not be_a_kind_of(${class})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should =~" id="org.rubypeople.rdt.rspec.templates.should.curly_equal" name="shma">${target}.should =~ /${regexp}/
+${cursor}</template>
+
+<template context="ruby" description="rspec - should match" id="org.rubypeople.rdt.rspec.templates.should.match" name="shma">${target}.should match(/${regexp}/)
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not =~" id="org.rubypeople.rdt.rspec.templates.should_not.curly_equal" name="shma">${target}.should_not =~ /${regexp}/
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not match" id="org.rubypeople.rdt.rspec.templates.shoudl_not.match" name="shma">${target}.should_not match(/${regexp}/)
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not predicate" id="org.rubypeople.rdt.rspec.templates.should_not.predicate" name="shn">${target}.should_not ${be_}${predicate} ${args}
+${cursor}</template>
+
+<template context="ruby" description="rspec - should raise_error" id="org.rubypeople.rdt.rspec.templates.should.raise_error" name="shra">lambda { ${do_something_risky}  }.should raise_error(${error})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not raise_error" id="org.rubypeople.rdt.rspec.templates.should_not.raise_error" name="shra">lambda { ${do_something_risky}  }.should_not raise_error(${error})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not_receive" id="org.rubypeople.rdt.rspec.templates.should_not_receive" name="shrec">${mock}.should_not_receive(:${message})${extras}
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_receive" id="org.rubypeople.rdt.rspec.templates.should_receive" name="shrec">${mock}.should_receive(:${message})${extras}
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_receive with any args" id="org.rubypeople.rdt.rspec.templates.should_receive.with.any.args" name="shrec">${mock}.should_receive(:${message})${once}.with(any_args)
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_receive with args" id="org.rubypeople.rdt.rspec.templates.should_receive.with.args" name="shrec">${mock}.should_receive(:${message})${once}.with(${args})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_receive with no args" id="org.rubypeople.rdt.rspec.templates.should_receive.with.no.args" name="shrec">${mock}.should_receive(:${message})${once}.with(no_args)
+${cursor}</template>
+
+<template context="ruby" description="rspec - should have_records" id="org.rubypeople.rdt.rspec.templates.should.have_records" name="shrecords">${target}.should have(${x}).records
+${cursor}</template>
+
+<template context="ruby" description="rspec - should be_redirect" id="org.rubypeople.rdt.rspec.templates.should.be_redirect" name="shred">response.should be_redirect
+${cursor}</template>
+
+<template context="ruby" description="rspec - should redirect_to" id="org.rubypeople.rdt.rspec.templates.should.redirect_to" name="shred">response.should redirect_to(${url})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not be_redirect" id="org.rubypeople.rdt.rspec.templates.should_not.be_redirect" name="shred">response.should_not be_redirect
+${cursor}</template>
+
+<template context="ruby" description="rspec - should render_template" id="org.rubypeople.rdt.rspec.templates.should.render_template" name="shrend">response.should render_template(:${template})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should respond_to" id="org.rubypeople.rdt.rspec.templates.should.respond_to" name="shres">${target}.should respond_to(:${sym})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not respond_to" id="org.rubypeople.rdt.rspec.templates.should_not.respond_to" name="shres">${target}.should_not respond_to(:${sym})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should satisfy" id="org.rubypeople.rdt.rspec.templates.should.satisfy" name="shsa">${target}.should satisfy { |obj| ${conditions} }
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not satisfy" id="org.rubypeople.rdt.rspec.templates.should_not.satisfy" name="shsa">${target}.should_not satisfy { |obj| ${conditions} }
+${cursor}</template>
+
+<template context="ruby" description="rspec - should be_success" id="org.rubypeople.rdt.rspec.templates.should.be_success" name="shsuc">response.should be_success
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not be_success" id="org.rubypeople.rdt.rspec.templates.should_not.be_success" name="shsuc">response.should_not be_success
+${cursor}</template>
+
+<template context="ruby" description="rspec - should throw" id="org.rubypeople.rdt.rspec.templates.should.throw" name="shthr">lambda { ${do_something_risky} }.should throw_symbol(:${symbol})
+${cursor}</template>
+
+<template context="ruby" description="rspec - should_not throw" id="org.rubypeople.rdt.rspec.templates.should_not.throw" name="shthr">lambda { ${do_something_risky} }.should_not throw_symbol(:${symbol})
+${cursor}</template>
+
+<template context="ruby" description="rspec - Require spec_helper" id="org.rubypeople.rdt.rspec.templates.require.spec_helper" name="spech">require File.dirname(__FILE__) + '/../spec_helper'</template>
+
+</templates>

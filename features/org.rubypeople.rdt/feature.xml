@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.rubypeople.rdt"
+      label="%featureName"
+      version="1.3.1.qualifier"
+      provider-name="%providerName"
+      plugin="org.rubypeople.rdt.branding">
+
+   <description url="%descriptionURL">
+      %description
+   </description>
+
+   <copyright url="%copyrightURL">
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <update label="%updateSiteName" url="http://updatesite.rubypeople.org/release"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.ui.views"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor"/>
+      <import plugin="org.eclipse.ui.editors"/>
+      <import plugin="org.eclipse.ui.console"/>
+      <import plugin="org.eclipse.debug.ui"/>
+      <import plugin="org.eclipse.ui.workbench"/>
+      <import plugin="org.eclipse.ui.forms"/>
+      <import plugin="org.eclipse.core.expressions"/>
+      <import plugin="org.eclipse.ui.cheatsheets"/>
+      <import plugin="org.eclipse.debug.core"/>
+      <import plugin="org.eclipse.team.core"/>
+      <import plugin="org.eclipse.ui.intro"/>
+      <import plugin="org.eclipse.search"/>
+      <import plugin="org.eclipse.compare"/>
+      <import plugin="org.eclipse.core.filesystem"/>
+      <import plugin="org.eclipse.ltk.core.refactoring"/>
+      <import plugin="com.ibm.icu"/>
+      <import plugin="org.eclipse.jface"/>
+      <import plugin="org.eclipse.text"/>
+      <import plugin="org.eclipse.core.variables"/>
+      <import plugin="org.eclipse.ltk.ui.refactoring"/>
+   </requires>
+
+   <plugin
+         id="org.kxml2"
+         download-size="25"
+         install-size="48"
+         version="2.1.5"
+         unpack="false"/>
+
+   <plugin
+         id="org.epic.regexp_rdt"
+         download-size="20"
+         install-size="68"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.rubypeople.rdt.ui"
+         download-size="771"
+         install-size="2800"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.rubypeople.rdt.testunit"
+         download-size="68"
+         install-size="228"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.rubypeople.rdt.launching"
+         download-size="81"
+         install-size="216"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.rubypeople.rdt.debug.ui"
+         download-size="58"
+         install-size="304"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.rubypeople.rdt.debug.core"
+         download-size="18"
+         install-size="80"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.rubypeople.rdt.core"
+         download-size="292"
+         install-size="940"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.jruby"
+         download-size="11851"
+         install-size="11851"
+         version="1.2.0.9419p1"/>
+
+   <plugin
+         id="org.rubypeople.rdt.refactoring"
+         download-size="142"
+         install-size="660"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.aptana.rdt"
+         download-size="33"
+         install-size="132"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.aptana.rdt.ui"
+         download-size="23"
+         install-size="84"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.rubypeople.rdt.branding"
+         download-size="20"
+         install-size="36"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.aptana.rdt.libraries"
+         download-size="348"
+         install-size="348"
+         version="1.0.7"
+         unpack="false"/>
+
+   <plugin
+         id="com.aptana.rdt.rake"
+         download-size="11"
+         install-size="44"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.aptana.rdt.libraries.win32"
+         os="win32"
+         download-size="148"
+         install-size="148"
+         version="1.0.1"
+         unpack="false"/>
+
+</feature>

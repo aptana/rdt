@@ -1,0 +1,15 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+name: PKCS7
+constants: []
+
+comment: 
+attributes: []
+
+instance_methods: []
+
+full_name: OpenSSL::PKCS7
+superclass: 
+class_methods: []
+

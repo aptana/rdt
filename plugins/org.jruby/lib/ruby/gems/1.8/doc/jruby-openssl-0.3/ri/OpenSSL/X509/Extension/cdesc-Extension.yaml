@@ -1,0 +1,20 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+name: Extension
+constants: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: to_a
+- !ruby/object:RI::MethodSummary 
+  name: to_h
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+full_name: OpenSSL::X509::Extension
+superclass: Object
+class_methods: []
+

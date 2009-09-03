@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.intro.configExtension">
+      <configExtension
+            content="intro/rdtOverviewExtensionContent.xml"
+            configId="org.eclipse.ui.intro.universalConfig"/>
+      <configExtension
+            content="intro/rdtTutorialsExtensionContent.xml"
+            configId="org.eclipse.ui.intro.universalConfig"/>            
+      <configExtension
+            content="intro/rdtNewsExtensionContent.xml"
+            configId="org.eclipse.ui.intro.universalConfig"/>            
+            
+   </extension>
+   <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+      <category
+            id="org.rubypeople.rdt.cheatsheet.category"
+            name="%cheatsheet.category.rdt"/>
+      <cheatsheet
+            category="org.rubypeople.rdt.cheatsheet.category"
+            composite="false"
+            contentFile="$nl$/cheatsheets/WebServices.xml"
+            id="org.rubypeople.rdt.cheatsheets.webservices"
+            name="%cheatsheet.webservices.name">
+         <description>
+            %cheatsheet.webservices.desc
+         </description>
+      </cheatsheet>
+       <cheatsheet
+            category="org.rubypeople.rdt.cheatsheet.category"
+            composite="false"
+            contentFile="$nl$/cheatsheets/HelloWorld.xml"
+            id="org.rubypeople.rdt.cheatsheets.helloworld"
+            name="%cheatsheet.helloworld.name">
+         <description>
+            %cheatsheet.helloworld.desc
+         </description>
+      </cheatsheet>
+   </extension>
+
+</plugin>
