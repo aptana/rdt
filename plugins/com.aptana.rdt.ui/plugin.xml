@@ -19,13 +19,6 @@
              id="com.aptana.gems.ui.ViewGems">
        </viewShortcut> 
      </perspectiveExtension>
-     <perspectiveExtension targetID="org.radrails.rails.ui.PerspectiveRails">
-       <view
-             id="com.aptana.gems.ui.ViewGems"
-             relationship="stack"
-             relative="org.eclipse.ui.console.ConsoleView"
-             visible="true"/>
-     </perspectiveExtension>
    </extension>
   <extension
          point="org.eclipse.ui.views">
