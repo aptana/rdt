@@ -312,7 +312,7 @@ public class EclipsePreferencesAdapter implements IPreferenceStore {
 	 * {@inheritDoc}
 	 */
 	public void setValue(String name, String value) {
-		throw new UnsupportedOperationException();
+		getNode().put(name, value);
 	}
 
 	/**
@@ -320,6 +320,20 @@ public class EclipsePreferencesAdapter implements IPreferenceStore {
 	 */
 	public void setValue(String name, boolean value) {
 		getNode().putBoolean(name, value);
+	}
+
+	public void flush()
+	{
+		try
+		{
+			getNode().flush();
+		}
+		catch (BackingStoreException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }
