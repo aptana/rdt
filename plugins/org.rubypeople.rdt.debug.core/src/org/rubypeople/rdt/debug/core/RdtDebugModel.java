@@ -99,7 +99,7 @@ public class RdtDebugModel
 	}
 
 	/**
-	 * Returns a Java line breakpoint that is already registered with the breakpoint manager for a type with the given
+	 * Returns a Ruby line breakpoint that is already registered with the breakpoint manager for a type with the given
 	 * name at the given line number in the given resource.
 	 * 
 	 * @param resource
@@ -117,6 +117,8 @@ public class RdtDebugModel
 	public static IRubyLineBreakpoint lineBreakpointExists(IResource resource, String typeName, int lineNumber)
 			throws CoreException
 	{
+		if (resource == null)
+			return null;
 		String modelId = getModelIdentifier();
 		String markerType = RubyLineBreakpoint.getMarkerType();
 		IBreakpointManager manager = DebugPlugin.getDefault().getBreakpointManager();
@@ -128,11 +130,13 @@ public class RdtDebugModel
 				continue;
 			}
 			IRubyLineBreakpoint breakpoint = (IRubyLineBreakpoint) breakpoints[i];
+			if (breakpoint == null)
+				continue;
 			IMarker marker = breakpoint.getMarker();
 			if (marker != null && marker.exists() && marker.getType().equals(markerType))
 			{
 				String breakpointTypeName = breakpoint.getTypeName();
-				if (breakpointTypeName.equals(typeName) && breakpoint.getLineNumber() == lineNumber
+				if (equals(breakpointTypeName, typeName) && breakpoint.getLineNumber() == lineNumber
 						&& resource.equals(marker.getResource()))
 				{
 					return breakpoint;
@@ -140,6 +144,13 @@ public class RdtDebugModel
 			}
 		}
 		return null;
+	}
+
+	private static boolean equals(String breakpointTypeName, String typeName)
+	{
+		if (breakpointTypeName == null)
+			return typeName == null;
+		return breakpointTypeName.equals(typeName);
 	}
 
 	/**
