@@ -75,9 +75,9 @@
             compiles="false"
             force-update="true"
             name="rake"
-            path="gems/rake-0.8.4.gem"
+            path="gems/rake-0.8.7.gem"
             platform="ruby"
-            version="0.8.4">
+            version="0.8.7">
       </gem>
    </extension>
 
