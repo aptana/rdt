@@ -1089,6 +1089,9 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 		if (gem.getName() == null || gem.getName().trim().length() == 0)
 			return new Status(IStatus.ERROR, AptanaRDTPlugin.getPluginId(), "Can't install gem with empty name");
 
+		if (monitor != null && monitor.isCanceled())
+			return Status.CANCEL_STATUS;
+		
 		String command = INSTALL_COMMAND + " " + gem.getName();
 		if (gem.getVersion() != null && gem.getVersion().trim().length() > 0)
 		{
