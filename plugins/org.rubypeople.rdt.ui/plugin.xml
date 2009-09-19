@@ -333,7 +333,7 @@
             icon="icons/full/etool16/newrprj_wiz.gif"
             category="org.rubypeople.rdt.ui"
             class="org.rubypeople.rdt.internal.ui.wizards.RubyProjectWizard"
-            preferredPerspectives="org.rubypeople.rdt.ui.PerspectiveRuby"
+            preferredPerspectives="org.rubypeople.rdt.ui.PerspectiveRuby,org.radrails.rails.ui.PerspectiveRails"
             project="true"
             finalPerspective="org.rubypeople.rdt.ui.PerspectiveRuby"
             id="org.rubypeople.rdt.ui.wizards.RubyProjectWizard">           
