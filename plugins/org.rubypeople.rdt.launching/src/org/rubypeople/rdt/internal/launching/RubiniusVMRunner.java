@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.rubypeople.rdt.launching.IRubyLaunchConfigurationConstants;
 import org.rubypeople.rdt.launching.VMRunnerConfiguration;
@@ -19,12 +20,12 @@ public class RubiniusVMRunner extends StandardVMRunner {
 	}
 	
 	@Override
-	protected List<String> constructProgramString(VMRunnerConfiguration config) throws CoreException {
+	protected List<String> constructProgramString(VMRunnerConfiguration config, IProgressMonitor monitor) throws CoreException {
 		List<String> string = new ArrayList<String>();
 		
 		if (!Platform.getOS().equals(Platform.OS_WIN32) && config.isSudo())
 		{
-			forceBackgroundSudoCommand(config);
+			forceBackgroundSudoCommand(config, monitor);
 			string.add("sudo");
 		}		
 		
