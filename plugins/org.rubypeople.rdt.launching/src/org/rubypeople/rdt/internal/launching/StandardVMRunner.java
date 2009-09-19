@@ -302,8 +302,9 @@ public class StandardVMRunner extends AbstractVMRunner
 		if (exitValue[0] != 0)
 		{
 			job.cancel();
-			// Yikes. We need to retry! FIXME Maybe bail out entirely?
-			forceBackgroundSudoCommand(config, monitor);
+			// Yikes. Bail out entirely, user failed to provide a good sudo password and sudo already gave up on them (usually 3 tries)
+			IStatus status = new Status(IStatus.ERROR, LaunchingPlugin.PLUGIN_ID, -1, "Failed to provide correct sudo password", null);
+			throw new CoreException(status);
 		}
 	}
 
