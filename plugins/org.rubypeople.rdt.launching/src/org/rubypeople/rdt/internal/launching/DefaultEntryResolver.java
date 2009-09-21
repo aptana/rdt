@@ -33,14 +33,14 @@ public class DefaultEntryResolver implements IRuntimeLoadpathEntryResolver {
 	public IRuntimeLoadpathEntry[] resolveRuntimeLoadpathEntry(IRuntimeLoadpathEntry entry, ILaunchConfiguration configuration) throws CoreException {
 		IRuntimeLoadpathEntry2 entry2 = (IRuntimeLoadpathEntry2)entry;
 		IRuntimeLoadpathEntry[] entries = entry2.getRuntimeLoadpathEntries(configuration);
-		List resolved = new ArrayList();
+		List<IRuntimeLoadpathEntry> resolved = new ArrayList<IRuntimeLoadpathEntry>();
 		for (int i = 0; i < entries.length; i++) {
 			IRuntimeLoadpathEntry[] temp = RubyRuntime.resolveRuntimeLoadpathEntry(entries[i], configuration);
 			for (int j = 0; j < temp.length; j++) {
 				resolved.add(temp[j]);
 			}
 		}
-		return (IRuntimeLoadpathEntry[]) resolved.toArray(new IRuntimeLoadpathEntry[resolved.size()]);
+		return resolved.toArray(new IRuntimeLoadpathEntry[resolved.size()]);
 	}
 	/* (non-Javadoc)
 	 * @see org.eclipse.jdt.launching.IRuntimeLoadpathEntryResolver#resolveRuntimeLoadpathEntry(org.eclipse.jdt.launching.IRuntimeLoadpathEntry, org.eclipse.jdt.core.IRubyProject)
@@ -48,14 +48,14 @@ public class DefaultEntryResolver implements IRuntimeLoadpathEntryResolver {
 	public IRuntimeLoadpathEntry[] resolveRuntimeLoadpathEntry(IRuntimeLoadpathEntry entry, IRubyProject project) throws CoreException {
 		IRuntimeLoadpathEntry2 entry2 = (IRuntimeLoadpathEntry2)entry;
 		IRuntimeLoadpathEntry[] entries = entry2.getRuntimeLoadpathEntries(null);
-		List resolved = new ArrayList();
+		List<IRuntimeLoadpathEntry> resolved = new ArrayList<IRuntimeLoadpathEntry>();
 		for (int i = 0; i < entries.length; i++) {
 			IRuntimeLoadpathEntry[] temp = RubyRuntime.resolveRuntimeLoadpathEntry(entries[i], project);
 			for (int j = 0; j < temp.length; j++) {
 				resolved.add(temp[j]);
 			}
 		}
-		return (IRuntimeLoadpathEntry[]) resolved.toArray(new IRuntimeLoadpathEntry[resolved.size()]);
+		return resolved.toArray(new IRuntimeLoadpathEntry[resolved.size()]);
 	}
 		
 	/* (non-Javadoc)

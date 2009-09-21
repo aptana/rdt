@@ -446,7 +446,7 @@ public abstract class AbstractRubyLaunchConfigurationDelegate extends
 		IRuntimeLoadpathEntry[] entries = RubyRuntime
 				.computeUnresolvedRuntimeLoadpath(configuration);
 		entries = RubyRuntime.resolveRuntimeLoadpath(entries, configuration);
-		List userEntries = new ArrayList(entries.length);
+		List<String> userEntries = new ArrayList<String>(entries.length);
 		for (int i = 0; i < entries.length; i++) {
 			if (entries[i].getLoadpathProperty() == IRuntimeLoadpathEntry.USER_CLASSES) {
 				String location = entries[i].getLocation();
@@ -455,7 +455,7 @@ public abstract class AbstractRubyLaunchConfigurationDelegate extends
 				}
 			}
 		}
-		return (String[]) userEntries.toArray(new String[userEntries.size()]);
+		return userEntries.toArray(new String[userEntries.size()]);
 	}
 	
 	public boolean getIsSudo(ILaunchConfiguration configuration) throws CoreException {

@@ -156,13 +156,13 @@ public class StandardVMRunner extends AbstractVMRunner
 	 * @exception CoreException
 	 *                if unable to locate an executable
 	 */
-	protected List<String> constructProgramString(VMRunnerConfiguration config) throws CoreException
+	protected List<String> constructProgramString(VMRunnerConfiguration config, IProgressMonitor monitor) throws CoreException
 	{
 		List<String> string = new ArrayList<String>();
 
 		if (!Platform.getOS().equals(Platform.OS_WIN32) && config.isSudo())
 		{
-			forceBackgroundSudoCommand(config);
+			forceBackgroundSudoCommand(config, monitor);
 			string.add("sudo");
 		}
 
@@ -221,12 +221,36 @@ public class StandardVMRunner extends AbstractVMRunner
 		return null;
 	}
 
-	protected void forceBackgroundSudoCommand(VMRunnerConfiguration config) throws CoreException
+	protected void forceBackgroundSudoCommand(VMRunnerConfiguration config, IProgressMonitor monitor) throws CoreException
 	{
 		// Force a hidden launch under sudo and feed it the password!
 		final Process p = exec(new String[] { "sudo", "-S", "-p", SUDO_PROMPT, "echo", "forced" }, null);
 		final InputStream errorStream = p.getErrorStream();
 		final String sudoMsg = config.getSudoMessage();
+		final boolean[] doneWaiting = new boolean[1];
+		doneWaiting[0] = false;
+		final int[] exitValue = new int[1];
+		exitValue[0] = 0;
+		Job processWaiter = new Job("Wait on sudo process")
+		{
+			
+			@Override
+			protected IStatus run(IProgressMonitor monitor)
+			{
+				try
+				{
+					exitValue[0] = p.waitFor();
+				}
+				catch (InterruptedException e)
+				{
+					LaunchingPlugin.log(e);
+				}
+				doneWaiting[0] = true;
+				return Status.OK_STATUS;
+			}
+		};
+		processWaiter.setSystem(true);
+		processWaiter.schedule();
 		Job job = new Job("Read error stream")
 		{
 			@Override
@@ -253,7 +277,6 @@ public class StandardVMRunner extends AbstractVMRunner
 							// launch!
 							p.getOutputStream().write((pw + lineDelimeter).getBytes());
 							p.getOutputStream().flush();
-							break;
 						}
 					}
 					catch (IOException e)
@@ -266,20 +289,22 @@ public class StandardVMRunner extends AbstractVMRunner
 		};
 		job.setSystem(true);
 		job.schedule();
-
-		try
+		
+		while(true)
 		{
-			p.waitFor();
+			if (monitor != null && monitor.isCanceled())
+				return;
+			Thread.yield();
+			if (doneWaiting[0])
+				break;
 		}
-		catch (InterruptedException e)
-		{
-			LaunchingPlugin.log(e);
-		}
-		if (p.exitValue() != 0)
+		
+		if (exitValue[0] != 0)
 		{
 			job.cancel();
-			// Yikes. We need to retry!
-			forceBackgroundSudoCommand(config);
+			// Yikes. Bail out entirely, user failed to provide a good sudo password and sudo already gave up on them (usually 3 tries)
+			IStatus status = new Status(IStatus.ERROR, LaunchingPlugin.PLUGIN_ID, -1, "Failed to provide correct sudo password", null);
+			throw new CoreException(status);
 		}
 	}
 
@@ -342,7 +367,7 @@ public class StandardVMRunner extends AbstractVMRunner
 		subMonitor.beginTask(LaunchingMessages.StandardVMRunner_Launching_VM____1, 2);
 		subMonitor.subTask(LaunchingMessages.StandardVMRunner_Constructing_command_line____2);
 
-		List<String> arguments = constructProgramString(config);
+		List<String> arguments = constructProgramString(config, monitor);
 
 		// VM args are the first thing after the ruby program so that users can
 		// specify

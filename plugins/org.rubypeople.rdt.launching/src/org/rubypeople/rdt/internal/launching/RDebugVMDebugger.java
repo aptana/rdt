@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.rubypeople.rdt.core.RubyCore;
 import org.rubypeople.rdt.internal.debug.core.RubyDebuggerProxy;
 import org.rubypeople.rdt.internal.debug.core.model.RubyDebugTarget;
@@ -21,7 +22,7 @@ public class RDebugVMDebugger extends StandardVMDebugger
 	private static final String RDEBUG_EXECUTABLE = "rdebug-ide";
 
 	@Override
-	protected List<String> constructProgramString(VMRunnerConfiguration config) throws CoreException
+	protected List<String> constructProgramString(VMRunnerConfiguration config, IProgressMonitor monitor) throws CoreException
 	{
 		String[] args = config.getProgramArguments();
 		List<String> argList = new ArrayList<String>();
@@ -31,7 +32,7 @@ public class RDebugVMDebugger extends StandardVMDebugger
 			argList.add(args[i]);
 		}
 		config.setProgramArguments(argList.toArray(new String[argList.size()]));
-		return super.constructProgramString(config);
+		return super.constructProgramString(config, monitor);
 	}
 
 	@Override
