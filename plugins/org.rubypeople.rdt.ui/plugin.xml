@@ -475,7 +475,7 @@
       </category>
             <view
             name="%packagesViewName"
-            icon="$nl$/icons/full/ctool16/ruby.gif"
+            icon="$nl$/icons/full/ctool16/rails.gif"
             category="org.rubypeople.rdt.ui.ruby"
             class="org.rubypeople.rdt.internal.ui.packageview.PackageExplorerPart"
             id="org.rubypeople.rdt.ui.RubyExplorer">
