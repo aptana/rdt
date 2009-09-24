@@ -55,7 +55,7 @@
          id="org.kxml2"
          download-size="25"
          install-size="48"
-         version="2.1.5"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
@@ -111,7 +111,7 @@
          id="org.jruby"
          download-size="11851"
          install-size="11851"
-         version="1.2.0.9419p1"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.rubypeople.rdt.refactoring"
@@ -145,7 +145,7 @@
          id="com.aptana.rdt.libraries"
          download-size="348"
          install-size="348"
-         version="1.0.7"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
@@ -160,7 +160,7 @@
          os="win32"
          download-size="148"
          install-size="148"
-         version="1.0.1"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>

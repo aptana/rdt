@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name.0
 Bundle-SymbolicName: org.jruby
-Bundle-Version: 1.2.0.9419p1
+Bundle-Version: 1.2.0.9419p2
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime
 Bundle-ClassPath: lib/bsf.jar,

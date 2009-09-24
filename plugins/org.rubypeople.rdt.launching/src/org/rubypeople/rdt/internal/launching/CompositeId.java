@@ -11,6 +11,7 @@
 package org.rubypeople.rdt.internal.launching;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Utility class for id's made of multiple Strings
@@ -23,7 +24,7 @@ public class CompositeId {
 	}
 	
 	public static CompositeId fromString(String idString) {
-		ArrayList parts= new ArrayList();
+		List<String> parts= new ArrayList<String>();
 		int commaIndex= idString.indexOf(',');
 		while (commaIndex > 0) {
 			int length= Integer.valueOf(idString.substring(0, commaIndex)).intValue();

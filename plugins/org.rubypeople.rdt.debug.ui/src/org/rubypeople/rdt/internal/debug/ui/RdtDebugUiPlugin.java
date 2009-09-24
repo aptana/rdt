@@ -3,8 +3,6 @@ package org.rubypeople.rdt.internal.debug.ui;
 import java.util.Hashtable;
 
 import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdapterManager;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
@@ -178,11 +176,27 @@ public class RdtDebugUiPlugin extends AbstractUIPlugin implements RdtDebugUiCons
 	{
 		plugin = this;
 		super.start(context);
-		IAdapterManager manager = Platform.getAdapterManager();
-		ActionFilterAdapterFactory actionFilterAdapterFactory = new ActionFilterAdapterFactory();
-		manager.registerAdapters(actionFilterAdapterFactory, RubyVariable.class);
-		new CodeReloader();
-		Job job = new Job("Startup evaluation context manager")
+		Job job = new Job("RDT Debug UI Startup")
+		{
+			@Override
+			protected IStatus run(IProgressMonitor monitor)
+			{
+				try
+				{
+					Platform.getAdapterManager().registerAdapters(new ActionFilterAdapterFactory(), RubyVariable.class);
+					new CodeReloader();
+				}
+				catch (Throwable e)
+				{
+					log(e);
+				}
+				return Status.OK_STATUS;
+			}
+		};
+		job.setSystem(true);
+		job.schedule();
+
+		job = new Job("Startup evaluation context manager")
 		{
 			@Override
 			protected IStatus run(IProgressMonitor monitor)
@@ -374,21 +388,24 @@ public class RdtDebugUiPlugin extends AbstractUIPlugin implements RdtDebugUiCons
 			ErrorDialog.openError(shell, "Error", message, status);
 		}
 	}
-	
-	public static void statusDialog(String title, IStatus status) {
+
+	public static void statusDialog(String title, IStatus status)
+	{
 		Shell shell = getActiveWorkbenchShell();
-		if (shell != null) {
-			switch (status.getSeverity()) {
-			case IStatus.ERROR:
-				ErrorDialog.openError(shell, title, null, status);
-				break;
-			case IStatus.WARNING:
-				MessageDialog.openWarning(shell, title, status.getMessage());
-				break;
-			case IStatus.INFO:
-				MessageDialog.openInformation(shell, title, status.getMessage());
-				break;
+		if (shell != null)
+		{
+			switch (status.getSeverity())
+			{
+				case IStatus.ERROR:
+					ErrorDialog.openError(shell, title, null, status);
+					break;
+				case IStatus.WARNING:
+					MessageDialog.openWarning(shell, title, status.getMessage());
+					break;
+				case IStatus.INFO:
+					MessageDialog.openInformation(shell, title, status.getMessage());
+					break;
 			}
-		}		
+		}
 	}
 }

@@ -30,6 +30,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
@@ -60,6 +61,7 @@ import com.aptana.rdt.core.gems.GemRequirement;
 import com.aptana.rdt.core.gems.IGemManager;
 import com.aptana.rdt.core.gems.LogicalGem;
 import com.aptana.rdt.core.gems.Version;
+import com.aptana.rdt.core.preferences.IPreferenceConstants;
 
 // XXX If user tries to install a gem that someone has contributed a local copy of, try using the local copy! (Need to worry about dependencies then!)
 public class GemManager extends AbstractGemManager implements IGemManager, IVMInstallChangedListener
@@ -438,11 +440,15 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 
 	private static String getGemScriptPath()
 	{
+		String path = Platform.getPreferencesService().getString(AptanaRDTPlugin.PLUGIN_ID, IPreferenceConstants.GEM_SCRIPT_PATH, "", null);
+		if (path != null && path.trim().length() > 0)
+			return path;
 		// TODO Cache this result until the VM changes?
 		IVMInstall vm = RubyRuntime.getDefaultVMInstall();
 		if (vm == null)
 			return null;
-		String path = vm.getInstallLocation().getAbsolutePath() + File.separator + "bin" + File.separator + "gem";
+		path = vm.getInstallLocation().getAbsolutePath() + File.separator + "bin" + File.separator + "gem";
+		// FIXME What if it picks up bad file like gemtopbm on cygwin?! Need to prioritize somehow!
 		File gemScript = Util.findFileWithOptionalSuffix(path);
 		if (gemScript == null)
 			return null;
@@ -1083,6 +1089,9 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 		if (gem.getName() == null || gem.getName().trim().length() == 0)
 			return new Status(IStatus.ERROR, AptanaRDTPlugin.getPluginId(), "Can't install gem with empty name");
 
+		if (monitor != null && monitor.isCanceled())
+			return Status.CANCEL_STATUS;
+		
 		String command = INSTALL_COMMAND + " " + gem.getName();
 		if (gem.getVersion() != null && gem.getVersion().trim().length() > 0)
 		{
@@ -1260,7 +1269,7 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 
 		IStatus status = null;
 		if (getVersion() != null && getVersion().isLessThan("1.3.4"))
-		{			
+		{
 			// TODO Create a sub monitor for this portion?
 			status = updateRubygems(monitor, "1.3.4");
 			if (status != null && !status.isOK())

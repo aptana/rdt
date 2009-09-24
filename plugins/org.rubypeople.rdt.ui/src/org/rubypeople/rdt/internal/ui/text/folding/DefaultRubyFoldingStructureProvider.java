@@ -532,6 +532,8 @@ public class DefaultRubyFoldingStructureProvider implements IProjectionListener,
 		while (deletionIterator.hasNext())
 		{
 			RubyProjectionAnnotation deleted = (RubyProjectionAnnotation) deletionIterator.next();
+			if (fCachedModel == null)
+				continue;
 			Position deletedPosition = fCachedModel.getPosition(deleted);
 			if (deletedPosition == null)
 				continue;

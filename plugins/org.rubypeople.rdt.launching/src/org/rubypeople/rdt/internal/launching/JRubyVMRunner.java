@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
@@ -122,7 +123,7 @@ public class JRubyVMRunner extends StandardVMRunner implements IVMRunner
 	 * @exception CoreException
 	 *                if unable to locate an executable
 	 */
-	protected List<String> constructProgramString(VMRunnerConfiguration config) throws CoreException
+	protected List<String> constructProgramString(VMRunnerConfiguration config, IProgressMonitor monitor) throws CoreException
 	{
 		if (!isWindows())
 		{
@@ -164,7 +165,7 @@ public class JRubyVMRunner extends StandardVMRunner implements IVMRunner
 			{
 				LaunchingPlugin.log(e);
 			}
-			return super.constructProgramString(config);
+			return super.constructProgramString(config, monitor);
 		}
 
 		List<String> string = new ArrayList<String>();
