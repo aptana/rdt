@@ -49,7 +49,6 @@ import org.rubypeople.rdt.core.IRubyProject;
 import org.rubypeople.rdt.core.RubyCore;
 import org.rubypeople.rdt.internal.ui.RubyPlugin;
 import org.rubypeople.rdt.internal.ui.RubyPluginImages;
-import org.rubypeople.rdt.internal.ui.util.CoreUtility;
 import org.rubypeople.rdt.internal.ui.util.ExceptionHandler;
 import org.rubypeople.rdt.internal.ui.wizards.buildpaths.BuildPathsBlock;
 import org.rubypeople.rdt.internal.ui.wizards.buildpaths.CPListElement;
@@ -60,7 +59,6 @@ import org.rubypeople.rdt.ui.PreferenceConstants;
 public class RubyProjectWizard extends NewElementWizard implements IExecutableExtension {
     
     private RubyProjectWizardFirstPage fFirstPage;
-//    private RubyProjectWizardSecondPage fSecondPage;
     
     private IConfigurationElement fConfigElement;
     private URI fCurrProjectLocation;
@@ -78,8 +76,6 @@ public class RubyProjectWizard extends NewElementWizard implements IExecutableEx
         super.addPages();
         fFirstPage= new RubyProjectWizardFirstPage();
         addPage(fFirstPage);
-//        fSecondPage= new RubyProjectWizardSecondPage(fFirstPage);
-//        addPage(fSecondPage);
     }		
     
     /* (non-Javadoc)
