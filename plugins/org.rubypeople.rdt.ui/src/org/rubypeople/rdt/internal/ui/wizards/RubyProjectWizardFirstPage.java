@@ -689,6 +689,7 @@ public class RubyProjectWizardFirstPage extends WizardPage {
 	 * TODO At some point this method has to be converted to return an URI instead
 	 * of an path. However, this first requires support from Platform/UI to specify
 	 * a project location different than in a local file system. 
+	 * FIXME Check out ProjectContentsLocationArea for URI based implementation!
 	 * </p>
 	 * @return the project location path or its anticipated initial value.
 	 */
