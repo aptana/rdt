@@ -1847,10 +1847,13 @@ public class RubyCore extends Plugin
 	 */
 	public static File copyToStateLocation(Plugin plugin, IPath fileName)
 	{
+		return copyToStateLocation(plugin, fileName, false);
+	}
+	
+	public static File copyToStateLocation(Plugin plugin, IPath fileName, boolean force)
+	{
 		IPath path = plugin.getStateLocation().append(fileName);
-		// FIXME What if the file already exists but we have a newer version of the original script and we want to copy
-		// it over top?
-		if (path.toFile().exists())
+		if (!force && path.toFile().exists())
 			return path.toFile();
 		// copy original over
 		InputStream stream = null;

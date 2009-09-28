@@ -1,5 +1,7 @@
 package org.rubypeople.rdt.testunit.launcher;
 
+import java.io.IOException;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -39,6 +41,7 @@ public class TestUnitLaunchConfigurationDelegate extends RubyLaunchDelegate {
 	public static final String ID_TESTUNIT_APPLICATION = "org.rubypeople.rdt.testunit.launchconfig"; //$NON-NLS-1$
 	
 	private static final String TEST_RUNNER_FILE = "RemoteTestRunner.rb";
+	private static final int TEST_RUNNER_VERSION = 3; // Bump up whenever we have a new remote test runner and we need to copy it over top of old ones!
 	
 	private int port = -1;
 
@@ -120,8 +123,19 @@ public class TestUnitLaunchConfigurationDelegate extends RubyLaunchDelegate {
 
 	public static String getTestRunnerPath() {
 		// Copy test runner files over to workspace
-		RubyCore.copyToStateLocation(TestunitPlugin.getDefault(), new Path("ruby").append(TEST_RUNNER_FILE));
-		RubyCore.copyToStateLocation(TestunitPlugin.getDefault(), new Path("ruby").append("RemoteTestRunnerRSpec.rb"));
+		IPath stateLocation = TestunitPlugin.getDefault().getStateLocation();
+		IPath versionFile = stateLocation.append("ruby").append("testRunnerV" + TEST_RUNNER_VERSION);
+		boolean force = !versionFile.toFile().exists();
+		RubyCore.copyToStateLocation(TestunitPlugin.getDefault(), new Path("ruby").append(TEST_RUNNER_FILE), force);
+		RubyCore.copyToStateLocation(TestunitPlugin.getDefault(), new Path("ruby").append("RemoteTestRunnerRSpec.rb"), force);
+		try
+		{
+			versionFile.toFile().createNewFile();
+		}
+		catch (IOException e)
+		{
+			// ignore
+		}
 		
 		IPath path = TestunitPlugin.getDefault().getStateLocation().append(new Path("ruby").append(TEST_RUNNER_FILE));	
 		if (!path.toFile().exists())
