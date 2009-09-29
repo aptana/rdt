@@ -79,26 +79,26 @@ public final class CompletionProposalComputerRegistry {
 	 * {@link String}, value type:
 	 * {@linkplain List List&lt;CompletionProposalComputerDescriptor&gt;}).
 	 */
-	private final Map fDescriptorsByPartition= new HashMap();
+	private final Map<String, List<CompletionProposalComputerDescriptor>> fDescriptorsByPartition= new HashMap<String, List<CompletionProposalComputerDescriptor>>();
 	/**
 	 * Unmodifiable versions of the sets stored in
 	 * <code>fDescriptorsByPartition</code> (key type: {@link String},
 	 * value type:
 	 * {@linkplain List List&lt;CompletionProposalComputerDescriptor&gt;}).
 	 */
-	private final Map fPublicDescriptorsByPartition= new HashMap();
+	private final Map<String, List<CompletionProposalComputerDescriptor>> fPublicDescriptorsByPartition= new HashMap<String, List<CompletionProposalComputerDescriptor>>();
 	/**
 	 * All descriptors (element type:
 	 * {@link CompletionProposalComputerDescriptor}).
 	 */
-	private final List fDescriptors= new ArrayList();
+	private final List<CompletionProposalComputerDescriptor> fDescriptors= new ArrayList<CompletionProposalComputerDescriptor>();
 	/**
 	 * Unmodifiable view of <code>fDescriptors</code>
 	 */
-	private final List fPublicDescriptors= Collections.unmodifiableList(fDescriptors);
+	private final List<CompletionProposalComputerDescriptor> fPublicDescriptors= Collections.unmodifiableList(fDescriptors);
 	
-	private final List fCategories= new ArrayList();
-	private final List fPublicCategories= Collections.unmodifiableList(fCategories);
+	private final List<CompletionProposalCategory> fCategories= new ArrayList<CompletionProposalCategory>();
+	private final List<CompletionProposalCategory> fPublicCategories= Collections.unmodifiableList(fCategories);
 	/**
 	 * <code>true</code> if this registry has been loaded.
 	 */
@@ -134,10 +134,10 @@ public final class CompletionProposalComputerRegistry {
 	 * @return the list of extensions to the <code>rubyCompletionProposalComputer</code> extension
 	 *         point (element type: {@link CompletionProposalComputerDescriptor})
 	 */
-	List getProposalComputerDescriptors(String partition) {
+	List<CompletionProposalComputerDescriptor> getProposalComputerDescriptors(String partition) {
 		ensureExtensionPointRead();
-		List result= (List) fPublicDescriptorsByPartition.get(partition);
-		return result != null ? result : Collections.EMPTY_LIST;
+		List<CompletionProposalComputerDescriptor> result= fPublicDescriptorsByPartition.get(partition);
+		return (List<CompletionProposalComputerDescriptor>) (result != null ? result : Collections.emptyList());
 	}
 
 	/**
@@ -155,7 +155,7 @@ public final class CompletionProposalComputerRegistry {
 	 * @return the list of extensions to the <code>rubyCompletionProposalComputer</code> extension
 	 *         point (element type: {@link CompletionProposalComputerDescriptor})
 	 */
-	List getProposalComputerDescriptors() {
+	List<CompletionProposalComputerDescriptor> getProposalComputerDescriptors() {
 		ensureExtensionPointRead();
 		return fPublicDescriptors;
 	}
@@ -174,7 +174,7 @@ public final class CompletionProposalComputerRegistry {
 	 *         <code>rubyCompletionProposalComputer</code> extension point (element type:
 	 *         {@link CompletionProposalCategory})
 	 */
-	public List getProposalCategories() {
+	public List<CompletionProposalCategory> getProposalCategories() {
 		ensureExtensionPointRead();
 		return fPublicCategories;
 	}
@@ -202,22 +202,21 @@ public final class CompletionProposalComputerRegistry {
 	 */
 	public void reload() {
 		IExtensionRegistry registry= Platform.getExtensionRegistry();
-		List elements= new ArrayList(Arrays.asList(registry.getConfigurationElementsFor(RubyPlugin.getPluginId(), EXTENSION_POINT)));
+		List<IConfigurationElement> elements= new ArrayList<IConfigurationElement>(Arrays.asList(registry.getConfigurationElementsFor(RubyPlugin.getPluginId(), EXTENSION_POINT)));
 		
-		Map map= new HashMap();
-		List all= new ArrayList();
+		Map<String, List<CompletionProposalComputerDescriptor>> map= new HashMap<String, List<CompletionProposalComputerDescriptor>>();
+		List<CompletionProposalComputerDescriptor> all= new ArrayList<CompletionProposalComputerDescriptor>();
 		
-		List categories= getCategories(elements);
-		for (Iterator iter= elements.iterator(); iter.hasNext();) {
+		List<CompletionProposalCategory> categories= getCategories(elements);
+		for (Iterator<IConfigurationElement> iter= elements.iterator(); iter.hasNext();) {
 			IConfigurationElement element= (IConfigurationElement) iter.next();
 			try {
 				CompletionProposalComputerDescriptor desc= new CompletionProposalComputerDescriptor(element, this, categories);
-				Set partitions= desc.getPartitions();
-				for (Iterator it= partitions.iterator(); it.hasNext();) {
-					String partition= (String) it.next();
-					List list= (List) map.get(partition);
+				Set<String> partitions= desc.getPartitions();
+				for (String partition : partitions) {
+					List<CompletionProposalComputerDescriptor> list= map.get(partition);
 					if (list == null) {
-						list= new ArrayList();
+						list= new ArrayList<CompletionProposalComputerDescriptor>();
 						map.put(partition, list);
 					}
 					list.add(desc);
@@ -241,13 +240,12 @@ public final class CompletionProposalComputerRegistry {
 			fCategories.clear();
 			fCategories.addAll(categories);
 			
-			Set partitions= map.keySet();
+			Set<String> partitions= map.keySet();
 			fDescriptorsByPartition.keySet().retainAll(partitions);
 			fPublicDescriptorsByPartition.keySet().retainAll(partitions);
-			for (Iterator it= partitions.iterator(); it.hasNext();) {
-				String partition= (String) it.next();
-				List old= (List) fDescriptorsByPartition.get(partition);
-				List current= (List) map.get(partition);
+			for (String partition : partitions) {
+				List<CompletionProposalComputerDescriptor> old= fDescriptorsByPartition.get(partition);
+				List<CompletionProposalComputerDescriptor> current= map.get(partition);
 				if (old != null) {
 					old.clear();
 					old.addAll(current);
@@ -262,14 +260,14 @@ public final class CompletionProposalComputerRegistry {
 		}
 	}
 
-	private List getCategories(List elements) {
+	private List<CompletionProposalCategory> getCategories(List<IConfigurationElement> elements) {
 		IPreferenceStore store= RubyPlugin.getDefault().getPreferenceStore();
 		String preference= store.getString(PreferenceConstants.CODEASSIST_EXCLUDED_CATEGORIES);
-		Set disabled= new HashSet();
+		Set<String> disabled= new HashSet<String>();
 		StringTokenizer tok= new StringTokenizer(preference, "\0");  //$NON-NLS-1$
 		while (tok.hasMoreTokens())
 			disabled.add(tok.nextToken());
-		Map ordered= new HashMap();
+		Map<String, Integer> ordered= new HashMap<String, Integer>();
 		preference= store.getString(PreferenceConstants.CODEASSIST_CATEGORY_ORDER);
 		tok= new StringTokenizer(preference, "\0"); //$NON-NLS-1$
 		while (tok.hasMoreTokens()) {
@@ -279,9 +277,9 @@ public final class CompletionProposalComputerRegistry {
 			ordered.put(id, new Integer(rank));
 		}
 		
-		List categories= new ArrayList();
-		for (Iterator iter= elements.iterator(); iter.hasNext();) {
-			IConfigurationElement element= (IConfigurationElement) iter.next();
+		List<CompletionProposalCategory> categories= new ArrayList<CompletionProposalCategory>();
+		for (Iterator<IConfigurationElement> iter= elements.iterator(); iter.hasNext();) {
+			IConfigurationElement element = iter.next();
 			try {
 				if (element.getName().equals("proposalCategory")) { //$NON-NLS-1$
 					iter.remove(); // remove from list to leave only computers
@@ -289,7 +287,7 @@ public final class CompletionProposalComputerRegistry {
 					CompletionProposalCategory category= new CompletionProposalCategory(element, this);
 					categories.add(category);
 					category.setIncluded(!disabled.contains(category.getId()));
-					Integer rank= (Integer) ordered.get(category.getId());
+					Integer rank= ordered.get(category.getId());
 					if (rank != null) {
 						int r= rank.intValue();
 						boolean separate= r < 0xffff;
@@ -323,7 +321,7 @@ public final class CompletionProposalComputerRegistry {
         String title= RubyTextMessages.CompletionProposalComputerRegistry_error_dialog_title;
         CompletionProposalCategory category= descriptor.getCategory();
         IContributor culprit= descriptor.getContributor();
-        Set affectedPlugins= getAffectedContributors(category, culprit);
+        Set<String> affectedPlugins= getAffectedContributors(category, culprit);
         
 		final String avoidHint;
 		final String culpritName= culprit == null ? null : culprit.getName();
@@ -340,7 +338,7 @@ public final class CompletionProposalComputerRegistry {
         		link.setText(avoidHint);
         		link.addSelectionListener(new SelectionAdapter() {
         			public void widgetSelected(SelectionEvent e) {
-        				PreferencesUtil.createPreferenceDialogOn(getShell(), "org.eclipse.jdt.ui.preferences.CodeAssistPreferenceAdvanced", null, null).open(); //$NON-NLS-1$
+        				PreferencesUtil.createPreferenceDialogOn(getShell(), "org.rubypeople.rdt.ui.preferences.CodeAssistPreferenceAdvanced", null, null).open(); //$NON-NLS-1$
         			}
         		});
         		GridData gridData= new GridData(SWT.FILL, SWT.BEGINNING, true, false);
@@ -359,10 +357,9 @@ public final class CompletionProposalComputerRegistry {
 	 * @param culprit the cuprit plug-in, which is not included in the returned list
 	 * @return the names of the contributors other than <code>culprit</code> that contribute to <code>category</code> (element type: {@link String})
 	 */
-	private Set getAffectedContributors(CompletionProposalCategory category, IContributor culprit) {
-	    Set affectedPlugins= new HashSet();
-        for (Iterator it= getProposalComputerDescriptors().iterator(); it.hasNext();) {
-	        CompletionProposalComputerDescriptor desc= (CompletionProposalComputerDescriptor) it.next();
+	private Set<String> getAffectedContributors(CompletionProposalCategory category, IContributor culprit) {
+	    Set<String> affectedPlugins= new HashSet<String>();
+        for (CompletionProposalComputerDescriptor desc : getProposalComputerDescriptors()) {
 	        CompletionProposalCategory cat= desc.getCategory();
 	        if (cat.equals(category)) {
 	        	IContributor contributor= desc.getContributor();

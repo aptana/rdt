@@ -12,7 +12,6 @@ package org.rubypeople.rdt.internal.ui.text.ruby;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -57,7 +56,7 @@ final class CompletionProposalComputerDescriptor {
 	/** The extension schema name of the partition child elements. */
 	private static final String PARTITION= "partition"; //$NON-NLS-1$
 	/** Set of Ruby partition types. */
-	private static final Set PARTITION_SET;
+	private static final Set<String> PARTITION_SET;
 	/** The name of the performance event used to trace extensions. */
 	private static final String PERFORMANCE_EVENT= RubyPlugin.getPluginId() + "/perf/content_assist/extensions"; //$NON-NLS-1$
 	/**
@@ -80,7 +79,7 @@ final class CompletionProposalComputerDescriptor {
 	private static final String SESSION_ENDED= "sessionEnded()"; //$NON-NLS-1$
 	
 	static {
-		Set partitions= new HashSet();
+		Set<String> partitions= new HashSet<String>();
 		partitions.add(IDocument.DEFAULT_CONTENT_TYPE);		
 		partitions.add(IRubyPartitions.RUBY_MULTI_LINE_COMMENT);
 		partitions.add(IRubyPartitions.RUBY_SINGLE_LINE_COMMENT);
@@ -100,7 +99,7 @@ final class CompletionProposalComputerDescriptor {
 	/** The activate attribute value. */
 	private final boolean fActivate;
 	/** The partition of the extension (element type: {@link String}). */
-	private final Set fPartitions;
+	private final Set<String> fPartitions;
 	/** The configuration element of this extension. */
 	private final IConfigurationElement fElement;
 	/** The registry we are registered with. */
@@ -126,7 +125,7 @@ final class CompletionProposalComputerDescriptor {
 	 * @param element the configuration element to read
 	 * @param registry the computer registry creating this descriptor
 	 */
-	CompletionProposalComputerDescriptor(IConfigurationElement element, CompletionProposalComputerRegistry registry, List categories) throws InvalidRegistryObjectException {
+	CompletionProposalComputerDescriptor(IConfigurationElement element, CompletionProposalComputerRegistry registry, List<CompletionProposalCategory> categories) throws InvalidRegistryObjectException {
 		Assert.isLegal(registry != null);
 		Assert.isLegal(element != null);
 		
@@ -142,7 +141,7 @@ final class CompletionProposalComputerDescriptor {
 		else
 			fName= name;
 		
-		Set partitions= new HashSet();
+		Set<String> partitions= new HashSet<String>();
 		IConfigurationElement[] children= element.getChildren(PARTITION);
 		if (children.length == 0) {
 			fPartitions= PARTITION_SET; // add to all partition types if no partition is configured
@@ -165,8 +164,7 @@ final class CompletionProposalComputerDescriptor {
 		if (categoryId == null)
 			categoryId= DEFAULT_CATEGORY_ID;
 		CompletionProposalCategory category= null;
-		for (Iterator it= categories.iterator(); it.hasNext();) {
-			CompletionProposalCategory cat= (CompletionProposalCategory) it.next();
+		for (CompletionProposalCategory cat : categories) {
 			if (cat.getId().equals(categoryId)) {
 				category= cat;
 				break;
@@ -220,7 +218,7 @@ final class CompletionProposalComputerDescriptor {
 	 * 
 	 * @return the set of partition types (element type: {@link String})
 	 */
-	public Set getPartitions() {
+	public Set<String> getPartitions() {
 		return fPartitions;
 	}
 	
