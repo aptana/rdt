@@ -158,17 +158,16 @@ final class CodeAssistAdvancedConfigurationBlock extends OptionsConfigurationBlo
 		private static final String COLON= ":"; //$NON-NLS-1$
 		private static final String SEPARATOR= "\0"; //$NON-NLS-1$
 
-		private final List fElements;
+		private final List<ModelElement> fElements;
 		/**
 		 * The read-only list of elements.
 		 */
-		final List elements;
+		final List<ModelElement> elements;
 
 		public PreferenceModel(CompletionProposalComputerRegistry registry) {
-			List categories= registry.getProposalCategories();
-			fElements= new ArrayList();
-			for (Iterator it= categories.iterator(); it.hasNext();) {
-				CompletionProposalCategory category= (CompletionProposalCategory) it.next();
+			List<CompletionProposalCategory> categories= registry.getProposalCategories();
+			fElements= new ArrayList<ModelElement>();
+			for (CompletionProposalCategory category : categories) {
 				if (category.hasComputers()) {
 					fElements.add(new ModelElement(category, this));
 				}
@@ -180,7 +179,7 @@ final class CodeAssistAdvancedConfigurationBlock extends OptionsConfigurationBlo
         public void moveUp(ModelElement category) {
         	int index= fElements.indexOf(category);
 			if (index > 0) {
-				Object item= fElements.remove(index);
+				ModelElement item= fElements.remove(index);
 				fElements.add(index - 1, item);
 				writeOrderPreference(null, false);
 			}
@@ -189,7 +188,7 @@ final class CodeAssistAdvancedConfigurationBlock extends OptionsConfigurationBlo
         public void moveDown(ModelElement category) {
         	int index= fElements.indexOf(category);
 			if (index < fElements.size() - 1) {
-				Object item= fElements.remove(index);
+				ModelElement item= fElements.remove(index);
 				fElements.add(index + 1, item);
 				writeOrderPreference(null, false);
 			}
@@ -197,8 +196,7 @@ final class CodeAssistAdvancedConfigurationBlock extends OptionsConfigurationBlo
 
     	private void writeInclusionPreference(ModelElement changed, boolean isInDefaultCategory) {
     		StringBuffer buf= new StringBuffer();
-    		for (Iterator it= fElements.iterator(); it.hasNext();) {
-    			ModelElement item= (ModelElement) it.next();
+    		for (ModelElement item : fElements) {
     			boolean included= changed == item ? isInDefaultCategory : item.isInDefaultCategory();
     			if (!included)
     				buf.append(item.getId() + SEPARATOR);
