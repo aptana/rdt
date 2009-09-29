@@ -33,131 +33,179 @@ import org.rubypeople.rdt.ui.text.ruby.RubyCompletionProposalComputer;
 
 import com.aptana.rdt.AptanaRDTPlugin;
 
-public class HashKeyHeuristicProposalComputer extends RubyCompletionProposalComputer {
-	
-	public HashKeyHeuristicProposalComputer() {
+public class HashKeyHeuristicProposalComputer extends RubyCompletionProposalComputer
+{
+
+	public HashKeyHeuristicProposalComputer()
+	{
 		super();
 	}
-	
+
 	@Override
-	protected List<CompletionProposal> doComputeCompletionProposals(RubyContentAssistInvocationContext context, IProgressMonitor monitor) {
+	protected List<CompletionProposal> doComputeCompletionProposals(RubyContentAssistInvocationContext context,
+			IProgressMonitor monitor)
+	{
 		return computeHashKeySuggestions();
 	}
 
-	private List<CompletionProposal> computeHashKeySuggestions() {	
+	private List<CompletionProposal> computeHashKeySuggestions()
+	{
 		List<CompletionProposal> proposals = new ArrayList<CompletionProposal>();
-		
-		String methodCall = getMethodName();		
+
+		String methodCall = getMethodName();
 		String args = getArgumentsToMethodCall();
 		int argIndex = calculateArgIndex(args);
-		
-		List<IRubyElement> methods = search(IRubyElement.METHOD, methodCall, IRubySearchConstants.DECLARATIONS, SearchPattern.R_EXACT_MATCH);
-		for (IRubyElement element : methods) {
+
+		List<IRubyElement> methods = search(IRubyElement.METHOD, methodCall, IRubySearchConstants.DECLARATIONS,
+				SearchPattern.R_EXACT_MATCH);
+		for (IRubyElement element : methods)
+		{
 			IMethod method = (IMethod) element;
-			try {
+			try
+			{
 				String[] parameters = method.getParameterNames();
-				if (parameters == null || parameters.length == 0) continue;
-				if (parameters.length <= argIndex) {
+				if (parameters == null || parameters.length == 0)
+					continue;
+				if (parameters.length <= argIndex)
+				{
 					argIndex = parameters.length - 1;
 				}
 				String param = parameters[argIndex];
-				if (!param.endsWith(" = {}")) continue;
-				// Now traverse the method's AST and find out what valid options are!					
-				RootNode ast = ASTProvider.getASTProvider().getAST(method.getRubyScript(), ASTProvider.WAIT_YES, new NullProgressMonitor());
-				Node methodDefNode = OffsetNodeLocator.Instance().getNodeAtOffset(ast, method.getSourceRange().getOffset());
+				if (!param.endsWith(" = {}"))
+					continue;
+				// Now traverse the method's AST and find out what valid options are!
+				RootNode ast = ASTProvider.getASTProvider().getAST(method.getRubyScript(), ASTProvider.WAIT_YES,
+						new NullProgressMonitor());
+				Node methodDefNode = OffsetNodeLocator.Instance().getNodeAtOffset(ast,
+						method.getSourceRange().getOffset());
 				String variableName = param.substring(0, param.indexOf(' '));
 				ValidOptionVisitor visitor = new ValidOptionVisitor(variableName);
 				methodDefNode.accept(visitor);
 				Set<String> options = visitor.getValidOptions();
-				for (String option : options) {					
+				for (String option : options)
+				{
 					CompletionProposal proposal = new CompletionProposal(CompletionProposal.KEYWORD, option, 201);
 					proposal.setName(option);
 					int start = fContext.getInvocationOffset();
 					proposal.setReplaceRange(start, start + option.length());
 					proposals.add(proposal);
 				}
-			} catch (RubyModelException e) {
+			}
+			catch (RubyModelException e)
+			{
 				AptanaRDTPlugin.log(e);
-			}		
+			}
 		}
 		return proposals;
 	}
-	
-	protected List<IRubyElement> search(int type, String patternString, int limitTo, int matchRule) {
+
+	protected List<IRubyElement> search(int type, String patternString, int limitTo, int matchRule)
+	{
 		List<IRubyElement> elements = new ArrayList<IRubyElement>();
-		try {			
+		try
+		{
 			SearchEngine engine = new SearchEngine();
 			SearchPattern pattern = SearchPattern.createPattern(type, patternString, limitTo, matchRule);
-			SearchParticipant[] participants = new SearchParticipant[] {SearchEngine.getDefaultSearchParticipant()};
-			IRubySearchScope scope = SearchEngine.createRubySearchScope(new IRubyElement[] { fContext.getRubyScript().getRubyProject() } );
+			SearchParticipant[] participants = new SearchParticipant[] { SearchEngine.getDefaultSearchParticipant() };
+			IRubySearchScope scope = null;
+			if (fContext.getRubyScript() == null)
+			{
+				scope = SearchEngine.createWorkspaceScope();
+			}
+			else
+			{
+				scope = SearchEngine.createRubySearchScope(new IRubyElement[] { fContext.getRubyScript()
+						.getRubyProject() });
+			}
 			CollectingSearchRequestor requestor = new CollectingSearchRequestor();
 			engine.search(pattern, participants, scope, requestor, new NullProgressMonitor());
 			List<SearchMatch> matches = requestor.getResults();
-			for (SearchMatch match : matches) {
+			for (SearchMatch match : matches)
+			{
 				elements.add((IRubyElement) match.getElement());
-			}			
-		} catch (CoreException e) {
+			}
+		}
+		catch (CoreException e)
+		{
 			AptanaRDTPlugin.log(e);
 		}
 		return elements;
 	}
-	
-	private String getArgumentsToMethodCall() {
+
+	private String getArgumentsToMethodCall()
+	{
 		String prefix = getStatementPrefix();
 		String methodCall = getMethodName();
 		String args = prefix.trim().substring(methodCall.length());
-		if (args.startsWith("(")) args = args.substring(1);
+		if (args.startsWith("("))
+			args = args.substring(1);
 		return args;
 	}
 
-	private String getMethodName() {
+	private String getMethodName()
+	{
 		String prefix = getStatementPrefix();
 		String methodCall = prefix.trim();
 		int space = methodCall.indexOf(" ");
-		if (space != -1) {
+		if (space != -1)
+		{
 			methodCall = methodCall.substring(0, space);
 		}
 		space = methodCall.indexOf("(");
-		if (space != -1) {
+		if (space != -1)
+		{
 			methodCall = methodCall.substring(0, space);
 		}
 		return methodCall;
 	}
-	
-	private String getStatementPrefix() {
-		try {
+
+	private String getStatementPrefix()
+	{
+		try
+		{
 			return fContext.computeStatementPrefix().toString();
-		} catch (BadLocationException e) {
+		}
+		catch (BadLocationException e)
+		{
 			AptanaRDTPlugin.log(e);
 			return "";
 		}
 	}
-	
-	private int calculateArgIndex(String prefix) {
+
+	private int calculateArgIndex(String prefix)
+	{
 		String[] args = prefix.split(",");
-		if (args.length == 1) {
-			if (prefix.indexOf(",") == -1) return 0;
+		if (args.length == 1)
+		{
+			if (prefix.indexOf(",") == -1)
+				return 0;
 			return 1;
 		}
 		return args.length;
 	}
-	
-	private static class ValidOptionVisitor extends InOrderVisitor {
-		
+
+	private static class ValidOptionVisitor extends InOrderVisitor
+	{
+
 		private Set<String> options = new HashSet<String>();
 		private String variableName;
 		private boolean stringify = false;
-		
-		public ValidOptionVisitor(String variableName) {
+
+		public ValidOptionVisitor(String variableName)
+		{
 			this.variableName = variableName;
 		}
 
-		public Set<String> getValidOptions() {
-			if (stringify) {
+		public Set<String> getValidOptions()
+		{
+			if (stringify)
+			{
 				// convert strings to symbols
 				Set<String> symbols = new HashSet<String>();
-				for (String option : options) {
-					if (option.startsWith("'") || option.startsWith("\"")) {
+				for (String option : options)
+				{
+					if (option.startsWith("'") || option.startsWith("\""))
+					{
 						symbols.add(":" + option.substring(1, option.length() - 5) + " => ");
 					}
 				}
@@ -165,23 +213,30 @@ public class HashKeyHeuristicProposalComputer extends RubyCompletionProposalComp
 			}
 			return options;
 		}
-		
+
 		@Override
-		public Object visitCallNode(CallNode iVisited) {
+		public Object visitCallNode(CallNode iVisited)
+		{
 			String methodName = iVisited.getName();
-			if (methodName.equals("[]")) {
+			if (methodName.equals("[]"))
+			{
 				Node receiver = iVisited.getReceiverNode();
-				if (ASTUtil.getNameReflectively(receiver).equals(variableName)) {
+				if (ASTUtil.getNameReflectively(receiver).equals(variableName))
+				{
 					ArrayNode arguments = (ArrayNode) iVisited.getArgsNode();
 					Node arg = arguments.get(0);
 					String value = ASTUtil.stringRepresentation(arg);
-					if (value != null) {
+					if (value != null)
+					{
 						options.add(value + " => ");
 					}
 				}
-			} else if (methodName.equals("stringify_keys")) {
+			}
+			else if (methodName.equals("stringify_keys"))
+			{
 				Node receiver = iVisited.getReceiverNode();
-				if (ASTUtil.getNameReflectively(receiver).equals(variableName)) {
+				if (ASTUtil.getNameReflectively(receiver).equals(variableName))
+				{
 					stringify = true;
 				}
 			}
