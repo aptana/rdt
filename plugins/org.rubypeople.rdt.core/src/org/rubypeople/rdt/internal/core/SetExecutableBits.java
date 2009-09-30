@@ -25,6 +25,7 @@ public class SetExecutableBits extends Job
 	public SetExecutableBits()
 	{
 		super("Setting JRuby binaries to be executable");
+		setSystem(true);
 	}
 
 	@Override
