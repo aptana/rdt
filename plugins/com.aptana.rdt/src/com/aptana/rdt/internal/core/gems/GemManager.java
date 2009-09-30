@@ -32,6 +32,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.debug.core.DebugException;
@@ -440,7 +441,8 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 
 	private static String getGemScriptPath()
 	{
-		String path = Platform.getPreferencesService().getString(AptanaRDTPlugin.PLUGIN_ID, IPreferenceConstants.GEM_SCRIPT_PATH, "", null);
+		String path = Platform.getPreferencesService().getString(AptanaRDTPlugin.PLUGIN_ID,
+				IPreferenceConstants.GEM_SCRIPT_PATH, "", null);
 		if (path != null && path.trim().length() > 0)
 			return path;
 		// TODO Cache this result until the VM changes?
@@ -549,9 +551,11 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 	 */
 	public IStatus refresh(IProgressMonitor monitor)
 	{
-		Set<Gem> newGems = loadLocalGems(monitor);
+		SubMonitor progress = SubMonitor.convert(monitor, 100);
+		Set<Gem> newGems = loadLocalGems(progress.newChild(95));
 		gems = newGems;
 		storeGemCache(gems, getConfigFile(LOCAL_GEMS_CACHE_FILE));
+		progress.worked(4);
 		Job job = new Job("notifying Gem Listeners of refresh")
 		{
 
@@ -568,6 +572,7 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 		};
 		job.setSystem(true);
 		job.schedule();
+		progress.done();
 		return Status.OK_STATUS;
 	}
 
@@ -1000,16 +1005,17 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 
 	private IStatus doInstallGem(final Gem gem, String command, IProgressMonitor monitor)
 	{
+		SubMonitor progress = SubMonitor.convert(monitor, 100);
 		if (!isRubyGemsInstalled())
 			return new Status(IStatus.ERROR, AptanaRDTPlugin.PLUGIN_ID, -1, "RubyGems not installed", null);
 		try
 		{
 			ILaunchConfiguration config = createGemLaunchConfiguration(command, true);
 			final ILaunch launch = config.launch(ILaunchManager.RUN_MODE, null);
-
+			progress.worked(2);
 			while (!launch.isTerminated())
 			{
-				if (monitor.isCanceled())
+				if (progress.isCanceled())
 				{
 					try
 					{
@@ -1023,22 +1029,30 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 				}
 				Thread.yield();
 			}
-			refresh(monitor);
+			progress.worked(88);
+			refresh(progress.newChild(7));
 			// Need to wait until install is finished
 			for (GemListener listener : listeners)
 			{
 				listener.gemAdded(gem);
 			}
+			progress.worked(3);
 			return Status.OK_STATUS;
 		}
 		catch (CoreException e)
 		{
 			return e.getStatus();
 		}
+		finally 
+		{
+			progress.done();
+		}
 	}
 
 	private IStatus doLocalInstallGem(final Gem gem, IProgressMonitor monitor)
 	{
+		SubMonitor progress = SubMonitor.convert(monitor, 100);
+		progress.setTaskName("Installing " + gem.getName());
 		if (!isRubyGemsInstalled())
 			return new Status(IStatus.ERROR, AptanaRDTPlugin.PLUGIN_ID, -1, "RubyGems not installed", null);
 		try
@@ -1067,31 +1081,37 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 				}
 				Thread.yield();
 			}
-			refresh(monitor);
+			progress.worked(90);
+			refresh(progress.newChild(7));
 			// Need to wait until uninstall is finished
 			for (GemListener listener : new ArrayList<GemListener>(listeners))
 			{
 				listener.gemAdded(gem);
 			}
+			progress.worked(3);
 			return Status.OK_STATUS;
 		}
 		catch (CoreException e)
 		{
 			return e.getStatus();
 		}
+		finally {
+			progress.done();
+		}
 	}
 
 	private IStatus installGem(final Gem gem, String sourceURL, boolean includeDependencies, IProgressMonitor monitor)
 	{
+		SubMonitor progress = SubMonitor.convert(monitor, 100);
 		if (!gem.isInstallable())
 			return new Status(IStatus.ERROR, AptanaRDTPlugin.getPluginId(), "Gem is uninstallable: " + gem.getName());
 
 		if (gem.getName() == null || gem.getName().trim().length() == 0)
 			return new Status(IStatus.ERROR, AptanaRDTPlugin.getPluginId(), "Can't install gem with empty name");
 
-		if (monitor != null && monitor.isCanceled())
+		if (progress.isCanceled())
 			return Status.CANCEL_STATUS;
-		
+
 		String command = INSTALL_COMMAND + " " + gem.getName();
 		if (gem.getVersion() != null && gem.getVersion().trim().length() > 0)
 		{
@@ -1118,7 +1138,8 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 			command += " " + SOURCE_SWITCH + " " + sourceURL;
 		}
 		command = addProxy(sourceURL, command);
-		return doInstallGem(gem, command, monitor);
+		progress.worked(5);
+		return doInstallGem(gem, command, progress.newChild(95));
 	}
 
 	private String addProxy(String host, String command)

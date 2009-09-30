@@ -7,7 +7,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -77,31 +77,29 @@ public class InstallGemsJob extends UIJob
 
 		public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException
 		{
-			monitor.beginTask("Auto-installing gems...", 100);
-			monitor.subTask("Sorting by dependencies");
+			SubMonitor progress = SubMonitor.convert(monitor, 100);
+			progress.setTaskName("Auto-installing gems...");
+			if (progress.isCanceled())
+				return;
 			List<Gem> sorted = ContributedGemRegistry.sortByDependency(finalGems);
-			monitor.worked(10);
-			if (monitor.isCanceled())
+			progress.worked(10);
+			if (progress.isCanceled())
 				return;
 			if (!sorted.isEmpty())
 			{
-				int step = 90 / sorted.size();
+				int step = (int) Math.floor(90.0 / (double) sorted.size());
 				for (Gem gem : sorted)
 				{
-					if (monitor.isCanceled())
+					if (progress.isCanceled())
 						return;
-					monitor.subTask("Installing " + gem.getName());
-					IProgressMonitor subMonitor = new SubProgressMonitor(monitor, step - 1);
-					getGemManager().installGem(gem, subMonitor);
-					subMonitor.done();
+					getGemManager().installGem(gem, progress.newChild(step));
 					if (gem.isLocal())
 					{
 						gem.delete();
 					}
-					monitor.worked(1);
 				}
 			}
-			monitor.done();
+			progress.done();
 		}
 	}
 
