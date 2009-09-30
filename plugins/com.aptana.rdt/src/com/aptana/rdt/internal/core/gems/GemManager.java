@@ -628,7 +628,7 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 		return false;
 	}
 
-	public List<IPath> getGemInstallPaths()
+	public synchronized List<IPath> getGemInstallPaths()
 	{
 		if (fGemInstallPaths == null)
 		{
