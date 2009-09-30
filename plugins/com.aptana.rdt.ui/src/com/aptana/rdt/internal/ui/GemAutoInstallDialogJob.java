@@ -101,6 +101,7 @@ public class GemAutoInstallDialogJob extends UIJob implements GemListener, IVMIn
 			{
 				return Status.OK_STATUS;
 			}
+			// FIXME make the URL a link that actually opens the browser!
 			MessageDialogWithToggle
 					.openWarning(
 							RubyPlugin.getActiveWorkbenchShell(),
