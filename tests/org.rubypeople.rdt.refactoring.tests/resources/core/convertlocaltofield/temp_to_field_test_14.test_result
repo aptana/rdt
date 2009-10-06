@@ -1,0 +1,12 @@
+class Test
+  def test
+    [0, 1, 2].each do |i|
+      @dasgn = i
+      puts @dasgn
+      puts i
+    end
+    a
+  end
+end
+
+Test.new.test

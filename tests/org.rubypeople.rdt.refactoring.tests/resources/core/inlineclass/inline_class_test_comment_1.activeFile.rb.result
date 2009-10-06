@@ -1,0 +1,43 @@
+
+
+class Target
+  #before constructor
+  def source_initialize #after signature
+    @seven = 7
+    #before end
+  end #after end
+  
+  def initialize
+    source_initialize
+    @source = self
+  end
+  
+  def foo
+    @six = 6
+    p @six
+  end
+  
+  def bar
+    @source.foo1
+  end
+  #before bar
+  def bar1 #behind bar name
+    @six1 = @seven
+    p @six1
+  end
+  def foo1
+    @six1 = 6
+  end
+  
+end
+  
+class InvalidTarget
+
+  def initialize
+    @var = 5
+  end
+  
+  def foo
+    p @var
+  end
+end

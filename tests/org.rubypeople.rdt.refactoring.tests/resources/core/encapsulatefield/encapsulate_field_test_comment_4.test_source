@@ -1,0 +1,6 @@
+class X
+  #before reader
+  attr_reader :a #after reader
+  #before writer
+  attr_writer :a #after writer
+end

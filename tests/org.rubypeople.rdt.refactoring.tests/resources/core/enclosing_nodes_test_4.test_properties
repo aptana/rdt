@@ -1,0 +1,3 @@
+begin=350
+end=514
+expected=FCallManyArgsNode, ArrayNode, SelfNode, FCallOneArgNode, ArrayNode, StrNode, SelfNode, FCallOneArgNode, ArrayNode, StrNode

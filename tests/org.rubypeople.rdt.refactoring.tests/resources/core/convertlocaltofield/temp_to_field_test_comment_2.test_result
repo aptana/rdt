@@ -1,0 +1,13 @@
+class A
+
+        def initialize
+        
+                #comment before assignment
+                @i = 5 #comment after assignment
+                
+        end
+
+        def m (arg1, arg2)
+                @i = arg1 + arg2 #comment behind i
+        end
+end

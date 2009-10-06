@@ -1,0 +1,3 @@
+caretPosition=17
+initialError0=The selected class cannot be inlined as its is spread over several class parts.
+initialError1=There must be at least one class that creates an instance of the selected class in the constructor and keeps it in a field.

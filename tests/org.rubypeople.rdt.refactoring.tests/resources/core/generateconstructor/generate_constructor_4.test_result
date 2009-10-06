@@ -1,0 +1,10 @@
+class X
+def initialize
+@a = 1
+end
+
+def initialize a
+@a = a
+end
+
+end

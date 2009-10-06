@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.rubypeople.rdt.tests"
+      label="Ruby Development Tools Unit Tests"
+      version="0.0.0"
+      provider-name="RubyPeople">
+   <install-handler/>
+
+   <description url="[Enter Feature URL here.]">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="[Enter Copyright URL here.]">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="[Enter License URL here.]">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.swt"/>
+      <import plugin="org.eclipse.core.runtime.compatibility"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.debug.core"/>
+      <import plugin="org.junit"/>
+      <import plugin="org.rubypeople.rdt.core"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.rubypeople.rdt.debug.core"/>
+      <import plugin="org.kxml2"/>
+      <import plugin="org.rubypeople.rdt.launching"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.ui.views"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor"/>
+      <import plugin="org.eclipse.ui.editors"/>
+      <import plugin="org.rubypeople.rdt.debug.ui"/>
+      <import plugin="org.rubypeople.rdt.ui"/>
+      <import plugin="org.eclipse.debug.ui"/>
+      <import plugin="org.jruby"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.ui.console"/>
+      <import plugin="org.eclipse.search"/>
+      <import plugin="org.rubypeople.rdt.refactoring"/>
+      <import plugin="org.eclipse.text"/>
+      <import plugin="com.aptana.rdt"/>
+   </requires>
+
+   <plugin
+         id="org.rubypeople.eclipse.shams"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.rubypeople.eclipse.testutils"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.rubypeople.rdt.core.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.rubypeople.rdt.debug.core.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.rubypeople.rdt.debug.ui.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.rubypeople.rdt.launching.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.rubypeople.rdt.tests.all"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.rubypeople.rdt.ui.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.rubypeople.rdt.refactoring.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="com.aptana.rdt.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

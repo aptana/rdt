@@ -1,0 +1,7 @@
+class Test
+end
+
+def foo
+	e = 5
+	p e
+end

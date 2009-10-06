@@ -1,0 +1,10 @@
+class A
+
+def method a
+a
+end
+
+end
+
+class X
+end

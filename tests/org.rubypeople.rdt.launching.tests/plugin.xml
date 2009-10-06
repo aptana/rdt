@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   
+   <extension
+         point="org.rubypeople.rdt.launching.vmInstallTypes">
+      <vmInstallType
+            class="org.rubypeople.rdt.internal.launching.TestVMType"
+            id="org.rubypeople.rdt.launching.TestVMType">
+      </vmInstallType>
+   </extension> 
+
+</plugin>

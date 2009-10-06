@@ -1,0 +1,11 @@
+class Test < Object
+  def initialize
+    @test = bla
+  end
+
+def test= test
+@test = test
+end
+public :test=
+
+end

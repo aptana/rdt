@@ -1,0 +1,7 @@
+class Test
+  def foo   
+    five = 5 + 5 * 27
+    ten, seven = five, five
+    p 5 * five
+  end
+end

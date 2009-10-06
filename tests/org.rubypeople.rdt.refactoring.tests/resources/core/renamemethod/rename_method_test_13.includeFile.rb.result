@@ -1,0 +1,5 @@
+class Baum
+	def goo
+		self.wunder= 5
+	end
+end

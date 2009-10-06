@@ -1,0 +1,5 @@
+#true of false
+isClassField=false
+newName=d
+cursorPosition=23
+finalError0=Instance field with name 'd' already exists.

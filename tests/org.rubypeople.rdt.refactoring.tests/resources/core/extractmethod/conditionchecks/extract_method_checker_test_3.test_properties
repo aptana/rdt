@@ -1,0 +1,4 @@
+newMethodName=d
+start=12
+end=13
+initialError0=To extract code out of class definitions, the selected code needs to be inside a method definition.

@@ -1,0 +1,6 @@
+  def read_content(url)
+    feed = FeedTools::Feed.open(url)
+    feed.items.each do |item|
+      #...
+    end
+  end

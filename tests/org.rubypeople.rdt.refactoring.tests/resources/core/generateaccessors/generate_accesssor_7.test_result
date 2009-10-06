@@ -1,0 +1,13 @@
+#classComment
+class X
+  
+  attr_accessor :a
+  
+  attr_writer :b
+  
+  #methodComment
+  def a a
+    @a = a
+    @b = a
+  end
+end

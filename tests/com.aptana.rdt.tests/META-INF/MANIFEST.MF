@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Aptana RDT Extension Tests
+Bundle-SymbolicName: com.aptana.rdt.tests
+Bundle-Version: 0.0.0
+Bundle-Localization: plugin
+Require-Bundle: com.aptana.rdt,
+ org.rubypeople.rdt.core,
+ org.jruby,
+ org.eclipse.core.resources,
+ org.eclipse.core.runtime,
+ org.junit,
+ org.rubypeople.rdt.launching,
+ org.eclipse.debug.core;bundle-version="3.2.1",
+ org.rubypeople.rdt.core.tests
+Bundle-Vendor: Aptana, Inc.
+Bundle-Activator: com.aptana.rdt.AptanaRDTTests
+Eclipse-LazyStart: true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: com.aptana.rdt,
+ com.aptana.rdt.internal.core.gems,
+ com.aptana.rdt.internal.core.parser.warnings

@@ -1,0 +1,5 @@
+class Test < Object
+  def initialize
+    @test = bla
+  end
+end

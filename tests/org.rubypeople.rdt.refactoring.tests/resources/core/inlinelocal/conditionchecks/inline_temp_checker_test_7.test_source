@@ -1,0 +1,5 @@
+class Triangle
+  def hypotenuse a, b
+    cSquare = a ** 2 + b ** 2
+  end
+end

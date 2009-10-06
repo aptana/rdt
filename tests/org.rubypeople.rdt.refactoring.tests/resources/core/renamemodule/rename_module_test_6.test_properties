@@ -1,0 +1,4 @@
+name=NewModule
+pos=52
+activeFile=activeFile.rb
+destinationFiles=includedFile.rb

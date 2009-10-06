@@ -1,0 +1,16 @@
+#before outer
+module OuterModule #behind outer
+  module Module
+    module CentralModule
+    end
+  end
+end
+
+class ModulTest
+  #before outer
+  include OuterModule::Module::CentralModule #behind outer
+  include Module::InnerModule
+  include InnerModule
+  #before outer
+  include OuterModule #behind outer
+end

@@ -1,0 +1,7 @@
+class Test
+	attr :bar, :baum
+	def foo
+		@bar = 5
+		p @bar
+	end
+end

@@ -1,0 +1,5 @@
+class Base
+	def goo
+		@i = 5
+	end
+end

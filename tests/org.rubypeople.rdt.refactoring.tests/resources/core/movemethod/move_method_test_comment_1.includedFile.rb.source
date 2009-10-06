@@ -1,0 +1,3 @@
+class B
+#before end in target class
+end

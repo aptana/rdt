@@ -1,0 +1,22 @@
+class Count
+	def initialize
+		@i = 0;
+	end
+	
+	def increment
+		@i += 1
+	end
+	
+end
+
+class NotCount
+	def anotherMethod
+		p "Nothing"
+	end
+end
+
+class Count
+	def decrement
+		@i = @i - 1
+	end
+end

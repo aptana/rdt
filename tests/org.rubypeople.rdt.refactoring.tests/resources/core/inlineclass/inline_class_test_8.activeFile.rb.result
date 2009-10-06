@@ -1,0 +1,10 @@
+require "includeFile.rb"
+
+class Target
+	def foo
+		@three = 6
+		p @three
+	end
+end
+
+

@@ -1,0 +1,12 @@
+class Test
+  def foo   
+    ten, seven = five, five
+    p 5 * five
+  end
+  
+  def five
+    5 + 5 * 27
+  end
+  private(:five)
+  
+end

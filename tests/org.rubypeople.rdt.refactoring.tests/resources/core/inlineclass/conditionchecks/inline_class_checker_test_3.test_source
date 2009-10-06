@@ -1,0 +1,21 @@
+class Test
+	def initialize
+		@final = Final.new
+	end
+	def Test.wunder
+		@foo = 5
+		p @foo
+	end
+	
+	def bar
+		@goo = 6
+		p @goo
+	end
+end
+
+class Final
+
+	def ping
+		p "ping"
+	end
+end

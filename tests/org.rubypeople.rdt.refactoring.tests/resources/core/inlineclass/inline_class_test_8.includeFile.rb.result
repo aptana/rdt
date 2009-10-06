@@ -1,0 +1,19 @@
+class Target
+	def initialize_source seven
+		@five = seven
+	end
+	
+	def initialize_source
+		initialize: 1
+		@source = self
+	end
+	def goo
+		@six = 6
+		p @six
+	end
+	attr :six1
+	def goo1
+		@six1 = 5
+		p @six1
+	end
+end

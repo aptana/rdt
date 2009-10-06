@@ -1,0 +1,10 @@
+class Foo
+  attr :d
+  def initialize
+    @d = 1
+  end
+
+  def i
+    @d
+  end
+end

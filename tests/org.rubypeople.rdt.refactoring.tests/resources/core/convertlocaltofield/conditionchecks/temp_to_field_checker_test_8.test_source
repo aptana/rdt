@@ -1,0 +1,7 @@
+class X
+  def m p
+    [1, 2].each do |i|
+      p i
+    end
+  end
+end

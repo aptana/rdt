@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.rubypeople.eclipse.testutils
+Bundle-SymbolicName: org.rubypeople.eclipse.testutils;singleton:=true
+Bundle-Version: 0.0.0
+Bundle-ClassPath: .
+Bundle-Localization: plugin
+Export-Package: org.rubypeople.eclipse.testutils
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.junit
+Bundle-Localization: plugin

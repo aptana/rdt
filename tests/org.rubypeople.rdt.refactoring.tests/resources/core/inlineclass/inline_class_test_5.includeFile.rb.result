@@ -1,0 +1,6 @@
+class Target
+	def goo
+		@six = 6
+		p @six
+	end
+end

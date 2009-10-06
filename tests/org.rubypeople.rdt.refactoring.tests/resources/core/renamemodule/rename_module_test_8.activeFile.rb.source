@@ -1,0 +1,6 @@
+module Module
+  def self.test
+  end
+  def Module.another_test
+  end
+end

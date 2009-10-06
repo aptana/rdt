@@ -1,0 +1,7 @@
+newName=i
+# isClassField = true oder false
+isClassField=false
+#TempToFieldConverter.INIT_IN_METHOD oder TempToFieldConverter.INIT_IN_CONSTRUCTOR
+initPlace=TempToFieldConverter.INIT_IN_METHOD
+cursorPosition=37
+

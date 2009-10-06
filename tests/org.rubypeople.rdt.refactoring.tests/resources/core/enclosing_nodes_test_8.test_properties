@@ -1,0 +1,3 @@
+begin=30
+end=43
+expected=BlockNode, NewlineNode, LocalAsgnNode, FixnumNode, NewlineNode, LocalAsgnNode, CallOneArgNode, CallOneArgNode, FixnumNode, ArrayNode, LocalVarNode, ArrayNode, FixnumNode

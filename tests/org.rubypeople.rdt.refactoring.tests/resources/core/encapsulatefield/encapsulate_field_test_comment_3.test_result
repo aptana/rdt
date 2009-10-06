@@ -1,0 +1,10 @@
+class X
+  
+  #before accessor
+  #after accessor
+  def a
+    @a
+  end
+  public :a
+  
+end

@@ -1,0 +1,13 @@
+#Comment
+class X
+
+def initialize a
+@a = a
+end
+
+#Comment
+def a a
+@a = a
+@b = a
+end
+end

@@ -1,0 +1,14 @@
+require "includedFileA.rb"
+require "includedFileB.rb"
+
+class M
+	def m
+		p "Active M"
+	end
+end
+
+class A
+	def a
+		p "Active A"
+	end
+end

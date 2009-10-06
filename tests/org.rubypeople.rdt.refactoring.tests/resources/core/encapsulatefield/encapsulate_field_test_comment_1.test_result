@@ -1,0 +1,17 @@
+class X
+
+  #before accessor
+  #after accessor
+  def a
+    @a
+  end
+  public :a
+  
+  #before accessor
+  #after accessor
+  def a= a
+    @a = a
+  end
+  public :a=
+  
+end

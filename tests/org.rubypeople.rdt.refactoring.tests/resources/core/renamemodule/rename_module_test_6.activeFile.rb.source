@@ -1,0 +1,7 @@
+require 'includedFile'
+
+module Modul
+end
+
+module Modul
+end

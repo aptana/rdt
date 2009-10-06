@@ -1,0 +1,12 @@
+class Test
+	def bar
+		@foo = 5
+		wunder
+		p @foo
+	end
+	
+	def wunder
+		@goo = 6
+		p @goo
+	end
+end

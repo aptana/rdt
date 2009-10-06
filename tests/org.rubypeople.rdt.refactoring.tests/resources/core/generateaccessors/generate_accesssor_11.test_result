@@ -1,0 +1,18 @@
+class X
+  
+  attr_accessor :a
+  
+  def a a
+    @a = a
+    @b = a
+  end
+end
+
+class Y
+  
+  attr_writer :c
+  
+  def a a
+    @c = a
+  end
+end

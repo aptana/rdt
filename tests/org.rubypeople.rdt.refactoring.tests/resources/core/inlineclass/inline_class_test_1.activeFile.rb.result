@@ -1,0 +1,16 @@
+
+
+class Target
+	def initialize
+		@source = self
+	end
+  def foo
+    @six = 6
+    p @six
+  end
+  def bar
+    @five = 5
+	p @five
+  end
+end
+ 

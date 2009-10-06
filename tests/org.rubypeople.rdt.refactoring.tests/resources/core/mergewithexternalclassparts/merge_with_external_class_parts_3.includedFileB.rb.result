@@ -1,0 +1,22 @@
+class M
+	def m
+		p "Require B"
+	end
+
+	def m
+		p "Active M"
+	end
+	
+end
+
+class B
+	def b
+		p B
+	end
+end
+
+class M
+	def m
+		p "Require B Part 2"
+	end
+end

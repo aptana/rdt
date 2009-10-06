@@ -1,0 +1,16 @@
+class Test
+	def foo		
+		five = 5
+		p 5 * extractedTempVal(five)
+	end
+	
+	def extractedTempVal five
+		five + six
+	end
+	private :extractedTempVal
+	
+	def six
+		6
+	end
+end
+

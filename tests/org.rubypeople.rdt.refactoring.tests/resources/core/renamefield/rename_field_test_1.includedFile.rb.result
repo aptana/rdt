@@ -1,0 +1,9 @@
+class Foo
+  def initialize
+    @d = 1
+  end
+
+  def i
+    @d
+  end
+end

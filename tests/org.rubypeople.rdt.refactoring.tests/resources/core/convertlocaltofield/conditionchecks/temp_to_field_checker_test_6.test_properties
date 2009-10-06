@@ -1,0 +1,5 @@
+#true of false
+isClassField=false
+newName=d
+cursorPosition=23
+initialError0=Cannot convert method parameters to fields.

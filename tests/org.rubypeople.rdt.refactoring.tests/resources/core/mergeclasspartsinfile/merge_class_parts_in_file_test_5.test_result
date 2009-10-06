@@ -1,0 +1,15 @@
+
+class Count
+	def increment
+		@i = @i + 1
+	end
+	
+	def initialize
+		@i = 0
+	end
+	
+	def decrement
+		@i -= 1
+	end
+	
+end

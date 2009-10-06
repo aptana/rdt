@@ -1,0 +1,46 @@
+class Source
+  def initialize tree2
+    @tree = tree2
+    tree
+    @source
+  end
+  
+  def initialize
+   p 5
+   tree
+  end
+
+ 
+  def tree
+    @tree
+  end
+  def goo
+    p 5
+  end
+end
+
+class Destination
+  def initialize plant, tree
+    @plant = plant
+    @source = Source.new tree
+    source = Source.new tree
+    baum = Source.new plant
+    source.tree
+    baum.tree
+    baum.goo
+    
+    @source.tree
+  end
+  def tree
+    @source.tree
+  end
+  def plant
+    @plant
+  end
+end
+
+class Fake
+  def initialize
+    @sleep = 5
+  end
+end

@@ -1,0 +1,6 @@
+def wunder
+	e = 45
+	p e
+end
+
+wunder

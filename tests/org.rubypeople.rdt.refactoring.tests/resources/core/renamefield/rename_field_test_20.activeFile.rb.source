@@ -1,0 +1,7 @@
+class Test
+	def foo
+		@wunder = 5
+		@wunder += 1
+		p @wunder
+	end
+end

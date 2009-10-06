@@ -1,0 +1,17 @@
+class A
+  def method
+    @x
+    @myB = B.new
+    @myB.moveMethod @x
+  end
+  public :method
+  
+end
+
+class B
+  
+  def moveMethod arg
+    puts arg
+  end
+  
+end

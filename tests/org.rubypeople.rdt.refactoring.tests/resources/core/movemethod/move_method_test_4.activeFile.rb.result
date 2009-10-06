@@ -1,0 +1,23 @@
+class A
+  attr_accessor :x
+  def moveMethod arg
+    @myB.moveMethod(arg, self)
+  end
+  private :moveMethod
+  def method
+    @x
+    @myB = B.new
+    moveMethod @x
+  end
+  public :method
+  
+end
+
+class B
+  
+  def moveMethod arg, a
+    a.x += 1
+    puts arg
+  end
+  
+end

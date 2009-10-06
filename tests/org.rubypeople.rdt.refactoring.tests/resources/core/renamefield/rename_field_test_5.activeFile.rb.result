@@ -1,0 +1,11 @@
+class Test
+	def foo
+		@bar = 5
+		p @bar
+	end
+	
+	def woo
+		@bar = 6
+		p @bar
+	end
+end

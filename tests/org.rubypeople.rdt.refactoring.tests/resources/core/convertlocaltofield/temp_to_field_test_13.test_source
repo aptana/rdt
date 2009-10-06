@@ -1,0 +1,11 @@
+class HttpParserTest < Test::Unit::TestCase
+  def test_parse_error
+    error = false
+    begin
+      nread = parser.execute(req, bad_http, 0)
+    rescue => details
+      error = true
+    end
+    assert error, "failed to throw exception"
+  end
+end

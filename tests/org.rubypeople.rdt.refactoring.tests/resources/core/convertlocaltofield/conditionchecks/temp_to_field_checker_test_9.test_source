@@ -1,0 +1,6 @@
+class X
+  def m p
+    i = 1
+    @@d = 7
+  end
+end

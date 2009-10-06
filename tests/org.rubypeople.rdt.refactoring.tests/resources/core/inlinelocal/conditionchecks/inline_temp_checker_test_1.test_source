@@ -1,0 +1,8 @@
+class X
+  def a
+    b = 5
+    x = b + 5
+  end
+  def b
+  end
+end

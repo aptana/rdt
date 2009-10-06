@@ -1,0 +1,11 @@
+class Digit
+  def initialize digit, stretch
+    @stretch = stretch
+    @height = 3 + 2 * stretch
+    @lines, str = [], []
+
+    DISPLAY.each_with_index do |char, i|
+      str << (SEGMENTS[digit].include?(i) ? char : " ")
+    end
+  end
+end

@@ -1,0 +1,12 @@
+require "includeFile.rb"
+
+class Baum
+
+	def wunder
+		f = 12
+		p f
+	end
+	def foo
+		wunder
+	end
+end

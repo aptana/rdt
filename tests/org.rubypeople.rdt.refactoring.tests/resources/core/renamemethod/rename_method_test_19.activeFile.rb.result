@@ -1,0 +1,6 @@
+class Klass
+  def new_name
+  end
+  
+  alias_method :old_method, :new_name
+end

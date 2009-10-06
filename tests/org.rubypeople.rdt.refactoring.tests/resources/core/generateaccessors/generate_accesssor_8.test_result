@@ -1,0 +1,24 @@
+#classComment
+class X
+  #methodComment
+  def a a
+    @a = a
+    @b = a
+  end
+
+  def a
+    @a
+  end
+  public :a
+  
+  def a= a
+    @a = a
+  end
+  public :a=
+  
+  def b= b
+    @b = b
+  end
+  public :b=
+
+end

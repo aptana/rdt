@@ -1,0 +1,4 @@
+class X
+  attr_reader :a
+  attr_writer :a
+end

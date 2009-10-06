@@ -1,0 +1,8 @@
+module M
+  class NewName
+    def methode
+    end
+  end
+end
+
+t = M::NewName.new

@@ -1,0 +1,17 @@
+require 'includedFile.rb'
+
+class A
+  #before method definition
+  def moveMethod a #after signature
+     #before call in method
+     method #after call in method
+     #before statement in method
+     puts 5 #after statement in method
+  #before end of method
+  end #after method definition
+  private :moveMethod
+  def method
+    @x
+    moveMethod a
+  end
+end

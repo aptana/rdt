@@ -1,0 +1,12 @@
+class A
+
+        def initialize
+        
+                @i = 5
+                
+        end
+
+        def m (arg1, arg2)
+                @i = arg1 + arg2
+        end
+end

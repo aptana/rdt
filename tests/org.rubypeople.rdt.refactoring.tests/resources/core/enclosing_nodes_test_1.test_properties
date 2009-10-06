@@ -1,0 +1,3 @@
+begin=17
+end=58
+expected=CallOneArgNode, CallNoArgNode, Colon2ConstNode, ConstNode, ArrayNode, StrNode

@@ -1,0 +1,4 @@
+def x a
+  a = 5
+  puts a
+end

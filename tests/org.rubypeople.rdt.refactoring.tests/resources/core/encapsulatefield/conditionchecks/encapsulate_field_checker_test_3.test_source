@@ -1,0 +1,18 @@
+class X  
+  
+  attr_writer :a
+  
+  def initialize
+    attr_accessor(1)
+  end
+  
+  def attr_accessor a
+    puts @a
+  end
+  
+  def a=
+    puts "duplicated a"
+  end
+  
+end
+x = X.new

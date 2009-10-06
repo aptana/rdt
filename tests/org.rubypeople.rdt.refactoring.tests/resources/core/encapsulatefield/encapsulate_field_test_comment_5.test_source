@@ -1,0 +1,4 @@
+class X
+  #before writer
+  attr_writer :a #after writer
+end

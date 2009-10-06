@@ -1,0 +1,7 @@
+require "includedFile.rb"
+
+class Foo < Base
+  def bar z
+    @i = z
+  end
+end

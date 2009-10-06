@@ -1,0 +1,29 @@
+class X
+  def a a
+    @a = a
+    @b = a
+  end
+
+def a
+@a
+end
+public :a
+
+def a= a
+@a = a
+end
+public :a=
+
+end
+
+class Y
+  def a a
+    @c = a
+  end
+
+def c= c
+@c = c
+end
+public :c=
+
+end

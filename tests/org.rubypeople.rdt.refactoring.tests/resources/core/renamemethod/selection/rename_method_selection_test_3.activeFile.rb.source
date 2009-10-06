@@ -1,0 +1,20 @@
+class Test
+
+  def setFoo foo
+    @foo = foo
+  end
+  
+  def bar
+    @foo -= 1
+    if @foo > 0 then
+      p @foo
+      bar
+    else
+      p @foo
+    end
+  end
+end
+
+t = Test.new
+t.setFoo 5
+t.bar

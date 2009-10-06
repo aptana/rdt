@@ -1,0 +1,4 @@
+newMethodName=d
+start=20
+end=25
+initialError0=Extracting methods is not possible when the selected Method contains internal methods.

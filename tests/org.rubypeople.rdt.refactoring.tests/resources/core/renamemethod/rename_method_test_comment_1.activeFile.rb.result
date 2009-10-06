@@ -1,0 +1,13 @@
+require "includeFile.rb"
+
+class Baum
+
+	def wunder
+		f = 12
+		p f
+	end
+	#before bar
+	def foo #after signature
+		wunder #after wunder
+	end #at end
+end

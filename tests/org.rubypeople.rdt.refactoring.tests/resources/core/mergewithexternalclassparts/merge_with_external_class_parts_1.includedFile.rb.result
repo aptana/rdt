@@ -1,0 +1,14 @@
+class Foo
+  def initialize
+    @i = 1
+  end
+
+  def i
+    @i
+  end
+
+  def bar z
+    @i = z
+  end
+  
+end

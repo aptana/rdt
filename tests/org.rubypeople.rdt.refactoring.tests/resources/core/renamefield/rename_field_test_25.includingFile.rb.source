@@ -1,0 +1,7 @@
+require "activeFile.rb"
+
+class Sub < Foo
+	def baum ast
+		@i = ast
+	end
+end

@@ -1,0 +1,6 @@
+class Test
+	def bar arg
+		@foo = arg
+		p @foo
+	end
+end

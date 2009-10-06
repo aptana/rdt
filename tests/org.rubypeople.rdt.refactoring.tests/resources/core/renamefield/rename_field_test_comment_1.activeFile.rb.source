@@ -1,0 +1,10 @@
+class Test
+	def foo
+		#comment 1
+		@wunder = 5 #comment 2
+		#comment 3
+		@wunder += 1 #comment 4
+		#comment 5
+		p @wunder #comment 6
+	end
+end

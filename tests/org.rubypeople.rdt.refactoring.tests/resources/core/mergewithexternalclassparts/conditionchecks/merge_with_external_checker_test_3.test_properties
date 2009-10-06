@@ -1,0 +1,4 @@
+activeFile=activeFile.rb
+destinationFiles=includedFile.rb
+# Optional value
+initialError0=There are no classes to merge.

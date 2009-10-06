@@ -1,0 +1,7 @@
+class B
+  
+  def moveMethod a
+    a.method
+  end
+  
+end

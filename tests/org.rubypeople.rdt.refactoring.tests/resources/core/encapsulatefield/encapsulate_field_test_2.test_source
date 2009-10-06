@@ -1,0 +1,6 @@
+class X
+  attr_accessor :a
+  def d
+    @a
+  end
+end

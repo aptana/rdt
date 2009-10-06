@@ -1,0 +1,15 @@
+class Foo
+  def initialize
+    @i = 1
+  end
+
+  def i
+    @i
+  end
+
+  #comment method
+  def bar z
+    @i = z
+  end
+  
+end

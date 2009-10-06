@@ -1,0 +1,13 @@
+class B
+  
+  #before method definition
+  def moveMethod a, a1 #after signature
+    #before call in method
+    a1.method #after call in method
+    #before statement in method
+    puts 5 #after statement in method
+    #before end of method
+  end #after method definition
+  
+  #before end in target class
+end

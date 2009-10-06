@@ -1,0 +1,7 @@
+class Test
+	attr_accessor :wunder, :welt
+	def foo
+		@wunder = 5
+		p @wunder
+	end
+end

@@ -1,0 +1,9 @@
+class TempToFieldTest
+  def methode1
+    @var = ""
+  end
+  
+  def methode2
+    var = "a"
+  end
+end

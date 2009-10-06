@@ -1,0 +1,8 @@
+module Spec
+  module Runner
+    module Formatter
+      class ProgressBarFormatter
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+class Test
+  def methode
+  end
+end
+
+class Subclass < Test
+end
+
+t = Test.new

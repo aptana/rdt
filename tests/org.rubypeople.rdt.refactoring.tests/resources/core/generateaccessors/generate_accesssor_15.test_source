@@ -1,0 +1,6 @@
+class X
+  attr :a
+  def initialize
+    @b
+  end
+end

@@ -1,0 +1,15 @@
+class A
+  def moveMethod a
+    method
+  end
+  private :moveMethod
+  def method
+    @myB = B.new
+    @x
+  end
+end
+
+class B
+  def moveMethod a
+  end
+end

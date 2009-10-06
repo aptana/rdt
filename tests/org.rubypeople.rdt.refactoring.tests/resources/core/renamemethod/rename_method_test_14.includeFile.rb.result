@@ -1,0 +1,8 @@
+class A
+	def d
+		p "a"
+	end
+	def a
+		d
+	end
+end

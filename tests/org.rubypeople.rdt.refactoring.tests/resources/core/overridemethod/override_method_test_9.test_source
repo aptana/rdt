@@ -1,0 +1,10 @@
+require "override_method_test_9.test_super_source.rb"
+#Comment
+class A < X
+  attr_accessor :a
+  #Comment
+  def method a
+    x = a
+  end
+  attr_accessor :b
+end

@@ -1,0 +1,3 @@
+class X
+  attr_writer :a
+end

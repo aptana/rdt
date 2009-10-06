@@ -1,0 +1,9 @@
+class Target
+	def initialize
+		@source = Source.new 1
+	end
+	def goo
+		@six = 6
+		p @six
+	end
+end

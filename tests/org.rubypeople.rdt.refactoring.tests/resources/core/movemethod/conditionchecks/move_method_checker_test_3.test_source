@@ -1,0 +1,5 @@
+class X
+  i = 5
+  def x
+  end
+end

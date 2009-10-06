@@ -1,0 +1,21 @@
+class Test
+  
+  def wunder
+  	p 5
+  end
+  
+  public :wunder
+  
+  def baum
+    bar
+    self.wunder
+  end
+   
+end
+
+def bar
+	p 6
+end
+
+i = bar
+p i

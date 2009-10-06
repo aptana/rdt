@@ -1,0 +1,11 @@
+class M
+	def m
+		p "Require A"
+	end
+end
+
+class M
+	def m
+		p "Require A Part 2"
+	end
+end

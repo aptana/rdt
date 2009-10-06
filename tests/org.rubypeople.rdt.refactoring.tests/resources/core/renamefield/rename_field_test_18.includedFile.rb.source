@@ -1,0 +1,10 @@
+class Foo
+  attr_accessor :i
+  def initialize
+    @i = 1
+  end
+
+  def i
+    @i
+  end
+end

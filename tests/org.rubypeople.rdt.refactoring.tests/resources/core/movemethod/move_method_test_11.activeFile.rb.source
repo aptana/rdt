@@ -1,0 +1,24 @@
+class A
+  def moveMethod arg
+    publicMethod
+    protectedMethod
+    privateMethod
+  end
+  private :moveMethod
+  def method
+    @x
+    @myB = B.new
+  end
+  def publicMethod
+  end
+  public :publicMethod
+  def protectedMethod
+  end
+  protected :protectedMethod
+  def privateMethod
+  end
+  private :privateMethod
+end
+
+class B
+end

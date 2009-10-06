@@ -1,0 +1,10 @@
+require "includeFile.rb"
+
+class B < A
+	def m
+		p "b"
+	end
+	def b
+	  m
+	end
+end

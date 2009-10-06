@@ -1,0 +1,3 @@
+begin=337
+end=380
+expected=InstAsgnNode, FCallOneArgNode, ArrayNode, VCallNode

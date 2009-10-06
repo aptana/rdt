@@ -1,0 +1,5 @@
+#true of false
+isClassField=true
+newName=d
+cursorPosition=23
+finalError0=Class field with name 'd' already exists.

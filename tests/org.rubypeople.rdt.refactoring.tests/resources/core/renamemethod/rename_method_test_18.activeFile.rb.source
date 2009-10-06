@@ -1,0 +1,10 @@
+class Test
+	def wunder
+		@wunder
+	end
+	public :wunder
+	
+	def wunder= value
+		@wunder = value
+	end
+end

@@ -1,0 +1,12 @@
+class NewName
+  def methode
+  end
+end
+
+t = NewName.new
+
+
+class NewName
+  def another_method
+  end
+end

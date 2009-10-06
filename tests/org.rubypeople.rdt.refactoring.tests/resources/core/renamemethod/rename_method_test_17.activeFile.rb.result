@@ -1,0 +1,8 @@
+class Test
+	def foo
+		@foo
+	end
+	def foo= value
+		@foo = value
+	end
+end

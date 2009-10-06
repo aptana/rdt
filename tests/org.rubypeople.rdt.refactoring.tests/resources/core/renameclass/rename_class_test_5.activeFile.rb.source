@@ -1,0 +1,6 @@
+require 'dependantFile.rb'
+
+class Test
+  def methode
+  end
+end

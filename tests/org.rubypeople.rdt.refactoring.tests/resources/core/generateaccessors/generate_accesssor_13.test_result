@@ -1,0 +1,8 @@
+class Test < Object
+  
+  attr_writer :test
+  
+  def initialize
+    @test = bla
+  end
+end

@@ -1,0 +1,6 @@
+class Klass
+  def method
+  end
+  
+  alias_method :old_method, :method
+end

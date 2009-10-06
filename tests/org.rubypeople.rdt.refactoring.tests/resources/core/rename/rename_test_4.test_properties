@@ -1,0 +1,3 @@
+cursorPosition=51
+#possible values: none, renameClass, renameMethod, renameField, renameLocal
+delegateRenameRefactoring=renameMethod

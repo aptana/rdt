@@ -1,0 +1,5 @@
+#true of false
+isClassField=false
+newName=d
+cursorPosition=11
+initialError0=Can only convert local variables in methods to fields.

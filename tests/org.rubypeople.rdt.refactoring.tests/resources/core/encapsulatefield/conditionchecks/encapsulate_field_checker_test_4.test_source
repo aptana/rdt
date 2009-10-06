@@ -1,0 +1,5 @@
+class X
+  def attr_accessor a
+    puts @a
+  end
+end

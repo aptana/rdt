@@ -1,0 +1,1 @@
+@settings_dir = Qt::Dir.home_dir_path + "/.reporterclient/"

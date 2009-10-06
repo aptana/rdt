@@ -1,0 +1,16 @@
+class A
+  def moveMethod arg
+    @myB.methodB
+    @x
+    self.method
+  end
+  def method
+    @x
+    @myB = B.new
+  end
+end
+
+class B
+  def methodB
+  end
+end

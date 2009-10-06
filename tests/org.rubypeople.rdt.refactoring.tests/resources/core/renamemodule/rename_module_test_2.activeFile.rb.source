@@ -1,0 +1,8 @@
+module Modul
+  VERY_BAD = 0
+  BAD      = 1
+  def Modul.sin(badness)
+  end
+end
+
+wrongdoing = Modul.sin(Modul::VERY_BAD)

@@ -1,0 +1,21 @@
+class X
+  
+  def blub 
+    @a
+  end
+  
+  #comment before accessor
+  #comment after accessor
+  def a
+    @a
+  end
+  public :a
+  
+  #comment before accessor
+  #comment after accessor
+  def a= a
+    @a = a
+  end
+  public :a=
+  
+end

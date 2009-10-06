@@ -1,0 +1,4 @@
+newMethodName=dd
+start=4
+end=6
+initialError0=Selection must not contain a method.

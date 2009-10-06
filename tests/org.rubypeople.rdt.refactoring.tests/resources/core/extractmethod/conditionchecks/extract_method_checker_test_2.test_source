@@ -1,0 +1,6 @@
+class X
+  def initialze
+    super
+    i = 5
+  end
+end

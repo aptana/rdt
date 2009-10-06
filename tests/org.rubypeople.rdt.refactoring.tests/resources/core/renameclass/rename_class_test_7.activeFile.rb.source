@@ -1,0 +1,11 @@
+module M
+  class Test
+    def methode
+    end
+  end
+end
+
+t = M::Test.new
+
+class Test
+end

@@ -1,0 +1,8 @@
+class X
+  def x
+    i = 5
+    def y
+      i = 4
+    end
+  end
+end

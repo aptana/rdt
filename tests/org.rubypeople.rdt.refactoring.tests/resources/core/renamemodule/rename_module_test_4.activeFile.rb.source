@@ -1,0 +1,20 @@
+module OuterModule
+  module Module
+	module InnerModule
+	end
+  end
+end
+
+module Module
+  module InnerModule
+  end
+end
+
+module InnerModule
+end
+
+class ModulTest
+  include OuterModule::Module::InnerModule
+  include Module::InnerModule
+  include InnerModule
+end

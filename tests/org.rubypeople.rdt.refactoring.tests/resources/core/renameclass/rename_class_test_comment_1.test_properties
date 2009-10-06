@@ -1,0 +1,4 @@
+name=NewName
+pos=27
+activeFile=activeFile.rb
+destinationFiles=dependantFile.rb

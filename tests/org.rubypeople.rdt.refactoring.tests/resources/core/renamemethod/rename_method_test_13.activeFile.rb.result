@@ -1,0 +1,18 @@
+require "includeFile.rb"
+
+class Baum
+
+	def wunder
+		f = 12
+		p f
+	end
+	def bar
+		@wunder
+	end
+	def wunder= bar
+		@wunder = bar
+	end
+end
+
+baum = Baum.new
+baum.wunder= 7

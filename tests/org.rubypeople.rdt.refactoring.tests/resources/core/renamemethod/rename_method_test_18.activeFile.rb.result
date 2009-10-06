@@ -1,0 +1,10 @@
+class Test
+	def foo
+		@foo
+	end
+	public :foo
+	
+	def foo= value
+		@foo = value
+	end
+end

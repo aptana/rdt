@@ -1,0 +1,5 @@
+class Baum
+	def goo
+		self.bar= 5
+	end
+end

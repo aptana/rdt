@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RDT Debug Core Tests
+Bundle-SymbolicName: org.rubypeople.rdt.debug.core.tests
+Bundle-Version: 0.0.0
+Bundle-ClassPath: .
+Bundle-Activator: org.rubypeople.rdt.debug.core.tests.RdtDebugTestsPlugin
+Bundle-Vendor: RubyPeople
+Bundle-Localization: plugin
+Export-Package: org.rubypeople.rdt.debug.core.tests
+Require-Bundle: org.rubypeople.rdt.debug.core,
+ org.eclipse.debug.core,
+ org.kxml2,
+ org.eclipse.core.resources,
+ org.rubypeople.rdt.launching,
+ org.eclipse.core.runtime,
+ org.rubypeople.rdt.core,
+ org.rubypeople.eclipse.testutils
+Eclipse-LazyStart: true

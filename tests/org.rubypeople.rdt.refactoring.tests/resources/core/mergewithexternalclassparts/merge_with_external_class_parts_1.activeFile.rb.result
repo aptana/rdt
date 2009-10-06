@@ -1,0 +1,16 @@
+require "includedFile.rb"
+
+
+class Tree
+  def initialize
+    @leafs = 100
+
+  end
+  def fade
+    @leafs = @leafs -1
+  end
+
+  def blossom
+    @leafs = @leafs + 1
+  end
+end

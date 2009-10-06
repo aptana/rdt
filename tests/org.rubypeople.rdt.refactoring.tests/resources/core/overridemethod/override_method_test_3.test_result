@@ -1,0 +1,8 @@
+require "override_method_test_3.test_super_source.rb"
+class A < X
+
+def initialize a
+super a
+end
+
+end

@@ -1,0 +1,11 @@
+start=144
+end=198
+name=remove_item
+visibility=protected
+# the next two properties are optional
+# specify the operations like you would perform them in the GUI, for example: 1 up or 0 down
+# speficy multiple operations comma-separated.
+# order=
+# the names are changed after the items are re-arranged
+# names=
+

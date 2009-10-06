@@ -1,0 +1,18 @@
+class Test
+	def Test.wunder
+		@foo = 5
+		p @foo
+	end
+	
+	def bar
+		@goo = 6
+		p @goo
+	end
+end
+
+class Klass
+	def Test.bar
+		@flup = 7
+		p @flup
+	end
+end

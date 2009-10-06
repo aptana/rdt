@@ -1,0 +1,6 @@
+class Test
+	def foo
+		@@wunder = 5
+		p @@wunder
+	end
+end

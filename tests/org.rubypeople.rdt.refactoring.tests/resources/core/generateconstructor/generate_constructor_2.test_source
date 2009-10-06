@@ -1,0 +1,8 @@
+#Comment
+class X
+  #Comment
+  def a a
+    @a = a
+    @b = a
+  end
+end

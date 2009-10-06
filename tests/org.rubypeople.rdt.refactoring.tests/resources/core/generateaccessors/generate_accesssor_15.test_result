@@ -1,0 +1,11 @@
+class X
+  attr :a
+
+attr_writer :a
+
+attr_writer :b
+
+  def initialize
+    @b
+  end
+end

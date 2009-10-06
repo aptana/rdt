@@ -1,0 +1,8 @@
+class HttpResponse
+  def send
+    if not @status_sent
+      @header = content_length unless @status == 304
+      parser = HttpParser.new
+    end
+  end
+end

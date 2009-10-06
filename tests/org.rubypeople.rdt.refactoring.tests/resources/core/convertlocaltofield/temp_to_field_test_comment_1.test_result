@@ -1,0 +1,8 @@
+class A
+  def m (arg1, arg2)
+  	#comment before assignment
+    @i = 5 #comment behind assignment
+    
+    @i = arg1 + arg2 #comment after temp
+  end
+end

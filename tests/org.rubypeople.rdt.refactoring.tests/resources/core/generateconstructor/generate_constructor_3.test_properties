@@ -1,0 +1,3 @@
+#Format: ClassName[, AttributeName]
+selection0=X, a
+selection1=X, b

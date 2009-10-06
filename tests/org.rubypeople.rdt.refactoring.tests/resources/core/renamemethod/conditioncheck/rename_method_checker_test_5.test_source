@@ -1,0 +1,14 @@
+class ClassWithFields
+  def initialize
+    @var = 5
+  end
+  
+  def do_something_with_var
+    @var += 1
+  end
+  
+  attr_reader :var
+end
+
+c = ClassWithFields.new
+c.do_something_with_var

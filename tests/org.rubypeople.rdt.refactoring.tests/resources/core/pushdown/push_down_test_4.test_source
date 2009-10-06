@@ -1,0 +1,5 @@
+class X
+  def method a
+    a
+  end
+end

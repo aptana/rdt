@@ -1,0 +1,5 @@
+class Baum
+	def goo
+		bar
+	end
+end

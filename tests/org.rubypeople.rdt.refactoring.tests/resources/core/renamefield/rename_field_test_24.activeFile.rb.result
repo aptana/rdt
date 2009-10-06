@@ -1,0 +1,5 @@
+class Test
+	def foo
+		@name, @bar = "wunder", "bar"
+	end
+end

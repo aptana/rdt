@@ -1,0 +1,22 @@
+class A
+  attr_reader :x
+  def moveMethod arg
+    @myB.moveMethod(arg, self)
+  end
+  def method
+    @x
+    @myB = B.new
+  end
+end
+
+class B
+  def methodB
+  end
+  
+  def moveMethod arg, a
+    self.methodB
+    a.x
+    a.method
+  end
+  
+end

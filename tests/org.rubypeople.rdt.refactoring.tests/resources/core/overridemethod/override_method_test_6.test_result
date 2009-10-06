@@ -1,0 +1,12 @@
+require "override_method_test_6.test_super_source.rb"
+class A < X
+
+def method0 a, b
+super(a, b)
+end
+
+def method1 a
+super a
+end
+
+end

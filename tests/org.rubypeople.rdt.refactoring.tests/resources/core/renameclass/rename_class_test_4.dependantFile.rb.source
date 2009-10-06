@@ -1,0 +1,6 @@
+require 'activeFile.rb'
+
+class Test
+  def methode
+  end
+end

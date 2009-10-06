@@ -1,0 +1,7 @@
+class X
+  def x
+    a.each do
+      i += 5
+    end
+  end
+end

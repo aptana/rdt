@@ -1,0 +1,7 @@
+caretPosition=28
+targetClassPos=104
+targetFileName=inline_class_checker_test_4.test_source
+initialError0=The selected class is derived from another class and thus cannot be inlined.
+initialError1=There must be at least one class that creates an instance of the selected class in the constructor and keeps it in a field.
+
+

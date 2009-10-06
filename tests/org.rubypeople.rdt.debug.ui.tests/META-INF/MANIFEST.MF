@@ -1,0 +1,33 @@
+Bundle-SymbolicName: org.rubypeople.rdt.debug.ui.tests;singleton=true
+Bundle-Name: RDT Debug UI Tests
+Bundle-Version: 0.0.0
+Bundle-Vendor: RubyPeople Inc.
+Bundle-Activator: org.rubypeople.rdt.debug.ui.tests.RdtDebugUiTestsPlugin
+Bundle-ClassPath: .
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui.ide,
+ org.eclipse.ui.views,
+ org.eclipse.jface.text,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.ui.editors,
+ org.eclipse.core.resources,
+ org.eclipse.ui,
+ org.rubypeople.rdt.debug.ui,
+ org.rubypeople.rdt.launching,
+ org.rubypeople.rdt.ui,
+ org.rubypeople.rdt.core,
+ org.rubypeople.eclipse.shams,
+ org.eclipse.debug.core,
+ org.eclipse.debug.ui,
+ org.rubypeople.eclipse.testutils,
+ org.rubypeople.rdt.debug.core,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.console,
+ org.rubypeople.rdt.core.tests,
+ org.junit
+Eclipse-LazyStart: true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Provide-Package: org.rubypeople.rdt.debug.ui.tests,
+ org.rubypeople.rdt.internal.debug.ui,
+ org.rubypeople.rdt.internal.debug.ui.launcher
+

@@ -1,0 +1,10 @@
+start=184
+end=359
+name=read_and_write_chunk
+visibility=private
+# the next two properties are optional
+# specify the operations like you would perform them in the GUI, for example: 1 up or 0 down
+# speficy multiple operations comma-separated.
+# order=
+# the names are changed after the items are re-arranged
+# names=

@@ -1,0 +1,6 @@
+class B
+  def moveMethod a
+  end
+end
+
+@var = test

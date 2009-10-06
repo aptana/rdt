@@ -1,0 +1,7 @@
+class Message
+  attr_reader :title, :content, :time, :id, :from
+
+  def initialize(params)
+    @content = strip_html params[:body] || params[:url] || ""
+  end
+end

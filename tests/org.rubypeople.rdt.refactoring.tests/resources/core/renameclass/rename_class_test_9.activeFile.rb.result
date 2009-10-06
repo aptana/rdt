@@ -1,0 +1,8 @@
+module Spec
+  module Runner
+    module Formatter
+      class NewName
+      end
+    end
+  end
+end

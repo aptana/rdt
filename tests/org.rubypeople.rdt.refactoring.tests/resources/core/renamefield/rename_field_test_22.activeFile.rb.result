@@ -1,0 +1,17 @@
+class Test
+  def foo
+    @bar = 5
+    p @bar
+  end
+  
+  def bar
+    @bar
+  end
+  public :bar
+  
+  def bar= wunder
+    @bar = wunder
+  end
+  public :bar=
+  
+end

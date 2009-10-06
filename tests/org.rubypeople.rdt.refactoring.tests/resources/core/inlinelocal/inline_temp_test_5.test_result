@@ -1,0 +1,14 @@
+class Test
+	def foo		
+		p 5 * (five + six)
+	end
+	
+	def five
+		5
+	end
+	
+	def six
+		6
+	end
+end
+

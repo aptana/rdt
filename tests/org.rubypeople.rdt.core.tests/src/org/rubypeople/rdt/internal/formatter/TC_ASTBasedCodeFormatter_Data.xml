@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tests>
+  <test ID="Keywords">
+
+<part>
+<assertionMessage>Keywords</assertionMessage>  
+<unformatted>
+class Xx
+ def xx()
+     if bla() then
+bla
+     else
+      arg
+      end
+end
+end
+</unformatted>
+<formatted>
+class Xx
+  def xx
+    if bla
+      bla
+    else
+      arg
+    end
+  end
+end
+</formatted>
+</part>
+
+<part>
+<assertionMessage>Keyword with following delimiter</assertionMessage>  
+<unformatted>
+if(true)
+while(true)do
+if/test/=~"test" then
+puts "TEST MATCHES" ;
+elsif/test/=~"abc"
+puts "ABC MATCHES";
+end
+end
+end
+</unformatted>
+<formatted>
+if (true)
+  while (true)
+    if /test/ =~ "test"
+      puts "TEST MATCHES"
+    elsif /test/ =~ "abc"
+      puts "ABC MATCHES"
+    end
+  end
+end
+</formatted>
+</part>
+
+
+<part>
+<assertionMessage>Keyword in comment</assertionMessage>  
+<unformatted>
+# class
+class Abc
+end
+</unformatted>  
+<formatted>
+# class
+class Abc
+end
+</formatted>
+</part>
+
+<part>
+<assertionMessage>Keyword as method name</assertionMessage>
+<unformatted>
+object.class
+puts o
+</unformatted>  
+<formatted>
+object.class
+puts o
+</formatted>
+</part>
+
+  </test>
+
+<test ID="takeIndentationOfFirstKeyword">
+<unformatted>
+ # comment
+   def firstMethod
+   if a
+     b
+   end
+ end
+</unformatted>  
+<formatted>
+# comment
+def firstMethod
+  if a
+    b
+  end
+end
+</formatted>
+  </test>
+
+<test ID="blockWithBrackets">
+<part>
+<assertionMessage>Block starts in middle of line</assertionMessage>
+<unformatted>
+a.each { | x |
+if a
+b
+end
+}
+</unformatted>  
+<formatted>
+a.each do |x|
+  if a
+    b
+  end
+end
+</formatted>
+</part>
+<part>
+<assertionMessage>Block on single line</assertionMessage>
+<unformatted>
+a.each { | x | test }
+</unformatted>  
+<formatted>
+a.each { |x| test }
+</formatted>
+</part>
+<!-- This test gets a syntx exception even though the text seems to be fine in an editor
+<part>
+<assertionMessage>Block starts on new line</assertionMessage>
+<unformatted>
+a = [1, 2, 3]
+a.each 
+{ | x |
+test
+}
+</unformatted>  
+<formatted>
+a = [1, 2, 3]
+a.each 
+{ | x |
+  test
+}
+</formatted>
+</part>
+-->
+</test>  
+<test ID="Blocks">
+<part>
+<assertionMessage>Begin/rescue/end block</assertionMessage>
+<unformatted>
+begin
+       x
+rescue
+ y
+end
+</unformatted>  
+<formatted>
+begin
+  x
+rescue
+  y
+end
+</formatted>
+</part>
+<part>
+<assertionMessage>Begin/rescue/end in one line</assertionMessage>
+<unformatted>
+begin a rescue x end
+</unformatted>  
+<formatted>
+begin a rescue x end
+</formatted>
+</part>
+<part>
+<assertionMessage>No-Block Do</assertionMessage>
+<unformatted>
+while (a) do
+test
+end
+x = 5 ; until x do
+test
+end
+</unformatted>  
+<formatted>
+while (a)
+  test
+end
+x = 5
+until x
+  test
+end
+</formatted>
+</part>
+
+<part>
+<assertionMessage>Block Do</assertionMessage>
+<unformatted>
+3.times do
+test
+end
+</unformatted>  
+<formatted>
+3.times do 
+  test
+end
+</formatted>
+</part>
+
+<part>
+<assertionMessage>No Block Expressions</assertionMessage>
+<unformatted>
+a = 0 if a != 0
+test
+a() if trace?
+a +=1 while a != 10
+i += 1 until i == 5
+test
+</unformatted>  
+<formatted>
+a = 0 if a != 0
+test
+a() if trace?
+a += 1 while a != 10
+i += 1 until i == 5
+test
+</formatted>
+</part>
+
+<part>
+<assertionMessage>Block Expressions starting in the middle of a line</assertionMessage>
+<unformatted>
+a = 0 ; if a != 0
+test
+end
+a = if a != 0
+5
+end
+</unformatted>  
+<formatted>
+a = 0
+if a != 0
+  test
+end
+a = if a != 0
+  5
+end
+</formatted>
+</part>
+<!--
+<part>
+<assertionMessage>Until with Begin/End</assertionMessage>
+<unformatted>
+begin
+i+=1
+end until i == 5
+test
+</unformatted>  
+<formatted>
+begin
+  i+=1
+end until i == 5
+test
+</formatted>
+</part>
+-->
+<part>
+<assertionMessage>End with following semicolon</assertionMessage>
+<unformatted>
+class A
+end;
+</unformatted>  
+<formatted>
+class A
+end
+</formatted>
+</part>
+
+<part>
+<assertionMessage>Two ends in a row</assertionMessage>
+<unformatted>
+class A
+def a
+end;end
+class B; end;
+</unformatted>  
+<formatted>
+class A
+  def a
+  end
+end
+class B
+end
+</formatted>
+</part>
+
+<part>
+<assertionMessage>Semicolon before start</assertionMessage>
+<unformatted>
+def a;if 0 then puts "X" 
+end; 
+end;
+</unformatted>  
+<formatted>
+def a
+  if 0
+    puts "X"
+  end
+end
+</formatted>
+</part>
+</test>  
+<test ID="Parameters">
+<part>
+<assertionMessage>Method Parameter in one line</assertionMessage>
+<unformatted>
+def x(a, b)
+y
+end
+</unformatted>  
+<formatted>
+def x(a, b)
+  y
+end
+</formatted>
+</part>
+<part>
+<assertionMessage>Method Parameter in multiple lines</assertionMessage>
+<unformatted>
+
+def x(a,
+b,
+  c)
+x
+end
+</unformatted>  
+<formatted>
+def x(a, b, c)
+  x
+end
+</formatted>
+</part>
+<part>
+<assertionMessage>Method call with multiple lines</assertionMessage>
+<unformatted>
+def x(a,b)
+object.method(arg1,
+   arg2)
+end
+</unformatted>  
+<formatted>
+def x(a, b)
+  object.method(arg1, arg2)
+end
+</formatted>
+</part>
+
+</test>  
+
+<test ID="Literals">
+<part>
+<assertionMessage>Literal with double quotation</assertionMessage>
+<unformatted>
+ puts "def x(a, b)"
+ puts ""
+ if a
+b
+ end   
+ puts "if{"
+ b
+ puts "end"
+</unformatted>  
+<formatted>
+puts "def x(a, b)"
+puts ""
+if a
+  b
+end
+puts "if{"
+b
+puts "end"
+</formatted>
+</part>
+
+<part>
+<assertionMessage>Literal with double quotation over multiple lines</assertionMessage>
+<unformatted>
+ puts "Bla
+class"
+ puts "def method"
+ puts "end"
+</unformatted>  
+<formatted>
+puts "Bla\nclass"
+puts "def method"
+puts "end"
+</formatted>
+</part>
+
+<part>
+<assertionMessage>Literal with backslashed quotation</assertionMessage>
+<unformatted>
+ puts "\"{"
+ puts "xx"
+ puts "class \\"
+a if b
+</unformatted>  
+<formatted>
+puts "\"{"
+puts "xx"
+puts "class \\"
+a if b
+</formatted>
+</part>
+
+<part>
+<assertionMessage>Literal with single quotation</assertionMessage>
+<unformatted>
+ puts 'def x(a, b)'
+ puts 'if{'
+ puts 'end'
+</unformatted>  
+<formatted>
+puts 'def x(a, b)'
+puts 'if{'
+puts 'end'
+</formatted>
+</part>
+<part>
+
+<assertionMessage>Special char $'</assertionMessage>
+<unformatted>
+if $'
+o.m
+end
+</unformatted>  
+<formatted>
+if $'
+  o.m
+end
+</formatted>
+</part>
+
+<part>
+<assertionMessage>Literal with single and double quotation</assertionMessage>
+<unformatted>
+ puts '"def" if  x(a, b)'
+ puts 'if{'
+ puts 'end'
+</unformatted>  
+<formatted>
+puts '\"def\" if  x(a, b)'
+puts 'if{'
+puts 'end'
+</formatted>
+</part>
+<part>
+<assertionMessage>=begin, =end</assertionMessage>
+<unformatted>
+=begin
+ if
+  b
+   end
+=end
+ if
+  b
+   end
+</unformatted>  
+<formatted>
+=begin
+ if
+  b
+   end
+=end
+if b
+end
+</formatted>
+</part>
+
+<part>
+<assertionMessage>String def with &lt;&lt;ID ID</assertionMessage>
+<unformatted>
+&lt;&lt;ID 
+ do not touch this ID while processing
+   test
+ID
+&lt;&lt;-ID
+ do not touch this while processing
+   test
+ ID
+&lt;&lt;'ID'
+ do not touch this while processing
+   test
+ID
+</unformatted>  
+<formatted>
+&lt;&lt;ID 
+ do not touch this ID while processing
+   test
+ID
+&lt;&lt;-ID
+ do not touch this while processing
+   test
+ ID
+&lt;&lt;'ID'
+ do not touch this while processing
+   test
+ID
+</formatted>
+</part>
+
+
+<part>
+<assertionMessage>regular expressions</assertionMessage>
+<unformatted>
+v =~ / { \/ { \\/
+if
+o.m()
+end
+v =~ /{/
+o.m()
+</unformatted>  
+<formatted>
+v =~ / { \/ { \\/
+if o.m
+end
+v =~ /{/
+o.m
+</formatted>
+</part>
+
+<part>
+<assertionMessage>regular expressions with multiple lines</assertionMessage>
+<comment>
+</comment>
+<unformatted>
+if /abc
+/ =~ "\ndef" then
+puts 'matched def' ;
+end
+</unformatted>  
+<formatted>
+if /abc
+/ =~ "\ndef"
+  puts 'matched def'
+end
+</formatted>
+</part>
+
+
+<part>
+<assertionMessage>Two divisions</assertionMessage>
+<unformatted>
+def a
+if true
+1/2 
+else
+1/4
+end
+end
+</unformatted>  
+<formatted>
+def a
+  if true
+    1 / 2
+  else
+    1 / 4
+  end
+end
+</formatted>
+</part>
+</test>
+
+<test ID="LiteralsStartingWithPercentSign">
+<part>
+<assertionMessage>literals starting with %</assertionMessage>
+<unformatted>
+puts %-class-
+puts %Q(class class)
+puts %Q{class class}
+puts %Q{ def class class}
+puts ""
+</unformatted>
+<formatted>
+puts %-class-
+puts %Q(class class)
+puts %Q{class class}
+puts %Q{ def class class}
+puts ""
+</formatted>
+</part>
+</test>
+
+
+<test ID="NegativeIndentation">
+
+<part>
+<assertionMessage>Invalid ruby with too many end</assertionMessage>  
+<unformatted>
+class Bob
+ def m
+     end
+     end
+</unformatted>
+<formatted>
+class Bob
+  def m
+  end
+end
+</formatted>
+</part>
+
+</test>
+<test ID="RescueModifier">
+<part>
+<assertionMessage>Rescue Modifier</assertionMessage>  
+<unformatted>
+class A
+  var = do_something rescue nil
+foo 
+end
+</unformatted>
+<formatted>
+class A
+  var = do_something rescue nil
+  foo
+end
+</formatted>
+</part>
+<part>
+<assertionMessage>Rescue Modifier With Previous Block</assertionMessage>  
+<unformatted>
+class A
+  begin
+do_something
+  rescue
+yeah
+  end
+  var = do_something rescue nil
+foo 
+end
+</unformatted>
+<formatted>
+class A
+  begin
+    do_something
+  rescue
+    yeah
+  end
+  var = do_something rescue nil
+  foo
+end
+</formatted>
+</part>
+</test>
+
+<test ID="LineStartingWithParen">
+<part>
+<assertionMessage>Align line starting with paren</assertionMessage>  
+<unformatted>
+class A
+  foo
+   (1 - 2).inspect
+end
+</unformatted>
+<formatted>
+class A
+  foo
+  (1 - 2).inspect
+end
+</formatted>
+</part>
+</test>
+
+<test ID="CaseWithWhens">
+<part>
+<assertionMessage>Indent when</assertionMessage>  
+<unformatted>
+module Foo
+  def bar
+    case baz
+  when 'sweet harmonious biscuits'
+when 'yuck'
+    when 'eww'
+    end
+    end
+end
+</unformatted>
+<formatted>
+module Foo
+  def bar
+    case baz
+    when 'sweet harmonious biscuits'
+    when 'yuck'
+    when 'eww'
+    end
+  end
+end
+</formatted>
+</part>
+</test>
+<test ID="MethodDefinitionStartsTooFarIn">
+<part>
+<assertionMessage>Method definition start doesn't fix indent</assertionMessage>  
+<unformatted>
+class Notification
+  
+  def setup(recipients)   
+    @recipients&lt;&lt;'&lt;'&lt;&lt;recipients&lt;&lt;'&gt;'
+  end 
+  
+    def reto_pendiente_2w(user, vars)
+    vars.merge!
+    setup(user, vars)
+  end
+end
+</unformatted>
+<formatted>
+class Notification
+  def setup(recipients)
+    @recipients &lt;&lt; '&lt;' &lt;&lt; recipients &lt;&lt; '&gt;'
+  end
+  def reto_pendiente_2w(user, vars)
+    vars.merge!
+    setup(user, vars)
+  end
+end
+</formatted>
+</part>
+</test>
+</tests>
+

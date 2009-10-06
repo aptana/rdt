@@ -1,0 +1,9 @@
+class X
+  def a
+    b
+  end
+  def b
+  end
+end
+class Y
+end

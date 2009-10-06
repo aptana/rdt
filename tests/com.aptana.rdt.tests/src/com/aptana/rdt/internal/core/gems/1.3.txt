@@ -1,0 +1,434 @@
+actionmailer (2.1.1, 2.1.0, 2.0.2, 1.3.6)
+    Author: David Heinemeier Hansson
+    Rubyforge: http://rubyforge.org/projects/actionmailer
+    Homepage: http://www.rubyonrails.org
+    Installed at (2.1.1): /Library/Ruby/Gems/1.8
+                 (2.1.0): /Library/Ruby/Gems/1.8
+                 (2.0.2): /Library/Ruby/Gems/1.8
+                 (1.3.6): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    Service layer for easy email delivery and testing.
+
+actionpack (2.1.1, 2.1.0, 2.0.4, 2.0.2, 1.13.6, 1.13.5, 1.13.4, 1.13.3, 1.13.2, 1.13.1, 1.13.0, 1.12.5, 1.12.4, 1.12.1, 1.12.0, 1.11.2, 1.11.1, 1.11.0, 1.10.2)
+    Author: David Heinemeier Hansson
+    Rubyforge: http://rubyforge.org/projects/actionpack
+    Homepage: http://www.rubyonrails.org
+    Installed at (2.1.1): /Users/cwilliams/.gem/ruby/1.8
+                 (2.1.0): /Library/Ruby/Gems/1.8
+                 (2.0.4): /Users/cwilliams/.gem/ruby/1.8
+                 (2.0.2): /Library/Ruby/Gems/1.8
+                 (1.13.6): /Users/cwilliams/.gem/ruby/1.8
+                 (1.13.5): /Users/cwilliams/.gem/ruby/1.8
+                 (1.13.4): /Users/cwilliams/.gem/ruby/1.8
+                 (1.13.3): /Users/cwilliams/.gem/ruby/1.8
+                 (1.13.2): /Users/cwilliams/.gem/ruby/1.8
+                 (1.13.1): /Users/cwilliams/.gem/ruby/1.8
+                 (1.13.0): /Users/cwilliams/.gem/ruby/1.8
+                 (1.12.5): /Users/cwilliams/.gem/ruby/1.8
+                 (1.12.4): /Users/cwilliams/.gem/ruby/1.8
+                 (1.12.1): /Users/cwilliams/.gem/ruby/1.8
+                 (1.12.0): /Users/cwilliams/.gem/ruby/1.8
+                 (1.11.2): /Users/cwilliams/.gem/ruby/1.8
+                 (1.11.1): /Users/cwilliams/.gem/ruby/1.8
+                 (1.11.0): /Users/cwilliams/.gem/ruby/1.8
+                 (1.10.2): /Users/cwilliams/.gem/ruby/1.8
+
+    Web-flow and rendering framework putting the VC in MVC.
+
+actionwebservice (1.2.6)
+    Author: Leon Breedt
+    Rubyforge: http://rubyforge.org/projects/aws
+    Homepage: http://www.rubyonrails.org
+    Installed at: /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    Web service support for Action Pack.
+
+activemerchant (1.3.2)
+    Author: Tobias Luetke
+    Homepage: http://activemerchant.org/
+    Installed at: /Library/Ruby/Gems/1.8
+
+    Framework and tools for dealing with credit card transactions.
+
+activerecord (2.1.1, 2.1.0, 2.0.2, 1.15.6)
+    Author: David Heinemeier Hansson
+    Rubyforge: http://rubyforge.org/projects/activerecord
+    Homepage: http://www.rubyonrails.org
+    Installed at (2.1.1): /Library/Ruby/Gems/1.8
+                 (2.1.0): /Library/Ruby/Gems/1.8
+                 (2.0.2): /Library/Ruby/Gems/1.8
+                 (1.15.6): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    Implements the ActiveRecord pattern for ORM.
+
+activeresource (2.1.1, 2.1.0, 2.0.2)
+    Author: David Heinemeier Hansson
+    Rubyforge: http://rubyforge.org/projects/activeresource
+    Homepage: http://www.rubyonrails.org
+    Installed at (2.1.1): /Library/Ruby/Gems/1.8
+                 (2.1.0): /Library/Ruby/Gems/1.8
+                 (2.0.2): /Library/Ruby/Gems/1.8
+
+    Think Active Record for web resources.
+
+activesupport (2.1.1, 2.1.0, 2.0.4, 2.0.2, 1.4.4, 1.4.3, 1.4.2, 1.4.1, 1.4.0, 1.3.1, 1.3.0, 1.2.5, 1.2.4, 1.2.3, 1.2.2)
+    Author: David Heinemeier Hansson
+    Rubyforge: http://rubyforge.org/projects/activesupport
+    Homepage: http://www.rubyonrails.org
+    Installed at (2.1.1): /Library/Ruby/Gems/1.8
+                 (2.1.0): /Library/Ruby/Gems/1.8
+                 (2.0.4): /Users/cwilliams/.gem/ruby/1.8
+                 (2.0.2): /Library/Ruby/Gems/1.8
+                 (1.4.4): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+                 (1.4.3): /Users/cwilliams/.gem/ruby/1.8
+                 (1.4.2): /Users/cwilliams/.gem/ruby/1.8
+                 (1.4.1): /Users/cwilliams/.gem/ruby/1.8
+                 (1.4.0): /Users/cwilliams/.gem/ruby/1.8
+                 (1.3.1): /Users/cwilliams/.gem/ruby/1.8
+                 (1.3.0): /Users/cwilliams/.gem/ruby/1.8
+                 (1.2.5): /Users/cwilliams/.gem/ruby/1.8
+                 (1.2.4): /Users/cwilliams/.gem/ruby/1.8
+                 (1.2.3): /Users/cwilliams/.gem/ruby/1.8
+                 (1.2.2): /Users/cwilliams/.gem/ruby/1.8
+
+    Support and utility classes used by the Rails framework.
+
+acts_as_ferret (0.4.3, 0.4.1)
+    Author: Jens Kraemer
+    Homepage: http://projects.jkraemer.net/acts_as_ferret
+    Installed at (0.4.3): /Library/Ruby/Gems/1.8
+                 (0.4.1): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    acts_as_ferret - Ferret based full text search for any ActiveRecord
+    model
+
+builder (2.1.2)
+    Author: Jim Weirich
+    Homepage: http://onestepback.org
+    Installed at: /Library/Ruby/Gems/1.8
+
+    Builders for MarkUp.
+
+capistrano (2.4.3, 2.0.0)
+    Author: Jamis Buck
+    Rubyforge: http://rubyforge.org/projects/capistrano
+    Homepage: http://www.capify.org
+    Installed at (2.4.3): /Library/Ruby/Gems/1.8
+                 (2.0.0): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    Capistrano is a utility and framework for executing commands in
+    parallel on multiple remote machines, via SSH.
+
+cgi_multipart_eof_fix (2.5.0, 2.2)
+    Author: Evan Weaver
+    Rubyforge: http://rubyforge.org/projects/mongrel
+    Homepage:
+    http://blog.evanweaver.com/pages/code#cgi_multipart_eof_fix
+    Installed at (2.5.0): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+                 (2.2): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    Fix an exploitable bug in CGI multipart parsing.
+
+columnize (0.1)
+    Author: R. Bernstein
+    Rubyforge: http://rubyforge.org/projects/rocky-hacks
+    Homepage: http://rubyforge.org/projects/rocky-hacks/columnize
+    Installed at: /Library/Ruby/Gems/1.8
+
+    Read file with caching
+
+daemons (1.0.10, 1.0.9, 1.0.7)
+    Author: Thomas Uehlinger
+    Rubyforge: http://rubyforge.org/projects/daemons
+    Homepage: http://daemons.rubyforge.org
+    Installed at (1.0.10): /Library/Ruby/Gems/1.8
+                 (1.0.9): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+                 (1.0.7): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    A toolkit to create and control daemons in different ways
+
+dnssd (0.6.0)
+    Author: 
+    Homepage: http://dnssd.rubyforge.org
+    Installed at: /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    DNS Service Discovery (aka Rendezvous) API for Ruby
+
+eventmachine (0.12.0)
+    Author: Francis Cianfrocca
+    Rubyforge: http://rubyforge.org/projects/eventmachine
+    Homepage: http://rubyeventmachine.com
+    Installed at: /Library/Ruby/Gems/1.8
+
+    Ruby/EventMachine library
+
+fastthread (1.0.1, 1.0)
+    Author: MenTaLguY <mental@rydia.net>
+    Rubyforge: http://rubyforge.org/projects/mongrel
+    Installed at (1.0.1): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+                 (1.0): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    Optimized replacement for thread.rb primitives
+
+fcgi (0.8.7)
+    Author: 
+    Rubyforge: http://rubyforge.org/projects/fcgi
+    Installed at: /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    FastCGI library for Ruby.
+
+ferret (0.11.6, 0.11.4)
+    Author: David Balmain
+    Rubyforge: http://rubyforge.org/projects/ferret
+    Homepage: http://ferret.davebalmain.com/trac
+    Installed at (0.11.6): /Library/Ruby/Gems/1.8
+                 (0.11.4): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    Ruby indexing library.
+
+gem_plugin (0.2.3, 0.2.2)
+    Author: Zed A. Shaw
+    Rubyforge: http://rubyforge.org/projects/mongrel
+    Installed at (0.2.3): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+                 (0.2.2): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    A plugin system based on rubygems that uses dependencies only
+
+highline (1.4.0, 1.2.9)
+    Author: James Edward Gray II
+    Rubyforge: http://rubyforge.org/projects/highline
+    Homepage: http://highline.rubyforge.org
+    Installed at (1.4.0): /Library/Ruby/Gems/1.8
+                 (1.2.9): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    HighLine is a high-level command-line IO library.
+
+hpricot (0.6)
+    Author: why the lucky stiff
+    Homepage: http://code.whytheluckystiff.net/hpricot/
+    Installed at: /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    a swift, liberal HTML parser with a fantastic library
+
+libxml-ruby (0.5.4, 0.3.8.4)
+    Author: Dan Janwoski <danj at 3skel.com>
+    Rubyforge: http://rubyforge.org/projects/libxml
+    Homepage: http://libxml.rubyforge.org
+    Installed at (0.5.4): /Library/Ruby/Gems/1.8
+                 (0.3.8.4): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    Ruby Bindings for GNU/LibXML2
+
+linecache (0.43)
+    Author: R. Bernstein
+    Rubyforge: http://rubyforge.org/projects/rocky-hacks
+    Homepage: http://rubyforge.org/projects/rocky-hacks/linecache
+    Installed at: /Library/Ruby/Gems/1.8
+
+    Read file with caching
+
+mongrel (1.1.5, 1.1.4, 1.0.1)
+    Author: Zed A. Shaw
+    Rubyforge: http://rubyforge.org/projects/mongrel
+    Homepage: http://mongrel.rubyforge.org
+    Installed at (1.1.5): /Library/Ruby/Gems/1.8
+                 (1.1.4): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+                 (1.0.1): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    A small fast HTTP library and server that runs Rails, Camping, Nitro
+    and Iowa apps.
+
+needle (1.3.0)
+    Author: Jamis Buck
+    Homepage: http://needle.rubyforge.org
+    Installed at: /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    Needle is a Dependency Injection/Inversion of Control container for
+    Ruby. It supports both type-2 (setter) and type-3 (constructor)
+    injection. It takes advantage of the dynamic nature of Ruby to
+    provide a rich and flexible approach to injecting dependencies.
+
+net-scp (1.0.1)
+    Author: Jamis Buck
+    Rubyforge: http://rubyforge.org/projects/net-ssh
+    Homepage: http://net-ssh.rubyforge.org/scp
+    Installed at: /Library/Ruby/Gems/1.8
+
+    A pure Ruby implementation of the SCP client protocol
+
+net-sftp (2.0.1, 1.1.0)
+    Author: Jamis Buck
+    Rubyforge: http://rubyforge.org/projects/net-ssh
+    Homepage: http://net-ssh.rubyforge.org/sftp
+    Installed at (2.0.1): /Library/Ruby/Gems/1.8
+                 (1.1.0): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    A pure Ruby implementation of the SFTP client protocol
+
+net-ssh (2.0.3, 1.1.2)
+    Author: Jamis Buck
+    Rubyforge: http://rubyforge.org/projects/net-ssh
+    Homepage: http://net-ssh.rubyforge.org/ssh
+    Installed at (2.0.3): /Library/Ruby/Gems/1.8
+                 (1.1.2): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    a pure-Ruby implementation of the SSH2 client protocol
+
+net-ssh-gateway (1.0.0)
+    Author: Jamis Buck
+    Rubyforge: http://rubyforge.org/projects/net-ssh-gateway
+    Homepage: http://net-ssh.rubyforge.org/gateway
+    Installed at: /Library/Ruby/Gems/1.8
+
+    A simple library to assist in establishing tunneled Net::SSH
+    connections
+
+rack (0.4.0)
+    Author: Christian Neukirchen
+    Rubyforge: http://rubyforge.org/projects/rack
+    Homepage: http://rack.rubyforge.org
+    Installed at: /Library/Ruby/Gems/1.8
+
+    a modular Ruby webserver interface
+
+rails (2.1.1, 2.1.0, 2.0.2, 1.2.6)
+    Author: David Heinemeier Hansson
+    Rubyforge: http://rubyforge.org/projects/rails
+    Homepage: http://www.rubyonrails.org
+    Installed at (2.1.1): /Library/Ruby/Gems/1.8
+                 (2.1.0): /Library/Ruby/Gems/1.8
+                 (2.0.2): /Library/Ruby/Gems/1.8
+                 (1.2.6): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    Web-application framework with template engine, control-flow layer,
+    and ORM.
+
+rake (0.8.1, 0.7.3)
+    Author: Jim Weirich
+    Rubyforge: http://rubyforge.org/projects/rake
+    Homepage: http://rake.rubyforge.org
+    Installed at (0.8.1): /Library/Ruby/Gems/1.8
+                 (0.7.3): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    Ruby based make-like utility.
+
+RedCloth (3.0.4)
+    Author: why the lucky stiff
+    Rubyforge: http://rubyforge.org/projects/redcloth
+    Homepage: http://www.whytheluckystiff.net/ruby/redcloth/
+    Installed at: /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    RedCloth is a module for using Textile and Markdown in Ruby. Textile
+    and Markdown are text formats.  A very simple text format. Another
+    stab at making readable text that can be converted to HTML.
+
+rspec (1.1.4)
+    Author: RSpec Development Team
+    Rubyforge: http://rubyforge.org/projects/rspec
+    Homepage: http://rspec.rubyforge.org
+    Installed at: /Library/Ruby/Gems/1.8
+
+    RSpec-1.1.4 (build 20080526202855) - BDD for Ruby
+    http://rspec.rubyforge.org/
+
+ruby-debug (0.10.1)
+    Author: Kent Sibilev
+    Rubyforge: http://rubyforge.org/projects/ruby-debug
+    Homepage: http://rubyforge.org/projects/ruby-debug/
+    Installed at: /Library/Ruby/Gems/1.8
+
+    Command line interface (CLI) for ruby-debug-base
+
+ruby-debug-base (0.10.1, 0.10.0)
+    Author: Kent Sibilev
+    Rubyforge: http://rubyforge.org/projects/ruby-debug
+    Homepage: http://rubyforge.org/projects/ruby-debug/
+    Installed at (0.10.1): /Library/Ruby/Gems/1.8
+                 (0.10.0): /Library/Ruby/Gems/1.8
+
+    Fast Ruby debugger - core component
+
+ruby-debug-ide (0.2.1, 0.1.10)
+    Author: Markus Barchfeld, Martin Krauskopf
+    Rubyforge: http://rubyforge.org/projects/debug-commons
+    Homepage: http://rubyforge.org/projects/debug-commons/
+    Installed at (0.2.1): /Library/Ruby/Gems/1.8
+                 (0.1.10): /Library/Ruby/Gems/1.8
+
+    IDE interface for ruby-debug.
+
+ruby-openid (2.1.2, 1.1.4)
+    Author: JanRain, Inc
+    Homepage: http://openidenabled.com/ruby-openid/
+    Installed at (2.1.2): /Library/Ruby/Gems/1.8
+                 (1.1.4): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    A library for consuming and serving OpenID identities.
+
+ruby-prof (0.5.2)
+    Author: Shugo Maeda and Charlie Savage
+    Rubyforge: http://rubyforge.org/projects/ruby-prof
+    Homepage: http://rubyforge.org/projects/ruby-prof/
+    Installed at: /Library/Ruby/Gems/1.8
+
+    Fast Ruby profiler
+
+ruby-yadis (0.3.4)
+    Author: Brian Ellin (JanRain, Inc), Eugene Eric Kim (Blue Oxen
+    Associates)
+    Homepage: http://www.openidenabled.com/yadis/libraries/ruby
+    Installed at: /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    A library for performing Yadis service discovery
+
+rubygems-update (1.3.0, 1.2.0)
+    Authors: Jim Weirich, Chad Fowler, Eric Hodel
+    Rubyforge: http://rubyforge.org/projects/rubygems
+    Homepage: http://rubygems.rubyforge.org
+    Installed at (1.3.0): /Library/Ruby/Gems/1.8
+                 (1.2.0): /Library/Ruby/Gems/1.8
+
+    RubyGems Update GEM
+
+rubynode (0.1.5, 0.1.3)
+    Author: Dominik Bathon
+    Homepage: http://rubynode.rubyforge.org/
+    Installed at (0.1.5): /Library/Ruby/Gems/1.8
+                 (0.1.3): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    RubyNode is a library that allows read only access to Ruby's
+    internal NODE structure.
+
+sqlite3-ruby (1.2.2, 1.2.1)
+    Author: Jamis Buck
+    Homepage: http://sqlite-ruby.rubyforge.org/sqlite3
+    Installed at (1.2.2): /Library/Ruby/Gems/1.8
+                 (1.2.1): /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    SQLite3/Ruby is a module to allow Ruby scripts to interface with a
+    SQLite3 database.
+
+termios (0.9.4)
+    Author: 
+    Homepage: http://arika.org/ruby/termios
+    Installed at: /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
+
+    Termios module are simple wrapper for termios(3). It can be included
+    into IO-family classes and can extend IO-family objects. In
+    addition, the methods can use as module function.
+
+thin (0.8.2)
+    Author: Marc-Andre Cournoyer
+    Rubyforge: http://rubyforge.org/projects/thin
+    Homepage: http://code.macournoyer.com/thin/
+    Installed at: /Library/Ruby/Gems/1.8
+
+    A thin and fast web server
+
+validatable (1.6.7)
+    Author: Jay Fields
+    Rubyforge: http://rubyforge.org/projects/validatable
+    Homepage: http://validatable.rubyforge.org
+    Installed at: /Library/Ruby/Gems/1.8
+
+    Validatable is a library for adding validations.

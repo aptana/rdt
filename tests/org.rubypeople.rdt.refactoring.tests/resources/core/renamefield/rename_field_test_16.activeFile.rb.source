@@ -1,0 +1,8 @@
+class Test
+	attr_reader :wunder, :welt
+	attr_writer :wunder
+	def foo
+		@wunder = 5
+		p @wunder
+	end
+end

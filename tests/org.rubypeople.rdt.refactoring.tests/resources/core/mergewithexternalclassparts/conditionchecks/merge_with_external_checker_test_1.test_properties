@@ -1,0 +1,4 @@
+activeFile=activeFile.rb
+destinationFiles=includedFile.rb
+# Optional value
+initialError0=There is no class in the current file that has external parts to merge.

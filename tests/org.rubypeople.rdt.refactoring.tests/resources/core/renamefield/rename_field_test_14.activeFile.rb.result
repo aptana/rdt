@@ -1,0 +1,7 @@
+class Test
+	attr_reader :bar
+	def foo
+		@bar = 5
+		p @bar
+	end
+end

@@ -1,0 +1,17 @@
+class Test
+  def method1
+  	nothing
+  end
+end
+
+class Test
+  def method2
+  	nothing
+  end
+end
+
+class Test
+  def method3
+  	nothing
+  end
+end

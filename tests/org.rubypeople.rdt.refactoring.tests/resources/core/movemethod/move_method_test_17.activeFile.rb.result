@@ -1,0 +1,16 @@
+class A
+  attr_accessor :x
+  def method
+    @myB = B.new
+    @x
+  end
+end
+
+class B
+  
+  def moveMethod arg, a
+    a.x = 2
+    puts a.x
+  end
+  
+end

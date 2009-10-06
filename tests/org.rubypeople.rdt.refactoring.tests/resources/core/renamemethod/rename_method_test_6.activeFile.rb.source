@@ -1,0 +1,11 @@
+class Test
+	def Test.wunder
+		@foo = 5
+		p @foo
+	end
+	
+	def wunder
+		@goo = 6
+		p @goo
+	end
+end

@@ -1,0 +1,5 @@
+count = 5
+module MyModule
+	value = 1
+end
+puts count

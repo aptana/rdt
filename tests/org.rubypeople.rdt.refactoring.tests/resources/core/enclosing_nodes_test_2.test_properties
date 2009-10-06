@@ -1,0 +1,3 @@
+begin=266
+end=379
+expected=IfNode, CallOneArgNode, LocalVarNode, ArrayNode, SymbolNode, NewlineNode, LocalAsgnNode, CallOneArgNode, CallOneArgNode, LocalVarNode, ArrayNode, SymbolNode, ArrayNode, SymbolNode, NewlineNode, LocalAsgnNode, CallOneArgNode, LocalVarNode, ArrayNode, SymbolNode

@@ -1,0 +1,4 @@
+newName=var
+isClassField=true
+initPlace=TempToFieldConverter.INIT_IN_CONSTRUCTOR
+cursorPosition=80

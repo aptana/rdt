@@ -1,0 +1,17 @@
+class X
+  
+  #before reader
+  #after reader
+  def a
+    @a
+  end
+  public :a
+  
+  #before writer
+  #after writer
+  def a= a
+    @a = a
+  end
+  public :a=
+  
+end

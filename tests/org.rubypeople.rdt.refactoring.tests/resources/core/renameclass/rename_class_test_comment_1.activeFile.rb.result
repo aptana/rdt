@@ -1,0 +1,12 @@
+#before class Test
+class NewName #after Test name
+  def methode
+  end
+end
+
+#before subclass
+class Subclass < NewName #after subclassing Test
+end
+
+#before usage
+t = NewName.new #after usage

@@ -1,0 +1,5 @@
+count = 5
+class X
+	value = 1
+end
+puts count

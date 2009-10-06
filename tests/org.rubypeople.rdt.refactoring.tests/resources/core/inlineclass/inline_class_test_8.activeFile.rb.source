@@ -1,0 +1,19 @@
+require "includeFile.rb"
+
+class Target
+	def foo
+		@three = 6
+		p @three
+	end
+end
+
+class Source
+	attr :six
+	def initialize seven
+		@five = seven
+	end
+	def goo
+		@six = 5
+		p @six
+	end
+end

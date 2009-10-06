@@ -1,0 +1,3 @@
+begin=65
+end=96
+expected=BlockNode, NewlineNode, InstAsgnNode, LocalVarNode, NewlineNode, InstAsgnNode, ZArrayNode

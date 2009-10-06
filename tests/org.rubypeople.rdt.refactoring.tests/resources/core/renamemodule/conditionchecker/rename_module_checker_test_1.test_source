@@ -1,0 +1,6 @@
+class Test
+  def method
+  end
+end
+
+Test.new

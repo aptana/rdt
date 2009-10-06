@@ -1,0 +1,4 @@
+newMethodName=d
+start=21
+end=33
+initialError0=Extracting methods not possible when the selected code contains a yield statement

@@ -1,0 +1,39 @@
+class Test
+
+  attr :wunder
+
+  def bar
+    @foo = 5
+    p @foo
+  end
+  
+  public :bar
+  
+  def baum
+    bar
+    self.bar
+  end
+  
+  def getme
+    self
+  end
+  
+  def getwunder me
+    p bar
+  end
+   
+end
+
+t = Test.new
+t.baum
+t.getme.wunder
+
+class Foo
+  def wunder
+  	p 6
+  end
+  
+  def baum
+  	wunder
+  end
+end

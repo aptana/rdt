@@ -1,0 +1,12 @@
+cursorPosition=41
+selectedClass=B
+# true false value
+leaveDelegateMethod=false
+# Optional value
+selectedField=@myB
+finalWarning0=An attr_reader for the field x will be generated.
+finalWarning1=The method "moveMethod" can be called from outside of the class A. Since Ruby is dynamically typed, calls from outside the class definition might not get replaced with calls to the class B.
+finalWarning2=The method "moveMethod" contains the class field "@@a". Moving it might affect the functionality of the class "A".
+finalWarning3=The visibility of method method1 will be changed to public.
+finalWarning4=The visibility of method method2 will be changed to public.
+finalWarning5=The name of the moving method will be changed to moveMethod1 due to name conflicts.

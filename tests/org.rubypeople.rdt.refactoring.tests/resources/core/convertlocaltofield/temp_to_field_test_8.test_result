@@ -1,0 +1,10 @@
+class A
+        def initialize
+                @instVar = 4;
+                @i = 5
+                
+        end
+        def m (arg1, arg2)
+                @i = 7 + @i
+        end
+end

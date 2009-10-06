@@ -1,0 +1,4 @@
+class X
+  def initialize
+  end
+end

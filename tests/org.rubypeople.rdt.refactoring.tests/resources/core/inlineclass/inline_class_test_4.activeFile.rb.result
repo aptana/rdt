@@ -1,0 +1,21 @@
+class Target
+	def source_initialize seven
+		@five = seven
+	end
+	
+	def initialize
+		source_initialize 4
+		@source = self
+	end
+	def foo
+		@six = 6
+		p @six
+	end
+	attr :six1
+	def bar
+		@six1 = 5
+		p @six1
+	end
+end
+
+

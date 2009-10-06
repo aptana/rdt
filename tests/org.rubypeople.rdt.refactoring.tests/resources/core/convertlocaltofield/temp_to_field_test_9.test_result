@@ -1,0 +1,10 @@
+class A
+        def m (arg1, arg2)
+                @i = 5;
+                f(@i)
+        end
+
+        def f (arg1)
+                p arg1
+        end
+end

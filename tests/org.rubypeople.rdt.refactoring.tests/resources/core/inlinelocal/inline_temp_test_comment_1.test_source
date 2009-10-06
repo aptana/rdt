@@ -1,0 +1,7 @@
+class Test
+	def foo param
+		#comment before temp
+		temp = param #comment after temp
+		p temp
+	end
+end

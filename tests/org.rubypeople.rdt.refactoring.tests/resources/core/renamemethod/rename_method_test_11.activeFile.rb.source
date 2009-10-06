@@ -1,0 +1,17 @@
+def wunder
+	e = 45
+	p e
+end
+
+wunder
+
+class Baum
+
+	def wunder
+		f = 12
+		p f
+	end
+	def Bar
+		wunder
+	end
+end

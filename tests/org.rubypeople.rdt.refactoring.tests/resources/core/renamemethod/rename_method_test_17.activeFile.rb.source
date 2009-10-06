@@ -1,0 +1,8 @@
+class Test
+	def wunder
+		@wunder
+	end
+	def wunder= value
+		@wunder = value
+	end
+end

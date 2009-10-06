@@ -1,0 +1,4 @@
+newMethodName=d
+start=30
+end=41
+initialError0=Extracting methods not possible when the selected code contains super calls

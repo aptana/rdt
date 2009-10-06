@@ -1,0 +1,19 @@
+class Target
+	def initialize
+		@source = Source.new 6
+	end
+	def foo
+		@six = 6
+		p @six
+	end
+end
+
+class Source
+	def initialize seven
+		@five = seven
+	end
+	def bar
+		@six = 5
+		p @six
+	end
+end

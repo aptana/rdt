@@ -1,0 +1,12 @@
+class X
+  def a a
+    @a = a
+    @b = a
+  end
+end
+
+class Y
+  def a a
+    @c = a
+  end
+end

@@ -1,0 +1,6 @@
+require 'activeFile.rb'
+
+class NewName
+  def methode
+  end
+end

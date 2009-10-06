@@ -1,0 +1,6 @@
+class Test
+	def wunder arg
+		@foo = arg
+		p @foo
+	end
+end

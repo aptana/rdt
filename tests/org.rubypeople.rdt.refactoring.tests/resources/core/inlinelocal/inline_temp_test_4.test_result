@@ -1,0 +1,5 @@
+class Test
+	def foo		
+		p (5 + 5) * 5
+	end
+end

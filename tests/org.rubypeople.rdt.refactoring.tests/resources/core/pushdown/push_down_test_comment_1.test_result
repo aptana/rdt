@@ -1,0 +1,31 @@
+class A < X
+
+  #before method a
+  def method a #after sig a
+    a #after a
+    #before end
+  end #at end
+
+end
+class B < X
+
+  #before method a
+  def method a #after sig a
+    a #after a
+    #before end
+  end #at end
+
+end
+class C < Y
+
+  #before method a,b
+  def method a, b #after sig b
+    a #after a
+    #before end
+  end #at end
+
+end
+class X
+end
+class Y
+end

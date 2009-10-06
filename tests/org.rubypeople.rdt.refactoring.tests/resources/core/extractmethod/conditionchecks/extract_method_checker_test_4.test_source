@@ -1,0 +1,6 @@
+class X
+  def x
+    yield
+    i = 5
+  end
+end

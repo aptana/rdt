@@ -1,0 +1,7 @@
+require 'activeFile.rb'
+
+#before Test extension
+class Test #after Test
+  def methode
+  end
+end

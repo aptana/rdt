@@ -1,0 +1,6 @@
+class Test
+	def foo
+		temp
+		p 5
+	end
+end

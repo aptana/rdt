@@ -1,0 +1,12 @@
+class A
+  def moveMethod arg
+    @x = 2
+  end
+  def method
+    @myB = B.new
+    @x
+  end
+end
+
+class B
+end

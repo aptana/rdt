@@ -1,0 +1,4 @@
+activeFile=activeFile.rb
+destinationFiles=includedFile.rb
+# Optional value
+finalError0=Please select an external class part as destination.

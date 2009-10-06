@@ -1,0 +1,5 @@
+activeFile=activeFile.rb
+targetClass=Foo
+sourceClassPartNumber=1
+destinationFiles=includedFile.rb
+destinationPartNumbers=1

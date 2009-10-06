@@ -1,0 +1,11 @@
+class Test
+	def wunder
+		@foo = 5
+		p @foo
+	end
+end
+
+def baum
+	t = Test.new
+	t.bar
+end

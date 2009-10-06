@@ -1,0 +1,21 @@
+class Test
+	def foo
+		@wunder = 5
+		p @wunder
+	end
+	
+	def bar
+		@bar = 5
+		p @bar
+	end
+end
+
+class Test
+	def goo
+		e = 5
+	end
+end
+
+class Dummy
+end
+

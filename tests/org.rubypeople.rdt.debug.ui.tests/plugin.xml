@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            name="DebugUiTestRunConfiguration"
+            delegate="org.rubypeople.rdt.internal.debug.ui.launcher.ShamApplicationLaunchConfigurationDelegate"
+            modes="run,debug"
+            id="org.rubypeople.rdt.debug.ui.tests.launching.LaunchConfigurationTypeSham">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            type="org.rubypeople.rdt.debug.ui.tests.launching.LaunchConfigurationTypeSham"
+            class="org.rubypeople.rdt.internal.debug.ui.launcher.RubyApplicationTabGroup"
+            id="org.rubypeople.rdt.debug.ui.tests.launching.LaunchConfigurationTypeSham.TabGroup">
+      </launchConfigurationTabGroup>
+   </extension>
+
+</plugin>

@@ -1,0 +1,9 @@
+class NewName
+  def methode
+  end
+end
+
+class Subclass < NewName
+end
+
+t = NewName.new

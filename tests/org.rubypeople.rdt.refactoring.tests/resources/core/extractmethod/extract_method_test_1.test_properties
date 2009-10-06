@@ -1,0 +1,8 @@
+start=73
+end=93
+name=new_method
+visibility=private
+# the next two properties are optional
+order=1 up
+# the names are changed after the items are re-arranged
+names=two2, one1

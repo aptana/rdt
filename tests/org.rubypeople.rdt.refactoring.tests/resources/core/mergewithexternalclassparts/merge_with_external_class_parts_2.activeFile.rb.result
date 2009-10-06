@@ -1,0 +1,20 @@
+require "includedFile.rb"
+
+class Foo
+  def bar z
+    @i = z
+  end
+end
+
+  
+class B
+  def initialize
+    @B = 42
+  end
+end
+
+class Tree
+  def burn
+    @leafs = 0;
+  end
+end

@@ -1,0 +1,6 @@
+class Test
+	def foo		
+		temp = 5 + 5
+		p temp * 5
+	end
+end

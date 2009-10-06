@@ -1,0 +1,6 @@
+#TYPE_METHOD_ACCESSOR or TYPE_SIMPLE_ACCESSOR
+type=TYPE_METHOD_ACCESSOR
+#Format: ClassName, AttributeName, readerSelected, writerSelected
+#Types: ClassName and AttributeName -> String, readerSelected and writerSelected -> bool -> true or false
+selection0=X, a, true, true
+selection1=X, b, false, true

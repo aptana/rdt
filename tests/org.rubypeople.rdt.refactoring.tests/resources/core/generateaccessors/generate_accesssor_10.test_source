@@ -1,0 +1,7 @@
+class X
+  attr_reader :a
+  def a a
+    @a = a
+    @b = a
+  end
+end

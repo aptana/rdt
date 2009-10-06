@@ -1,0 +1,4 @@
+start=39
+end=44
+name=Test
+initialError0=Extracting constant not possible on things other than strings, numbers, hashes or arrays.

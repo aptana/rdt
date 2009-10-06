@@ -1,0 +1,5 @@
+class ClassWithFields
+  def initialize
+    @var = 5
+  end
+end

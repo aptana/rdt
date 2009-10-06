@@ -1,0 +1,2 @@
+cursorPosition=0
+initialError0=Cannot inline a local variable that uses its own value in the assignment.

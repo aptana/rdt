@@ -1,0 +1,29 @@
+
+*** LOCAL GEMS ***
+
+abstract (1.0.0)
+    Author: makoto kuwata
+    Homepage: http://rubyforge.org/projects/abstract
+    Installed at: C:/ruby/lib/ruby/gems/1.8
+
+    a library which enable you to define abstract method in Ruby
+ 
+actionmailer (2.1.0, 2.0.2, 1.3.6)
+    Author: David Heinemeier Hansson
+    Rubyforge: http://rubyforge.org/projects/actionmailer
+    Homepage: http://www.rubyonrails.org
+    Installed at (2.1.0): C:/ruby/lib/ruby/gems/1.8
+                 (2.0.2): C:/ruby/lib/ruby/gems/1.8
+                 (1.3.6): C:/ruby/lib/ruby/gems/1.8
+
+    Service layer for easy email delivery and testing.
+
+actionpack (2.1.0, 2.0.2, 1.13.6)
+    Author: David Heinemeier Hansson
+    Rubyforge: http://rubyforge.org/projects/actionpack
+    Homepage: http://www.rubyonrails.org
+    Installed at (2.1.0): C:/ruby/lib/ruby/gems/1.8
+                 (2.0.2): C:/ruby/lib/ruby/gems/1.8
+                 (1.13.6): C:/ruby/lib/ruby/gems/1.8
+
+    Web-flow and rendering framework putting the VC in MVC.

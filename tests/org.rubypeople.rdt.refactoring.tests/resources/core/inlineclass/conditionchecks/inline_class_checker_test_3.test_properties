@@ -1,0 +1,4 @@
+caretPosition=143
+targetClassPos=143
+targetFileName=inline_class_checker_test_3.test_source
+finalError0=Cannot inline the selected class part into itself.

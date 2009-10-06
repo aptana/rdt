@@ -1,0 +1,7 @@
+class A < X
+end
+class X
+  def method a
+    a
+  end
+end

@@ -1,0 +1,4 @@
+class X
+  #before accessor
+  attr_reader :a #after accessor
+end

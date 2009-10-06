@@ -1,0 +1,6 @@
+class Baum
+	def goo
+		#before bar
+		foo #after bar
+	end
+end

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="org.rubypeople.eclipse.shams" default="build.jars" basedir=".">
+
+	<property name="bootclasspath" value=""/>
+	<property name="ws" value="win32"/>
+	<property name="os" value="win32"/>
+	<property name="arch" value="x86"/>
+
+	<target name="init" depends="properties">
+		<property name="plugin" value="org.rubypeople.eclipse.shams"/>
+		<property name="version.suffix" value="_0.2.0"/>
+		<property name="full.name" value="${plugin}${version.suffix}"/>
+		<property name="temp.folder" value="${basedir}/temp.folder"/>
+		<property name="plugin.destination" value="${basedir}"/>
+		<property name="build.result.folder" value="${basedir}"/>
+	</target>
+
+	<target name="properties" if="eclipse.running">
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+	</target>
+
+	<target name="build.update.jar" depends="init">
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<antcall target="build.jars"/>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<zip zipfile="${plugin.destination}/${full.name}.jar" basedir="${temp.folder}/${full.name}" filesonly="false"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/${full.name}"/>
+		<copy file="${build.result.folder}/rdteclipseshams.jar" todir="${destination.temp.folder}/${full.name}"/>
+		<copy todir="${destination.temp.folder}/${full.name}">
+			<fileset dir="${basedir}" includes="plugin.xml"/>
+		</copy>
+	</target>
+
+	<target name="rdteclipseshams.jar" depends="init" unless="rdteclipseshams.jar">
+		<property name="destdir" value="${temp.folder}/rdteclipseshams.jar.bin"/>
+		<delete dir="${temp.folder}/rdteclipseshams.jar.bin"/>
+		<mkdir dir="${temp.folder}/rdteclipseshams.jar.bin"/>
+		<!-- compile the source code -->
+		<javac destdir="${temp.folder}/rdteclipseshams.jar.bin" failonerror="false" verbose="true" debug="on" includeAntRuntime="no" bootclasspath="${bootclasspath}" classpath="../org.eclipse.core.resources/resources.jar;../org.eclipse.ui.workbench.texteditor/texteditor.jar;../org.eclipse.ui.win32/workbenchwin32.jar;../org.eclipse.text/bin;../org.eclipse.ui/ui.jar;../org.eclipse.core.boot/bin;../org.eclipse.core.runtime/runtime.jar;../org.eclipse.core.resources/bin;../org.eclipse.swt.win32/ws/${ws}/swt.jar;../org.eclipse.ui.editors/editors.jar;../org.eclipse.text/text.jar;../org.eclipse.swt/ws/${ws}/swt.jar;../org.eclipse.jface.text/jfacetext.jar;../org.eclipse.ui/bin;../org.eclipse.ui.win32/ui.jar;../org.eclipse.jface.text/bin;../org.eclipse.ui.workbench.texteditor/bin;../org.eclipse.debug.core/dtcore.jar;../org.eclipse.core.runtime/bin;../org.eclipse.ui.workbench/workbench.jar;../org.eclipse.jface/bin;../org.eclipse.ui.views/views.jar;../org.eclipse.debug.core/bin;../org.eclipse.swt/bin;../org.eclipse.ui.views/bin;../org.eclipse.core.boot/boot.jar;../org.eclipse.ui.workbench/bin;../org.eclipse.core.resources.win32/resources.jar;../org.eclipse.ui.editors/bin;../org.eclipse.jface/jface.jar">
+			<src path="src/"/>
+		</javac>
+		<!-- copy necessary resources -->
+		<copy todir="${temp.folder}/rdteclipseshams.jar.bin">
+			<fileset dir="src/" excludes="**/*.java"/>
+		</copy>
+		<mkdir dir="${build.result.folder}"/>
+		<jar jarfile="${build.result.folder}/rdteclipseshams.jar" basedir="${temp.folder}/rdteclipseshams.jar.bin"/>
+		<delete dir="${temp.folder}/rdteclipseshams.jar.bin"/>
+	</target>
+
+	<target name="rdteclipseshamssrc.zip" depends="init" unless="rdteclipseshamssrc.zip">
+		<mkdir dir="${build.result.folder}"/>
+		<zip zipfile="${build.result.folder}/rdteclipseshamssrc.zip" filesonly="false">
+			<fileset dir="src/" includes="**/*.java"/>
+		</zip>
+	</target>
+
+	<target name="build.jars" depends="init">
+		<available property="rdteclipseshams.jar" file="${build.result.folder}/rdteclipseshams.jar"/>
+		<antcall target="rdteclipseshams.jar"/>
+	</target>
+
+	<target name="build.sources" depends="init">
+		<available property="rdteclipseshamssrc.zip" file="${build.result.folder}/rdteclipseshamssrc.zip"/>
+		<antcall target="rdteclipseshamssrc.zip"/>
+	</target>
+
+	<target name="build.zips" depends="init">
+	</target>
+
+	<target name="gather.sources" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/${full.name}"/>
+		<copy file="${build.result.folder}/rdteclipseshamssrc.zip" todir="${destination.temp.folder}/${full.name}"/>
+	</target>
+
+	<target name="gather.logs" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/${full.name}"/>
+		<copy file="${temp.folder}/rdteclipseshams.jar.bin.log" todir="${destination.temp.folder}/${full.name}"/>
+	</target>
+
+	<target name="clean" depends="init">
+		<delete file="${build.result.folder}/rdteclipseshams.jar"/>
+		<delete file="${build.result.folder}/rdteclipseshamssrc.zip"/>
+		<delete file="${plugin.destination}/${full.name}.jar"/>
+		<delete file="${plugin.destination}/${full.name}.zip"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+	<target name="refresh" depends="init" if="eclipse.running">
+		<eclipse.refreshLocal resource="${plugin}" depth="infinite"/>
+	</target>
+
+	<target name="zip.plugin" depends="init">
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<antcall target="build.jars"/>
+		<antcall target="build.sources"/>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<antcall target="gather.sources">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<delete>
+			<fileset dir="${temp.folder}" includes="**/*.bin.log"/>
+		</delete>
+		<zip zipfile="${plugin.destination}/${full.name}.zip" basedir="${temp.folder}" filesonly="true"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+</project>

@@ -1,0 +1,25 @@
+class A < X
+
+def method a
+a
+end
+
+end
+class B < X
+
+def method a
+a
+end
+
+end
+class C < Y
+
+def method a, b
+a
+end
+
+end
+class X
+end
+class Y
+end

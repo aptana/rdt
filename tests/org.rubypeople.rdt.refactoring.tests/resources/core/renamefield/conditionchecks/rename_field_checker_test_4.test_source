@@ -1,0 +1,5 @@
+class Test
+  def m
+    @x = 5
+  end
+end

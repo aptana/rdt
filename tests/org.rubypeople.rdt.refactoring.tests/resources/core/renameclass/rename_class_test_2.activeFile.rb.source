@@ -1,0 +1,12 @@
+class Test
+  def methode
+  end
+end
+
+t = Test.new
+
+
+class Test
+  def another_method
+  end
+end

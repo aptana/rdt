@@ -1,0 +1,24 @@
+require "override_method_test_9.test_super_source.rb"
+#Comment
+class A < X
+attr_accessor :a
+
+def initialize
+super
+end
+
+#Comment
+def method a
+x = a
+end
+
+def method0
+super
+end
+
+def method1 a
+super a
+end
+
+attr_accessor :b
+end

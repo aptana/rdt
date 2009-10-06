@@ -1,0 +1,13 @@
+module NewModule
+  module Module
+    module CentralModule
+    end
+  end
+end
+
+class ModulTest
+  include NewModule::Module::CentralModule
+  include Module::InnerModule
+  include InnerModule
+  include NewModule
+end

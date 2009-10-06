@@ -1,0 +1,13 @@
+class X
+  
+  def a
+    @a
+  end
+  protected :a
+  
+  def a= a
+    @a = a
+  end
+  public :a=
+  
+end

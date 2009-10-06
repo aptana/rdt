@@ -1,0 +1,13 @@
+module OuterModule
+  module Module
+    module CentralModule
+    end
+  end
+end
+
+class ModulTest
+  include OuterModule::Module::CentralModule
+  include Module::InnerModule
+  include InnerModule
+  include OuterModule
+end

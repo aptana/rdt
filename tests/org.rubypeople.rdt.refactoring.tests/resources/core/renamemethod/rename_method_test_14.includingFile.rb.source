@@ -1,0 +1,10 @@
+require "activeFile.rb"
+
+class C < B
+	def m
+		p "c"
+	end
+	def c
+		m
+	end
+end

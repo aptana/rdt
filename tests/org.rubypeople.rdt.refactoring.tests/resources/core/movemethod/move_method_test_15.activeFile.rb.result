@@ -1,0 +1,18 @@
+class A
+  attr_writer :x
+  def moveMethod arg
+    @myB.moveMethod(arg, self)
+  end
+  def method
+    @myB = B.new
+    @x
+  end
+end
+
+class B
+  
+  def moveMethod arg, a
+    a.x = 2
+  end
+  
+end
