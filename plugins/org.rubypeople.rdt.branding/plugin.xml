@@ -4,16 +4,19 @@
    
    <extension
          point="org.eclipse.ui.intro.configExtension">
+      <!--
       <configExtension
             content="intro/rdtOverviewExtensionContent.xml"
             configId="org.eclipse.ui.intro.universalConfig"/>
+      -->
       <configExtension
             content="intro/rdtTutorialsExtensionContent.xml"
             configId="org.eclipse.ui.intro.universalConfig"/>            
+      <!--
       <configExtension
             content="intro/rdtNewsExtensionContent.xml"
             configId="org.eclipse.ui.intro.universalConfig"/>            
-            
+      -->
    </extension>
    <extension
          point="org.eclipse.ui.cheatsheets.cheatSheetContent">
