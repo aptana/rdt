@@ -39,32 +39,33 @@ import org.rubypeople.rdt.internal.core.RubyElement;
 
 /**
  * @author Chris
- * 
  */
-public class Util {
+public class Util
+{
 
 	private static boolean ENABLE_RUBY_LIKE_EXTENSIONS = true;
 	private static char[][] RUBY_LIKE_EXTENSIONS;
 	private static char[][] RUBY_LIKE_FILENAMES;
 	private static final String NAMESPACE_DELIMETER = "::";
 
-	private Util() {
+	private Util()
+	{
 		// cannot be instantiated
 	}
 
-	public interface Comparer {
+	public interface Comparer
+	{
 		/**
-		 * Returns 0 if a and b are equal, >0 if a is greater than b, or <0 if a
-		 * is less than b.
+		 * Returns 0 if a and b are equal, >0 if a is greater than b, or <0 if a is less than b.
 		 */
 		int compare(Object a, Object b);
 	}
 
 	/**
-	 * Sorts an array of objects in place. The given comparer compares pairs of
-	 * items.
+	 * Sorts an array of objects in place. The given comparer compares pairs of items.
 	 */
-	public static void sort(Object[] objects, Comparer comparer) {
+	public static void sort(Object[] objects, Comparer comparer)
+	{
 		if (objects.length > 1)
 			quickSort(objects, 0, objects.length - 1, comparer);
 	}
@@ -72,87 +73,91 @@ public class Util {
 	/**
 	 * Sort the objects in the given collection using the given comparer.
 	 */
-	private static void quickSort(Object[] sortedCollection, int left,
-			int right, Comparer comparer) {
+	private static void quickSort(Object[] sortedCollection, int left, int right, Comparer comparer)
+	{
 		int original_left = left;
 		int original_right = right;
 		Object mid = sortedCollection[(left + right) / 2];
-		do {
-			while (comparer.compare(sortedCollection[left], mid) < 0) {
+		do
+		{
+			while (comparer.compare(sortedCollection[left], mid) < 0)
+			{
 				left++;
 			}
-			while (comparer.compare(mid, sortedCollection[right]) < 0) {
+			while (comparer.compare(mid, sortedCollection[right]) < 0)
+			{
 				right--;
 			}
-			if (left <= right) {
+			if (left <= right)
+			{
 				Object tmp = sortedCollection[left];
 				sortedCollection[left] = sortedCollection[right];
 				sortedCollection[right] = tmp;
 				left++;
 				right--;
 			}
-		} while (left <= right);
-		if (original_left < right) {
+		}
+		while (left <= right);
+		if (original_left < right)
+		{
 			quickSort(sortedCollection, original_left, right, comparer);
 		}
-		if (left < original_right) {
+		if (left < original_right)
+		{
 			quickSort(sortedCollection, left, original_right, comparer);
 		}
 	}
 
 	/*
-	 * Returns whether the given resource path matches one of the
-	 * inclusion/exclusion patterns. NOTE: should not be asked directly using
-	 * pkg root pathes
-	 * 
+	 * Returns whether the given resource path matches one of the inclusion/exclusion patterns. NOTE: should not be
+	 * asked directly using pkg root pathes
 	 * @see IClasspathEntry#getInclusionPatterns
 	 * @see IClasspathEntry#getExclusionPatterns
 	 */
-	public final static boolean isExcluded(IPath resourcePath,
-			char[][] inclusionPatterns, char[][] exclusionPatterns,
-			boolean isFolderPath) {
+	public final static boolean isExcluded(IPath resourcePath, char[][] inclusionPatterns, char[][] exclusionPatterns,
+			boolean isFolderPath)
+	{
 		if (inclusionPatterns == null && exclusionPatterns == null)
 			return false;
-		return isExcluded(resourcePath.toString().toCharArray(),
-				inclusionPatterns, exclusionPatterns, isFolderPath);
+		return isExcluded(resourcePath.toString().toCharArray(), inclusionPatterns, exclusionPatterns, isFolderPath);
 	}
 
 	/*
-	 * Returns whether the given resource matches one of the exclusion patterns.
-	 * NOTE: should not be asked directly using pkg root pathes
-	 * 
+	 * Returns whether the given resource matches one of the exclusion patterns. NOTE: should not be asked directly
+	 * using pkg root pathes
 	 * @see ILoadpathEntry#getExclusionPatterns
 	 */
-	public final static boolean isExcluded(IResource resource,
-			char[][] inclusionPatterns, char[][] exclusionPatterns) {
+	public final static boolean isExcluded(IResource resource, char[][] inclusionPatterns, char[][] exclusionPatterns)
+	{
 		IPath path = resource.getFullPath();
 		// ensure that folders are only excluded if all of their children are
 		// excluded
-		return isExcluded(path, inclusionPatterns, exclusionPatterns, resource
-				.getType() == IResource.FOLDER);
+		return isExcluded(path, inclusionPatterns, exclusionPatterns, resource.getType() == IResource.FOLDER);
 	}
 
 	/*
-	 * TODO (philippe) should consider promoting it to CharOperation Returns
-	 * whether the given resource path matches one of the inclusion/exclusion
-	 * patterns. NOTE: should not be asked directly using pkg root pathes
-	 * 
+	 * TODO (philippe) should consider promoting it to CharOperation Returns whether the given resource path matches one
+	 * of the inclusion/exclusion patterns. NOTE: should not be asked directly using pkg root pathes
 	 * @see IClasspathEntry#getInclusionPatterns
 	 * @see IClasspathEntry#getExclusionPatterns
 	 */
-	public final static boolean isExcluded(char[] path,
-			char[][] inclusionPatterns, char[][] exclusionPatterns,
-			boolean isFolderPath) {
+	public final static boolean isExcluded(char[] path, char[][] inclusionPatterns, char[][] exclusionPatterns,
+			boolean isFolderPath)
+	{
 		if (inclusionPatterns == null && exclusionPatterns == null)
 			return false;
 
-		inclusionCheck: if (inclusionPatterns != null) {
-			for (int i = 0, length = inclusionPatterns.length; i < length; i++) {
+		inclusionCheck: if (inclusionPatterns != null)
+		{
+			for (int i = 0, length = inclusionPatterns.length; i < length; i++)
+			{
 				char[] pattern = inclusionPatterns[i];
 				char[] folderPattern = pattern;
-				if (isFolderPath) {
+				if (isFolderPath)
+				{
 					int lastSlash = CharOperation.lastIndexOf('/', pattern);
-					if (lastSlash != -1 && lastSlash != pattern.length - 1) { // trailing
+					if (lastSlash != -1 && lastSlash != pattern.length - 1)
+					{ // trailing
 						// slash
 						// ->
 						// adds
@@ -161,27 +166,30 @@ public class Util {
 						// free
 						// (see
 						// http://ant.apache.org/manual/dirtasks.html)
-						int star = CharOperation.indexOf('*', pattern,
-								lastSlash);
-						if ((star == -1 || star >= pattern.length - 1 || pattern[star + 1] != '*')) {
-							folderPattern = CharOperation.subarray(pattern, 0,
-									lastSlash);
+						int star = CharOperation.indexOf('*', pattern, lastSlash);
+						if ((star == -1 || star >= pattern.length - 1 || pattern[star + 1] != '*'))
+						{
+							folderPattern = CharOperation.subarray(pattern, 0, lastSlash);
 						}
 					}
 				}
-				if (CharOperation.pathMatch(folderPattern, path, true, '/')) {
+				if (CharOperation.pathMatch(folderPattern, path, true, '/'))
+				{
 					break inclusionCheck;
 				}
 			}
 			return true; // never included
 		}
-		if (isFolderPath) {
+		if (isFolderPath)
+		{
 			path = CharOperation.concat(path, new char[] { '*' }, '/');
 		}
-		exclusionCheck: if (exclusionPatterns != null) {
-			for (int i = 0, length = exclusionPatterns.length; i < length; i++) {
-				if (CharOperation.pathMatch(exclusionPatterns[i], path, true,
-						'/')) {
+		exclusionCheck: if (exclusionPatterns != null)
+		{
+			for (int i = 0, length = exclusionPatterns.length; i < length; i++)
+			{
+				if (CharOperation.pathMatch(exclusionPatterns[i], path, true, '/'))
+				{
 					return true;
 				}
 			}
@@ -189,32 +197,37 @@ public class Util {
 		return false;
 	}
 
-	public static void verbose(String log) {
+	public static void verbose(String log)
+	{
 		verbose(log, System.out);
 	}
 
-	public static synchronized void verbose(String log, PrintStream printStream) {
+	public static synchronized void verbose(String log, PrintStream printStream)
+	{
 		int start = 0;
-		do {
+		do
+		{
 			int end = log.indexOf('\n', start);
 			printStream.print(Thread.currentThread());
 			printStream.print(" "); //$NON-NLS-1$
-			printStream.print(log.substring(start, end == -1 ? log.length()
-					: end + 1));
+			printStream.print(log.substring(start, end == -1 ? log.length() : end + 1));
 			start = end + 1;
-		} while (start != 0);
+		}
+		while (start != 0);
 		printStream.println();
 	}
 
 	/**
-	 * Returns true if the given name ends with one of the known ruby like
-	 * extension. (implementation is not creating extra strings)
+	 * Returns true if the given name ends with one of the known ruby like extension. (implementation is not creating
+	 * extra strings)
 	 */
-	public final static boolean isRubyLikeFileName(String name) {
+	public final static boolean isRubyLikeFileName(String name)
+	{
 		if (name == null)
 			return false;
 		char[][] rubyFileNames = getRubyLikeFilenames();
-		for (int i = 0; i < rubyFileNames.length; i++) {
+		for (int i = 0; i < rubyFileNames.length; i++)
+		{
 			char[] filename = rubyFileNames[i];
 			if (name.equals(new String(filename)))
 				return true;
@@ -222,38 +235,37 @@ public class Util {
 		return indexOfRubyLikeExtension(name) != -1;
 	}
 
-	public final static boolean isRubyOrERBLikeFileName(String name) {
+	public final static boolean isRubyOrERBLikeFileName(String name)
+	{
 		return isRubyLikeFileName(name) || isERBLikeFileName(name);
 	}
 
 	/**
-	 * Validate the given compilation unit name. A compilation unit name must
-	 * obey the following rules:
+	 * Validate the given compilation unit name. A compilation unit name must obey the following rules:
 	 * <ul>
-	 * <li> it must not be null
-	 * <li> it must include the <code>".rb"</code> or <code>".rbw"</code>
-	 * suffix
-	 * <li> its prefix must be a valid identifier
+	 * <li>it must not be null
+	 * <li>it must include the <code>".rb"</code> or <code>".rbw"</code> suffix
+	 * <li>its prefix must be a valid identifier
 	 * </ul>
 	 * </p>
 	 * 
 	 * @param name
 	 *            the name of a compilation unit
-	 * @return a status object with code <code>IStatus.OK</code> if the given
-	 *         name is valid as a compilation unit name, otherwise a status
-	 *         object indicating what is wrong with the name
+	 * @return a status object with code <code>IStatus.OK</code> if the given name is valid as a compilation unit name,
+	 *         otherwise a status object indicating what is wrong with the name
 	 */
-	public static boolean isValidRubyScriptName(String name) {
+	public static boolean isValidRubyScriptName(String name)
+	{
 		return RubyConventions.validateRubyScriptName(name).getSeverity() != IStatus.ERROR;
 	}
 
 	/**
-	 * Compares two arrays using equals() on the elements. Either or both arrays
-	 * may be null. Returns true if both are null. Returns false if only one is
-	 * null. If both are arrays, returns true iff they have the same length and
-	 * all elements compare true with equals.
+	 * Compares two arrays using equals() on the elements. Either or both arrays may be null. Returns true if both are
+	 * null. Returns false if only one is null. If both are arrays, returns true iff they have the same length and all
+	 * elements compare true with equals.
 	 */
-	public static boolean equalArraysOrNull(Object[] a, Object[] b) {
+	public static boolean equalArraysOrNull(Object[] a, Object[] b)
+	{
 		if (a == b)
 			return true;
 		if (a == null || b == null)
@@ -262,11 +274,15 @@ public class Util {
 		int len = a.length;
 		if (len != b.length)
 			return false;
-		for (int i = 0; i < len; ++i) {
-			if (a[i] == null) {
+		for (int i = 0; i < len; ++i)
+		{
+			if (a[i] == null)
+			{
 				if (b[i] != null)
 					return false;
-			} else {
+			}
+			else
+			{
 				if (!a[i].equals(b[i]))
 					return false;
 			}
@@ -277,56 +293,58 @@ public class Util {
 	/*
 	 * Add a log entry
 	 */
-	public static void log(Throwable e, String message) {
+	public static void log(Throwable e, String message)
+	{
 		Throwable nestedException;
-		if (e instanceof RubyModelException
-				&& (nestedException = ((RubyModelException) e).getException()) != null) {
+		if (e instanceof RubyModelException && (nestedException = ((RubyModelException) e).getException()) != null)
+		{
 			e = nestedException;
 		}
-		IStatus status = new Status(IStatus.ERROR, RubyCore.PLUGIN_ID,
-				IStatus.ERROR, message, e);
+		IStatus status = new Status(IStatus.ERROR, RubyCore.PLUGIN_ID, IStatus.ERROR, message, e);
 		RubyCore.getPlugin().getLog().log(status);
 	}
 
 	/**
 	 * Combines two hash codes to make a new one.
 	 */
-	public static int combineHashCodes(int hashCode1, int hashCode2) {
+	public static int combineHashCodes(int hashCode1, int hashCode2)
+	{
 		return hashCode1 * 17 + hashCode2;
 	}
 
 	/*
-	 * Returns whether the given ruby element is exluded from its root's
-	 * classpath. It doesn't check whether the root itself is on the classpath
-	 * or not
+	 * Returns whether the given ruby element is exluded from its root's classpath. It doesn't check whether the root
+	 * itself is on the classpath or not
 	 */
-	public static final boolean isExcluded(IRubyElement element) {
+	public static final boolean isExcluded(IRubyElement element)
+	{
 		int elementType = element.getElementType();
-		switch (elementType) {
-		case IRubyElement.RUBY_MODEL:
-		case IRubyElement.RUBY_PROJECT:
-			return false;
-		case IRubyElement.SCRIPT:
-			IResource resource = element.getResource();
-			if (resource == null)
+		switch (elementType)
+		{
+			case IRubyElement.RUBY_MODEL:
+			case IRubyElement.RUBY_PROJECT:
 				return false;
-			// if (isExcluded(resource, root.fullInclusionPatternChars(),
-			// root.fullExclusionPatternChars()))
-			// return true;
-			return isExcluded(element.getParent());
+			case IRubyElement.SCRIPT:
+				IResource resource = element.getResource();
+				if (resource == null)
+					return false;
+				// if (isExcluded(resource, root.fullInclusionPatternChars(),
+				// root.fullExclusionPatternChars()))
+				// return true;
+				return isExcluded(element.getParent());
 
-		default:
-			IRubyElement cu = element.getAncestor(IRubyElement.SCRIPT);
-			return cu != null && isExcluded(cu);
+			default:
+				IRubyElement cu = element.getAncestor(IRubyElement.SCRIPT);
+				return cu != null && isExcluded(cu);
 		}
 	}
 
 	/**
-	 * Returns the substring of the given file name, ending at the start of a
-	 * Ruby like extension. The entire file name is returned if it doesn't end
-	 * with a Ruby like extension.
+	 * Returns the substring of the given file name, ending at the start of a Ruby like extension. The entire file name
+	 * is returned if it doesn't end with a Ruby like extension.
 	 */
-	public static String getNameWithoutRubyLikeExtension(String fileName) {
+	public static String getNameWithoutRubyLikeExtension(String fileName)
+	{
 		int index = indexOfRubyLikeExtension(fileName);
 		if (index == -1)
 			return fileName;
@@ -334,14 +352,15 @@ public class Util {
 	}
 
 	/*
-	 * Returns the index of the Ruby like extension of the given file name or -1
-	 * if it doesn't end with a known Ruby like extension. Note this is the
-	 * index of the '.' even if it is not considered part of the extension.
+	 * Returns the index of the Ruby like extension of the given file name or -1 if it doesn't end with a known Ruby
+	 * like extension. Note this is the index of the '.' even if it is not considered part of the extension.
 	 */
-	public static int indexOfRubyLikeExtension(String fileName) {
+	public static int indexOfRubyLikeExtension(String fileName)
+	{
 		int fileNameLength = fileName.length();
 		char[][] rubyLikeExtensions = getRubyLikeExtensions();
-		extensions: for (int i = 0, length = rubyLikeExtensions.length; i < length; i++) {
+		extensions: for (int i = 0, length = rubyLikeExtensions.length; i < length; i++)
+		{
 			char[] extension = rubyLikeExtensions[i];
 			int extensionLength = extension.length;
 			int extensionStart = fileNameLength - extensionLength;
@@ -350,7 +369,8 @@ public class Util {
 				continue;
 			if (fileName.charAt(dotIndex) != '.')
 				continue;
-			for (int j = 0; j < extensionLength; j++) {
+			for (int j = 0; j < extensionLength; j++)
+			{
 				if (fileName.charAt(extensionStart + j) != extension[j])
 					continue extensions;
 			}
@@ -362,44 +382,46 @@ public class Util {
 	/**
 	 * Returns the registered Ruby like extensions.
 	 */
-	public static char[][] getRubyLikeExtensions() {
-		if (RUBY_LIKE_EXTENSIONS == null) {
+	public static char[][] getRubyLikeExtensions()
+	{
+		if (RUBY_LIKE_EXTENSIONS == null)
+		{
 			// TODO (jerome) reenable once RDT UI supports other file extensions
 			// (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=71460)
 			if (!ENABLE_RUBY_LIKE_EXTENSIONS)
-				RUBY_LIKE_EXTENSIONS = new char[][] { "rb".toCharArray(),
-						"rbw".toCharArray(), "rjs".toCharArray(),
+				RUBY_LIKE_EXTENSIONS = new char[][] { "rb".toCharArray(), "rbw".toCharArray(), "rjs".toCharArray(),
 						"rxml".toCharArray(), "rake".toCharArray() };
-			else {
-				IContentType rubyContentType = Platform.getContentTypeManager()
-						.getContentType(RubyCore.RUBY_SOURCE_CONTENT_TYPE);
-				String[] fileExtensions = rubyContentType == null ? null
-						: rubyContentType
-								.getFileSpecs(IContentType.FILE_EXTENSION_SPEC);
+			else
+			{
+				IContentType rubyContentType = Platform.getContentTypeManager().getContentType(
+						RubyCore.RUBY_SOURCE_CONTENT_TYPE);
+				String[] fileExtensions = rubyContentType == null ? null : rubyContentType
+						.getFileSpecs(IContentType.FILE_EXTENSION_SPEC);
 				// note that file extensions contains "ruby" as it is defined in
 				// RDT Core's plugin.xml
 				int length = fileExtensions == null ? 0 : fileExtensions.length;
 				char[][] extensions = new char[length][];
 				SimpleWordSet knownExtensions = new SimpleWordSet(length); // used
-																			// to
-																			// ensure
-																			// no
-																			// duplicate
-																			// extensions
+				// to
+				// ensure
+				// no
+				// duplicate
+				// extensions
 				extensions[0] = "rb".toCharArray(); // ensure that "rb" is first
 				knownExtensions.add(extensions[0]);
 				int index = 1;
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++)
+				{
 					String fileExtension = fileExtensions[i];
 					char[] extension = fileExtension.toCharArray();
-					if (!knownExtensions.includes(extension)) {
+					if (!knownExtensions.includes(extension))
+					{
 						extensions[index++] = extension;
 						knownExtensions.add(extension);
 					}
 				}
 				if (index != length)
-					System.arraycopy(extensions, 0,
-							extensions = new char[index][], 0, index);
+					System.arraycopy(extensions, 0, extensions = new char[index][], 0, index);
 				RUBY_LIKE_EXTENSIONS = extensions;
 			}
 		}
@@ -409,12 +431,14 @@ public class Util {
 	/**
 	 * Returns the registered Ruby like filenames.
 	 */
-	public static char[][] getRubyLikeFilenames() {
-		if (RUBY_LIKE_FILENAMES == null) {
-			IContentType rubyContentType = Platform.getContentTypeManager()
-					.getContentType(RubyCore.RUBY_SOURCE_CONTENT_TYPE);
-			String[] filenames = rubyContentType == null ? null
-					: rubyContentType.getFileSpecs(IContentType.FILE_NAME_SPEC);
+	public static char[][] getRubyLikeFilenames()
+	{
+		if (RUBY_LIKE_FILENAMES == null)
+		{
+			IContentType rubyContentType = Platform.getContentTypeManager().getContentType(
+					RubyCore.RUBY_SOURCE_CONTENT_TYPE);
+			String[] filenames = rubyContentType == null ? null : rubyContentType
+					.getFileSpecs(IContentType.FILE_NAME_SPEC);
 			int length = filenames == null ? 0 : filenames.length;
 			names = new char[length][];
 			SimpleWordSet knownExtensions = new SimpleWordSet(length); // used
@@ -424,13 +448,15 @@ public class Util {
 			// duplicate
 			// names
 			names[0] = "Rakefile".toCharArray(); // ensure that "Rakefile" is
-													// first
+			// first
 			knownExtensions.add(names[0]);
 			int index = 1;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++)
+			{
 				String fileExtension = filenames[i];
 				char[] extension = fileExtension.toCharArray();
-				if (!knownExtensions.includes(extension)) {
+				if (!knownExtensions.includes(extension))
+				{
 					names[index++] = extension;
 					knownExtensions.add(extension);
 				}
@@ -454,103 +480,119 @@ public class Util {
 	 * @throws IOException
 	 * @throws CoreException
 	 */
-	public static char[] getResourceContentsAsCharArray(IFile file)
-			throws RubyModelException {
+	public static char[] getResourceContentsAsCharArray(IFile file) throws RubyModelException
+	{
 		// Get encoding from file
 		String encoding = null;
-		try {
+		try
+		{
 			encoding = file.getCharset();
-		} catch (CoreException ce) {
+		}
+		catch (CoreException ce)
+		{
 			// do not use any encoding
 		}
 		return getResourceContentsAsCharArray(file, encoding);
 	}
 
-	public static char[] getResourceContentsAsCharArray(IFile file,
-			String encoding) throws RubyModelException {
+	public static char[] getResourceContentsAsCharArray(IFile file, String encoding) throws RubyModelException
+	{
 		// Get resource contents
 		InputStream stream = null;
-		try {
+		try
+		{
 			stream = new BufferedInputStream(file.getContents(true));
-		} catch (CoreException e) {
-			throw new RubyModelException(e,
-					IRubyModelStatusConstants.ELEMENT_DOES_NOT_EXIST);
 		}
-		try {
+		catch (CoreException e)
+		{
+			throw new RubyModelException(e, IRubyModelStatusConstants.ELEMENT_DOES_NOT_EXIST);
+		}
+		try
+		{
 			return Util.getInputStreamAsCharArray(stream, -1, encoding);
-		} catch (IOException e) {
-			throw new RubyModelException(e,
-					IRubyModelStatusConstants.IO_EXCEPTION);
-		} finally {
-			try {
+		}
+		catch (IOException e)
+		{
+			throw new RubyModelException(e, IRubyModelStatusConstants.IO_EXCEPTION);
+		}
+		finally
+		{
+			try
+			{
 				stream.close();
-			} catch (IOException e) {
+			}
+			catch (IOException e)
+			{
 				// ignore
 			}
 		}
 	}
 
 	/**
-	 * Returns the given input stream's contents as a character array. If a
-	 * length is specified (ie. if length != -1), only length chars are
-	 * returned. Otherwise all chars in the stream are returned. Note this
-	 * doesn't close the stream.
+	 * Returns the given input stream's contents as a character array. If a length is specified (ie. if length != -1),
+	 * only length chars are returned. Otherwise all chars in the stream are returned. Note this doesn't close the
+	 * stream.
 	 * 
 	 * @throws IOException
 	 *             if a problem occured reading the stream.
 	 */
-	public static char[] getInputStreamAsCharArray(InputStream stream,
-			int length, String encoding) throws IOException {
+	public static char[] getInputStreamAsCharArray(InputStream stream, int length, String encoding) throws IOException
+	{
 		InputStreamReader reader = null;
-		reader = encoding == null ? new InputStreamReader(stream)
-				: new InputStreamReader(stream, encoding);
+		reader = encoding == null ? new InputStreamReader(stream) : new InputStreamReader(stream, encoding);
 		char[] contents;
-		if (length == -1) {
+		if (length == -1)
+		{
 			contents = new char[0];
 			int contentsLength = 0;
 			int amountRead = -1;
-			do {
-				int amountRequested = Math.max(stream.available(),
-						DEFAULT_READING_SIZE); // read
+			do
+			{
+				int amountRequested = Math.max(stream.available(), DEFAULT_READING_SIZE); // read
 				// at
 				// least
 				// 8K
 
 				// resize contents if needed
-				if (contentsLength + amountRequested > contents.length) {
-					System.arraycopy(contents, 0,
-							contents = new char[contentsLength
-									+ amountRequested], 0, contentsLength);
+				if (contentsLength + amountRequested > contents.length)
+				{
+					System.arraycopy(contents, 0, contents = new char[contentsLength + amountRequested], 0,
+							contentsLength);
 				}
 
 				// read as many chars as possible
-				amountRead = reader.read(contents, contentsLength,
-						amountRequested);
+				amountRead = reader.read(contents, contentsLength, amountRequested);
 
-				if (amountRead > 0) {
+				if (amountRead > 0)
+				{
 					// remember length of contents
 					contentsLength += amountRead;
 				}
-			} while (amountRead != -1);
+			}
+			while (amountRead != -1);
 
 			// Do not keep first character for UTF-8 BOM encoding
 			int start = 0;
 			if (contentsLength > 0 && "UTF-8".equals(encoding)) { //$NON-NLS-1$
-				if (contents[0] == 0xFEFF) { // if BOM char then skip
+				if (contents[0] == 0xFEFF)
+				{ // if BOM char then skip
 					contentsLength--;
 					start = 1;
 				}
 			}
 			// resize contents if necessary
-			if (contentsLength < contents.length) {
-				System.arraycopy(contents, start,
-						contents = new char[contentsLength], 0, contentsLength);
+			if (contentsLength < contents.length)
+			{
+				System.arraycopy(contents, start, contents = new char[contentsLength], 0, contentsLength);
 			}
-		} else {
+		}
+		else
+		{
 			contents = new char[length];
 			int len = 0;
 			int readSize = 0;
-			while ((readSize != -1) && (len != length)) {
+			while ((readSize != -1) && (len != length))
+			{
 				// See PR 1FMS89U
 				// We record first the read size. In this case len is the actual
 				// read size.
@@ -560,7 +602,8 @@ public class Util {
 			// Do not keep first character for UTF-8 BOM encoding
 			int start = 0;
 			if (length > 0 && "UTF-8".equals(encoding)) { //$NON-NLS-1$
-				if (contents[0] == 0xFEFF) { // if BOM char then skip
+				if (contents[0] == 0xFEFF)
+				{ // if BOM char then skip
 					len--;
 					start = 1;
 				}
@@ -570,22 +613,21 @@ public class Util {
 			// one byte for each
 			// character
 			if (len != length)
-				System.arraycopy(contents, start, (contents = new char[len]),
-						0, len);
+				System.arraycopy(contents, start, (contents = new char[len]), 0, len);
 		}
 
 		return contents;
 	}
 
-	public static void resetRubyLikeExtensions() {
+	public static void resetRubyLikeExtensions()
+	{
 		RUBY_LIKE_EXTENSIONS = null;
 		RUBY_LIKE_FILENAMES = null;
 	}
 
 	/**
-	 * Returns a new array adding the second array at the end of first array. It
-	 * answers null if the first and second are null. If the first array is null
-	 * or if it is empty, then a new array is created with second. If the second
+	 * Returns a new array adding the second array at the end of first array. It answers null if the first and second
+	 * are null. If the first array is null or if it is empty, then a new array is created with second. If the second
 	 * array is null, then the first array is returned. <br>
 	 * <br>
 	 * For example:
@@ -597,7 +639,6 @@ public class Util {
 	 *    second = &quot;a&quot;
 	 *    =&gt; result = {&quot;a&quot;}
 	 * </pre>
-	 * 
 	 * <li>
 	 * 
 	 * <pre>
@@ -622,17 +663,18 @@ public class Util {
 	 *            the first array to concatenate
 	 * @param second
 	 *            the array to add at the end of the first array
-	 * @return a new array adding the second array at the end of first array, or
-	 *         null if the two arrays are null.
+	 * @return a new array adding the second array at the end of first array, or null if the two arrays are null.
 	 */
-	public static final String[] arrayConcat(String[] first, String second) {
+	public static final String[] arrayConcat(String[] first, String second)
+	{
 		if (second == null)
 			return first;
 		if (first == null)
 			return new String[] { second };
 
 		int length = first.length;
-		if (first.length == 0) {
+		if (first.length == 0)
+		{
 			return new String[] { second };
 		}
 
@@ -642,15 +684,18 @@ public class Util {
 		return result;
 	}
 
-	public static String[] getTrimmedSimpleNames(String packageName) {
+	public static String[] getTrimmedSimpleNames(String packageName)
+	{
 		if (packageName.length() == 0)
 			return new String[0];
 		return packageName.split("\\" + File.separator);
 	}
 
-	public static String concatWith(String[] array, char separator) {
+	public static String concatWith(String[] array, char separator)
+	{
 		StringBuffer buffer = new StringBuffer();
-		for (int i = 0, length = array.length; i < length; i++) {
+		for (int i = 0, length = array.length; i < length; i++)
+		{
 			buffer.append(array[i]);
 			if (i < length - 1)
 				buffer.append(separator);
@@ -658,7 +703,8 @@ public class Util {
 		return buffer.toString();
 	}
 
-	public static boolean isValidSourceFolderName(String name) {
+	public static boolean isValidSourceFolderName(String name)
+	{
 		// TODO Actually make sure there's no special characters.
 		return true;
 	}
@@ -666,36 +712,44 @@ public class Util {
 	/**
 	 * Returns the given file's contents as a byte array.
 	 */
-	public static byte[] getResourceContentsAsByteArray(IFile file)
-			throws RubyModelException {
+	public static byte[] getResourceContentsAsByteArray(IFile file) throws RubyModelException
+	{
 		InputStream stream = null;
-		try {
+		try
+		{
 			stream = file.getContents(true);
-		} catch (CoreException e) {
+		}
+		catch (CoreException e)
+		{
 			throw new RubyModelException(e);
 		}
-		try {
-			return org.rubypeople.rdt.core.util.Util.getInputStreamAsByteArray(
-					stream, -1);
-		} catch (IOException e) {
-			throw new RubyModelException(e,
-					IRubyModelStatusConstants.IO_EXCEPTION);
-		} finally {
-			try {
+		try
+		{
+			return org.rubypeople.rdt.core.util.Util.getInputStreamAsByteArray(stream, -1);
+		}
+		catch (IOException e)
+		{
+			throw new RubyModelException(e, IRubyModelStatusConstants.IO_EXCEPTION);
+		}
+		finally
+		{
+			try
+			{
 				stream.close();
-			} catch (IOException e) {
+			}
+			catch (IOException e)
+			{
 				// ignore
 			}
 		}
 	}
 
 	/*
-	 * Converts the given URI to a local file. Use the existing file if the uri
-	 * is on the local file system. Otherwise fetch it. Returns null if unable
-	 * to fetch it.
+	 * Converts the given URI to a local file. Use the existing file if the uri is on the local file system. Otherwise
+	 * fetch it. Returns null if unable to fetch it.
 	 */
-	public static File toLocalFile(URI uri, IProgressMonitor monitor)
-			throws CoreException {
+	public static File toLocalFile(URI uri, IProgressMonitor monitor) throws CoreException
+	{
 		IFileStore fileStore = EFS.getStore(uri);
 		File localFile = fileStore.toLocalFile(EFS.NONE, monitor);
 		if (localFile == null)
@@ -707,19 +761,24 @@ public class Util {
 	/**
 	 * Put all the arguments in one String.
 	 */
-	public static String getProblemArgumentsForMarker(String[] arguments) {
+	public static String getProblemArgumentsForMarker(String[] arguments)
+	{
 		StringBuffer args = new StringBuffer(10);
 
 		args.append(arguments.length);
 		args.append(':');
 
-		for (int j = 0; j < arguments.length; j++) {
+		for (int j = 0; j < arguments.length; j++)
+		{
 			if (j != 0)
 				args.append(ARGUMENTS_DELIMITER);
 
-			if (arguments[j].length() == 0) {
+			if (arguments[j].length() == 0)
+			{
 				args.append(EMPTY_ARGUMENT);
-			} else {
+			}
+			else
+			{
 				args.append(arguments[j]);
 			}
 		}
@@ -728,16 +787,17 @@ public class Util {
 	}
 
 	/**
-	 * Returns the line separator found in the given text. If it is null, or not
-	 * found return the line delimitor for the given project. If the project is
-	 * null, returns the line separator for the workspace. If still null, return
-	 * the system line separator.
+	 * Returns the line separator found in the given text. If it is null, or not found return the line delimitor for the
+	 * given project. If the project is null, returns the line separator for the workspace. If still null, return the
+	 * system line separator.
 	 */
-	public static String getLineSeparator(String text, IRubyProject project) {
+	public static String getLineSeparator(String text, IRubyProject project)
+	{
 		String lineSeparator = null;
 
 		// line delimiter in given text
-		if (text != null && text.length() != 0) {
+		if (text != null && text.length() != 0)
+		{
 			lineSeparator = findLineSeparator(text.toCharArray());
 			if (lineSeparator != null)
 				return lineSeparator;
@@ -745,21 +805,19 @@ public class Util {
 
 		// line delimiter in project preference
 		IScopeContext[] scopeContext;
-		if (project != null) {
-			scopeContext = new IScopeContext[] { new ProjectScope(project
-					.getProject()) };
-			lineSeparator = Platform.getPreferencesService().getString(
-					Platform.PI_RUNTIME, Platform.PREF_LINE_SEPARATOR, null,
-					scopeContext);
+		if (project != null)
+		{
+			scopeContext = new IScopeContext[] { new ProjectScope(project.getProject()) };
+			lineSeparator = Platform.getPreferencesService().getString(Platform.PI_RUNTIME,
+					Platform.PREF_LINE_SEPARATOR, null, scopeContext);
 			if (lineSeparator != null)
 				return lineSeparator;
 		}
 
 		// line delimiter in workspace preference
 		scopeContext = new IScopeContext[] { new InstanceScope() };
-		lineSeparator = Platform.getPreferencesService().getString(
-				Platform.PI_RUNTIME, Platform.PREF_LINE_SEPARATOR, null,
-				scopeContext);
+		lineSeparator = Platform.getPreferencesService().getString(Platform.PI_RUNTIME, Platform.PREF_LINE_SEPARATOR,
+				null, scopeContext);
 		if (lineSeparator != null)
 			return lineSeparator;
 
@@ -770,22 +828,25 @@ public class Util {
 	/**
 	 * Finds the first line separator used by the given text.
 	 * 
-	 * @return </code>"\n"</code> or </code>"\r"</code> or </code>"\r\n"</code>,
-	 *         or <code>null</code> if none found
+	 * @return </code>"\n"</code> or </code>"\r"</code> or </code>"\r\n"</code>, or <code>null</code> if none found
 	 */
-	public static String findLineSeparator(char[] text) {
+	public static String findLineSeparator(char[] text)
+	{
 		// find the first line separator
 		int length = text.length;
-		if (length > 0) {
+		if (length > 0)
+		{
 			char nextChar = text[0];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++)
+			{
 				char currentChar = nextChar;
 				nextChar = i < length - 1 ? text[i + 1] : ' ';
-				switch (currentChar) {
-				case '\n':
-					return "\n"; //$NON-NLS-1$
-				case '\r':
-					return nextChar == '\n' ? "\r\n" : "\r"; //$NON-NLS-1$ //$NON-NLS-2$
+				switch (currentChar)
+				{
+					case '\n':
+						return "\n"; //$NON-NLS-1$
+					case '\r':
+						return nextChar == '\n' ? "\r\n" : "\r"; //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}
 		}
@@ -796,7 +857,8 @@ public class Util {
 	/**
 	 * Sorts an array of strings in place using quicksort.
 	 */
-	public static void sort(String[] strings) {
+	public static void sort(String[] strings)
+	{
 		if (strings.length > 1)
 			quickSort(strings, 0, strings.length - 1);
 	}
@@ -804,48 +866,60 @@ public class Util {
 	/**
 	 * Sort the strings in the given collection.
 	 */
-	private static void quickSort(String[] sortedCollection, int left, int right) {
+	private static void quickSort(String[] sortedCollection, int left, int right)
+	{
 		int original_left = left;
 		int original_right = right;
 		String mid = sortedCollection[(left + right) / 2];
-		do {
-			while (sortedCollection[left].compareTo(mid) < 0) {
+		do
+		{
+			while (sortedCollection[left].compareTo(mid) < 0)
+			{
 				left++;
 			}
-			while (mid.compareTo(sortedCollection[right]) < 0) {
+			while (mid.compareTo(sortedCollection[right]) < 0)
+			{
 				right--;
 			}
-			if (left <= right) {
+			if (left <= right)
+			{
 				String tmp = sortedCollection[left];
 				sortedCollection[left] = sortedCollection[right];
 				sortedCollection[right] = tmp;
 				left++;
 				right--;
 			}
-		} while (left <= right);
-		if (original_left < right) {
+		}
+		while (left <= right);
+		if (original_left < right)
+		{
 			quickSort(sortedCollection, original_left, right);
 		}
-		if (left < original_right) {
+		if (left < original_right)
+		{
 			quickSort(sortedCollection, left, original_right);
 		}
 	}
 
 	/**
-	 * Compares two arrays using equals() on the elements. Neither can be null.
-	 * Only the first len elements are compared. Return false if either array is
-	 * shorter than len.
+	 * Compares two arrays using equals() on the elements. Neither can be null. Only the first len elements are
+	 * compared. Return false if either array is shorter than len.
 	 */
-	public static boolean equalArrays(Object[] a, Object[] b, int len) {
+	public static boolean equalArrays(Object[] a, Object[] b, int len)
+	{
 		if (a == b)
 			return true;
 		if (a.length < len || b.length < len)
 			return false;
-		for (int i = 0; i < len; ++i) {
-			if (a[i] == null) {
+		for (int i = 0; i < len; ++i)
+		{
+			if (a[i] == null)
+			{
 				if (b[i] != null)
 					return false;
-			} else {
+			}
+			else
+			{
 				if (!a[i].equals(b[i]))
 					return false;
 			}
@@ -853,7 +927,8 @@ public class Util {
 		return true;
 	}
 
-	public static String getSimpleName(String fullyQualifiedName) {
+	public static String getSimpleName(String fullyQualifiedName)
+	{
 		if (fullyQualifiedName == null)
 			return null;
 		String[] names = getTypeNameParts(fullyQualifiedName);
@@ -862,13 +937,16 @@ public class Util {
 		return names[names.length - 1];
 	}
 
-	public static boolean parentsMatch(IType type, String fullyQualifiedName) {
+	public static boolean parentsMatch(IType type, String fullyQualifiedName)
+	{
 		String[] names = getTypeNameParts(fullyQualifiedName);
-		for (int i = names.length - 2; i >= 0; i--) { // Start at second last
-														// name piece, go all
-														// the way to first
+		for (int i = names.length - 2; i >= 0; i--)
+		{ // Start at second last
+			// name piece, go all
+			// the way to first
 			IType parent = type.getDeclaringType();
-			if (parent == null || !names[i].equals(parent.getElementName())) {
+			if (parent == null || !names[i].equals(parent.getElementName()))
+			{
 				return false;
 			}
 			type = parent;
@@ -876,58 +954,70 @@ public class Util {
 		return true;
 	}
 
-	public static String[] getTypeNameParts(String fullyQualifiedName) {
+	public static String[] getTypeNameParts(String fullyQualifiedName)
+	{
 		if (fullyQualifiedName == null)
 			return new String[0];
 		return fullyQualifiedName.split(NAMESPACE_DELIMETER);
 	}
 
-	public static void sort(int[] list) {
+	public static void sort(int[] list)
+	{
 		if (list.length > 1)
 			quickSort(list, 0, list.length - 1);
 	}
 
-	private static void quickSort(int[] list, int left, int right) {
+	private static void quickSort(int[] list, int left, int right)
+	{
 		int original_left = left;
 		int original_right = right;
 		int mid = list[(left + right) / 2];
-		do {
-			while (list[left] < mid) {
+		do
+		{
+			while (list[left] < mid)
+			{
 				left++;
 			}
-			while (mid < list[right]) {
+			while (mid < list[right])
+			{
 				right--;
 			}
-			if (left <= right) {
+			if (left <= right)
+			{
 				int tmp = list[left];
 				list[left] = list[right];
 				list[right] = tmp;
 				left++;
 				right--;
 			}
-		} while (left <= right);
-		if (original_left < right) {
+		}
+		while (left <= right);
+		if (original_left < right)
+		{
 			quickSort(list, original_left, right);
 		}
-		if (left < original_right) {
+		if (left < original_right)
+		{
 			quickSort(list, left, original_right);
 		}
 	}
-	
+
 	/**
-	 * Returns the toString() of the given full path minus the first given
-	 * number of segments. The returned string is always a relative path (it has
-	 * no leading slash)
+	 * Returns the toString() of the given full path minus the first given number of segments. The returned string is
+	 * always a relative path (it has no leading slash)
 	 */
-	public static String relativePath(IPath fullPath, int skipSegmentCount) {
+	public static String relativePath(IPath fullPath, int skipSegmentCount)
+	{
 		boolean hasTrailingSeparator = fullPath.hasTrailingSeparator();
 		String[] segments = fullPath.segments();
 
 		// compute length
 		int length = 0;
 		int max = segments.length;
-		if (max > skipSegmentCount) {
-			for (int i1 = skipSegmentCount; i1 < max; i1++) {
+		if (max > skipSegmentCount)
+		{
+			for (int i1 = skipSegmentCount; i1 < max; i1++)
+			{
 				length += segments[i1].length();
 			}
 			// add the separator lengths
@@ -939,9 +1029,11 @@ public class Util {
 		char[] result = new char[length];
 		int offset = 0;
 		int len = segments.length - 1;
-		if (len >= skipSegmentCount) {
+		if (len >= skipSegmentCount)
+		{
 			// append all but the last segment, with separators
-			for (int i = skipSegmentCount; i < len; i++) {
+			for (int i = skipSegmentCount; i < len; i++)
+			{
 				int size = segments[i].length();
 				segments[i].getChars(0, size, result, offset);
 				offset += size;
@@ -958,34 +1050,42 @@ public class Util {
 	}
 
 	/**
-	 * Sorts an array of Ruby elements based on their toStringWithAncestors(),
-	 * returning a new array with the sorted items. The original array is left
-	 * untouched.
+	 * Sorts an array of Ruby elements based on their toStringWithAncestors(), returning a new array with the sorted
+	 * items. The original array is left untouched.
 	 */
-	public static IRubyElement[] sortCopy(IRubyElement[] elements) {
+	public static IRubyElement[] sortCopy(IRubyElement[] elements)
+	{
 		int len = elements.length;
 		IRubyElement[] copy = new IRubyElement[len];
 		System.arraycopy(elements, 0, copy, 0, len);
-		sort(copy, new Comparer() {
-			public int compare(Object a, Object b) {
-				return ((RubyElement) a).toStringWithAncestors().compareTo(
-						((RubyElement) b).toStringWithAncestors());
+		sort(copy, new Comparer()
+		{
+			public int compare(Object a, Object b)
+			{
+				return ((RubyElement) a).toStringWithAncestors().compareTo(((RubyElement) b).toStringWithAncestors());
 			}
 		});
 		return copy;
 	}
 
-	public static String identifierToConstant(String typeName) {
+	public static String identifierToConstant(String typeName)
+	{
 		StringBuffer buffer = new StringBuffer();
 		boolean doNextAsUpper = true;
-		for (int i = 0; i < typeName.length(); i++) {
+		for (int i = 0; i < typeName.length(); i++)
+		{
 			char c = typeName.charAt(i);
-			if (doNextAsUpper) {
+			if (doNextAsUpper)
+			{
 				buffer.append(Character.toUpperCase(c));
 				doNextAsUpper = false;
-			} else if (c == '_') {
+			}
+			else if (c == '_')
+			{
 				doNextAsUpper = true;
-			} else {
+			}
+			else
+			{
 				buffer.append(c);
 			}
 		}
@@ -993,10 +1093,10 @@ public class Util {
 	}
 
 	/**
-	 * Sorts an array of strings in place using quicksort in reverse
-	 * alphabetical order.
+	 * Sorts an array of strings in place using quicksort in reverse alphabetical order.
 	 */
-	public static void sortReverseOrder(String[] strings) {
+	public static void sortReverseOrder(String[] strings)
+	{
 		if (strings.length > 1)
 			quickSortReverse(strings, 0, strings.length - 1);
 	}
@@ -1004,37 +1104,44 @@ public class Util {
 	/**
 	 * Sort the strings in the given collection in reverse alphabetical order.
 	 */
-	private static void quickSortReverse(String[] sortedCollection, int left,
-			int right) {
+	private static void quickSortReverse(String[] sortedCollection, int left, int right)
+	{
 		int original_left = left;
 		int original_right = right;
 		String mid = sortedCollection[(left + right) / 2];
-		do {
-			while (sortedCollection[left].compareTo(mid) > 0) {
+		do
+		{
+			while (sortedCollection[left].compareTo(mid) > 0)
+			{
 				left++;
 			}
-			while (mid.compareTo(sortedCollection[right]) > 0) {
+			while (mid.compareTo(sortedCollection[right]) > 0)
+			{
 				right--;
 			}
-			if (left <= right) {
+			if (left <= right)
+			{
 				String tmp = sortedCollection[left];
 				sortedCollection[left] = sortedCollection[right];
 				sortedCollection[right] = tmp;
 				left++;
 				right--;
 			}
-		} while (left <= right);
-		if (original_left < right) {
+		}
+		while (left <= right);
+		if (original_left < right)
+		{
 			quickSortReverse(sortedCollection, original_left, right);
 		}
-		if (left < original_right) {
+		if (left < original_right)
+		{
 			quickSortReverse(sortedCollection, left, original_right);
 		}
 	}
 
 	/**
-	 * Returns the concatenation of the given array parts using the given
-	 * separator between each part and appending the given name at the end. <br>
+	 * Returns the concatenation of the given array parts using the given separator between each part and appending the
+	 * given name at the end. <br>
 	 * <br>
 	 * For example:<br>
 	 * <ol>
@@ -1076,19 +1183,19 @@ public class Util {
 	 *            the given name
 	 * @param separator
 	 *            the given separator
-	 * @return the concatenation of the given array parts using the given
-	 *         separator between each part and appending the given name at the
-	 *         end
+	 * @return the concatenation of the given array parts using the given separator between each part and appending the
+	 *         given name at the end
 	 */
-	public static final String concatWith(String[] array, String name,
-			char separator) {
+	public static final String concatWith(String[] array, String name, char separator)
+	{
 
 		if (array == null || array.length == 0)
 			return name;
 		if (name == null || name.length() == 0)
 			return concatWith(array, separator);
 		StringBuffer buffer = new StringBuffer();
-		for (int i = 0, length = array.length; i < length; i++) {
+		for (int i = 0, length = array.length; i < length; i++)
+		{
 			buffer.append(array[i]);
 			buffer.append(separator);
 		}
@@ -1103,72 +1210,115 @@ public class Util {
 	 * @param message
 	 * @return
 	 */
-	public static boolean ignore(String message) {
+	public static boolean ignore(String message)
+	{
 		return message.startsWith("Useless") || message.startsWith("Found '='");
 	}
 
-	public static boolean isERBLikeFileName(String name) {
+	public static boolean isERBLikeFileName(String name)
+	{
 		return name.endsWith(".erb") || name.endsWith(".rhtml");
 	}
 
-	public static char[] replaceNonRubyCodeWithWhitespace(String source) {
+	public static char[] replaceNonRubyCodeWithWhitespace(String source)
+	{
 		List<String> code = getRubyCodeChunks(source);
-		StringBuffer buffer = new StringBuffer();
-		if (code == null || code.size() == 0) {
-			for (int j = 0; j < source.length(); j++) {
-				char chr = source.charAt(j);
-				if (Character.isWhitespace(chr)) {
-					buffer.append(chr);
-				} else {
-					buffer.append(' ');
-				}
-			}
-			return buffer.toString().toCharArray();
+		if (code == null || code.size() == 0)
+		{
+			return fillWithWhitespace(source).toCharArray();
 		}
 
+		StringBuilder buffer = new StringBuilder();
 		int endOfLastFragment = 0;
-		for (String codeFragment : code) {
-			int beginningOfCurrentFragment = source.indexOf(codeFragment,
-					endOfLastFragment); // find index of current piece of code,
-										// start looking after last piece of
-										// code
+		boolean dontIncludeSemicolon = false;
+		for (String codeFragment : code)
+		{
+			int beginningOfCurrentFragment = source.indexOf(codeFragment, endOfLastFragment); // find index of current
+			// piece of code,
+			// start looking after last piece of
+			// code
 			// replace from end of last code piece to beginning of next with
 			// spaces for any non-whitespace characters in between
-			String portion = source.substring(endOfLastFragment,
-					beginningOfCurrentFragment);
-			for (int j = 0; j < portion.length(); j++) {
+			if (codeFragment.startsWith("#"))
+			{
+				codeFragment = fillWithWhitespace(codeFragment);
+				dontIncludeSemicolon = true;
+			}
+			String portion = source.substring(endOfLastFragment, beginningOfCurrentFragment);
+			for (int j = 0; j < portion.length(); j++)
+			{
 				char chr = portion.charAt(j);
-				if (Character.isWhitespace(chr)) {
+				if (Character.isWhitespace(chr))
+				{
 					buffer.append(chr);
-				} else {
-					if (j != 0 && chr == '>' && portion.charAt(j - 1) == '%') {
-						buffer.append(';');
-					} else {
+				}
+				else
+				{
+					if (j != 0 && chr == '>' && portion.charAt(j - 1) == '%')
+					{
+						if (dontIncludeSemicolon)
+						{
+							buffer.append(' ');
+							dontIncludeSemicolon = false;
+						}
+						else
+							buffer.append(';');
+					}
+					else
+					{
 						buffer.append(' ');
 					}
 				}
 			}
+
 			buffer.append(codeFragment); // now add in code piece
-			endOfLastFragment = beginningOfCurrentFragment
-					+ codeFragment.length(); // now search from end of
-												// current fragment
+			endOfLastFragment = beginningOfCurrentFragment + codeFragment.length(); // now search from end of
+			// current fragment
 		}
 		return buffer.toString().toCharArray();
 	}
 
-	private static List<String> getRubyCodeChunks(String stringContents) {
+	/**
+	 * Takes a string and replaces all non-whistespace content with space characters (retains any existing whitespace in
+	 * place).
+	 * 
+	 * @param source
+	 * @return
+	 */
+	private static String fillWithWhitespace(String source)
+	{
+		StringBuilder buffer = new StringBuilder();
+		for (int j = 0; j < source.length(); j++)
+		{
+			char chr = source.charAt(j);
+			if (Character.isWhitespace(chr))
+			{
+				buffer.append(chr);
+			}
+			else
+			{
+				buffer.append(' ');
+			}
+		}
+		return buffer.toString();
+	}
+
+	private static List<String> getRubyCodeChunks(String stringContents)
+	{
 		List<String> code = new ArrayList<String>();
-		String[] pieces = stringContents
-				.split("(<%%)|(%%>)|(<%=)|(<%#)|(<%)|(\\-?%>)");
-		for (int i = 0; i < pieces.length; i++) {
-			if ((i % 2) == 1) {
+		String[] pieces = stringContents.split("(<%%)|(%%>)|(<%=)|(<%)|(\\-?%>)");
+		for (int i = 0; i < pieces.length; i++)
+		{
+			if ((i % 2) == 1)
+			{
 				code.add(pieces[i]);
 			}
 		}
 		return code;
 	}
 
-	public static boolean isValidRubyOrERBScriptName(String name) {
+	public static boolean isValidRubyOrERBScriptName(String name)
+	{
 		if (RubyConventions.validateRubyScriptName(name).getSeverity() != IStatus.ERROR)
 			return true;
 		return isERBLikeFileName(name);
