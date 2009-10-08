@@ -28,7 +28,6 @@ import org.jruby.parser.ParserSupport;
 import org.jruby.parser.RubyParserPool;
 import org.jruby.parser.RubyParserResult;
 import org.jruby.util.KCode;
-import org.rubypeople.rdt.internal.core.buffer.LRUCache;
 import org.rubypeople.rdt.internal.core.builder.IoUtils;
 import org.rubypeople.rdt.internal.core.util.Util;
 
@@ -42,11 +41,6 @@ public class RubyParser
 	private IRubyWarnings warnings;
 
 	private static boolean isDebug;
-	// TODO LRUCache works well when dealing with re-parsing same source often repeatedly (seems to happen when working
-	// with same file in editor often), but we should investigate why parse is getting called so often!
-	private static LRUCache cachedASTs = new LRUCache(8);
-	private static int hits = 0;
-	private static int misses = 0;
 	private static int count = 0;
 
 	public RubyParser()
@@ -170,37 +164,9 @@ public class RubyParser
 	{
 		if (source == null)
 			return new NullParserResult();
-		RubyParserResult ast = null;
-		if (!bypassCache)
-		{
-			ast = (RubyParserResult) cachedASTs.get(source);
-			if (ast != null)
-			{
-				if (ast.getAST().getPosition().getFile().equals(fileName))
-				{
-					if (isDebug)
-					{
-						System.out.println("Cached AST HIT! " + hitPercentage());
-						hits++;
-					}
-					return ast;
-				}
-			}
-			if (isDebug)
-			{
-				System.out.println("Cached AST MISS! " + hitPercentage());
-				misses++;
-			}
-		}
-		ast = parse(fileName, new StringReader(source));
+		RubyParserResult ast = parse(fileName, new StringReader(source));
 		if (ast == null)
 			ast = new NullParserResult();
-		cachedASTs.put(source, ast);
 		return ast;
-	}
-
-	private String hitPercentage()
-	{
-		return "(" + hits + "/" + (hits + misses) + ") " + ((double) hits / (double) (hits + misses)) * 100.0;
 	}
 }
