@@ -28,14 +28,14 @@ public class LogicalGem extends Gem {
 			if (description == null) description = gem.getDescription();
 			version += gem.getVersion() + ", ";
 		}
-		version = version.substring(0, version.length() - 2);
+		version = new String(version.substring(0, version.length() - 2));
 		version += ')';
 		// XXX Need to take platform into account!!!!!!!!
 		return new LogicalGem(gems, name, version, description);
 	}
 
 	public SortedSet<String> getVersions() {
-		String raw = getVersion().substring(1, getVersion().length() - 1);
+		String raw = new String(getVersion().substring(1, getVersion().length() - 1));
 		SortedSet<String> version = new TreeSet<String>(new VersionComparator());
 		StringTokenizer tokenizer = new StringTokenizer(raw, ",");
 		while (tokenizer.hasMoreTokens()) {

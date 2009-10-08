@@ -273,7 +273,7 @@ public abstract class ASTUtil
 			return null; // position is past end of our source
 		if (pos.getEndOffset() > contents.length())
 			return null; // end is past end of source
-		return contents.substring(pos.getStartOffset(), pos.getEndOffset());
+		return new String(contents.substring(pos.getStartOffset(), pos.getEndOffset()));
 	}
 
 	public static boolean isVariable(Node node)

@@ -679,7 +679,7 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 			if (!output.startsWith("[") || !output.endsWith("]"))
 				throw new IllegalArgumentException("Expected an array for gem install paths, but was: " + output);
 			// toss the array brackets
-			output = output.substring(1, output.length() - 1);
+			output = new String(output.substring(1, output.length() - 1));
 
 			String[] paths = output.split(",");
 			if (paths == null || paths.length < 1)
@@ -689,7 +689,7 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 			{
 				String path = paths[i].trim();
 				// toss out the quotes
-				path = path.substring(1, path.length() - 1);
+				path = new String(path.substring(1, path.length() - 1));
 				installPaths.add(new Path(path.trim()));
 			}
 			return installPaths;

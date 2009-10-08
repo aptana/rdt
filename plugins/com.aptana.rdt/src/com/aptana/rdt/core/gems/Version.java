@@ -18,11 +18,11 @@ public class Version implements Comparable<Version>
 			this.raw = this.raw.trim();
 			if (this.raw.endsWith(",") && this.raw.length() > 1)
 			{
-				this.raw = this.raw.substring(0, this.raw.length() - 1);
+				this.raw = new String(this.raw.substring(0, this.raw.length() - 1));
 			}
 			if (this.raw.startsWith(",") && this.raw.length() > 1)
 			{
-				this.raw = this.raw.substring(1, this.raw.length());
+				this.raw = new String(this.raw.substring(1, this.raw.length()));
 			}
 		}
 		if (!correctFormat(this.raw))

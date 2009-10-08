@@ -36,8 +36,8 @@ public class LocalFileGem extends Gem {
 			version = parts[1];
 			if (parts.length > 2) platform = parts[2];
 		}
-		if (version.endsWith(".gem")) version = version.substring(0, version.length() - 4);
-		if (platform.endsWith(".gem")) platform = platform.substring(0, platform.length() - 4);
+		if (version.endsWith(".gem")) version = new String(version.substring(0, version.length() - 4));
+		if (platform.endsWith(".gem")) platform = new String(platform.substring(0, platform.length() - 4));
 		return new LocalFileGem(file, name, version, "", platform);
 	}
 	

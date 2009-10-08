@@ -227,7 +227,7 @@ public class RubyPartitionScanner implements IPartitionTokenScanner
 				if (fOffset == origOffset)
 				{ // If we never got to read in beginning contents
 					RubyPartitionScanner scanner = new RubyPartitionScanner();
-					String possible = fContents.substring(0, start);
+					String possible = new String(fContents.substring(0, start));
 					IDocument document = new Document(possible);
 					scanner.setRange(document, origOffset, possible.length());
 					IToken token;
@@ -250,7 +250,7 @@ public class RubyPartitionScanner implements IPartitionTokenScanner
 				if (fOffset == origOffset)
 				{ // If we never got to read in beginning contents
 					RubyPartitionScanner scanner = new RubyPartitionScanner();
-					String possible = fContents.substring(0, start);
+					String possible = new String(fContents.substring(0, start));
 					IDocument document = new Document(possible);
 					scanner.setRange(document, origOffset, possible.length());
 					IToken token;
@@ -355,7 +355,7 @@ public class RubyPartitionScanner implements IPartitionTokenScanner
 
 	private void scanRestOfLineAfterHeredocBegins(String opening, int index)
 	{
-		String possible = opening.substring(index + 1);
+		String possible = new String(opening.substring(index + 1));
 		RubyPartitionScanner scanner = new RubyPartitionScanner();
 		IDocument document = new Document(possible);
 		scanner.setRange(document, 0, possible.length());
@@ -371,7 +371,7 @@ public class RubyPartitionScanner implements IPartitionTokenScanner
 		}
 		else
 		{
-			String marker = opening.substring(0, index).trim();
+			String marker = new String(opening.substring(0, index).trim());
 			fOpeningString = generateHeredocMarker(marker);
 		}
 		fContentType = RUBY_STRING;
@@ -410,11 +410,11 @@ public class RubyPartitionScanner implements IPartitionTokenScanner
 		String possible = null;
 		if (end == -1)
 		{
-			possible = fContents.substring(fOffset - origOffset);
+			possible = new String(fContents.substring(fOffset - origOffset));
 		}
 		else
 		{
-			possible = fContents.substring(fOffset - origOffset, end);
+			possible = new String(fContents.substring(fOffset - origOffset, end));
 		}
 		RubyPartitionScanner scanner = new RubyPartitionScanner();
 		IDocument document = new Document(possible);
@@ -433,7 +433,7 @@ public class RubyPartitionScanner implements IPartitionTokenScanner
 		int end = findEnd(possible);
 		if (end != -1)
 		{
-			possible = possible.substring(0, end);
+			possible = new String(possible.substring(0, end));
 		}
 		RubyPartitionScanner scanner = new RubyPartitionScanner();
 		IDocument document = new Document(possible);
@@ -634,7 +634,7 @@ public class RubyPartitionScanner implements IPartitionTokenScanner
 			int end = comment.getPosition().getEndOffset();
 			start = end;
 		}
-		return fContents.substring(start, lexerSource.getOffset());
+		return new String(fContents.substring(start, lexerSource.getOffset()));
 	}
 
 	/**

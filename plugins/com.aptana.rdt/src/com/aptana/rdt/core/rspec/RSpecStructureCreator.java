@@ -28,7 +28,7 @@ public class RSpecStructureCreator extends InOrderVisitor
 			if (description.startsWith("'") || description.startsWith("\""))
 				description = description.substring(1);
 			if (description.endsWith("'") || description.endsWith("\""))
-				description = description.substring(0, description.length() - 1);
+				description = new String(description.substring(0, description.length() - 1));
 			int start = visited.getPosition().getStartOffset();
 			peek().addExample(new Example(description, start, visited.getPosition().getEndOffset() - start));
 		}

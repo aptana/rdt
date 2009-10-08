@@ -89,7 +89,7 @@ public class TaskParser extends AbstractTaskParser
 			{
 				int index = line.indexOf(tag);
 				String message = line.substring(index).trim();
-				tasks.add(createTaskTag(priority, message, lineNum + 1, offset + index, offset + index
+				tasks.add(createTaskTag(priority, new String(message), lineNum + 1, offset + index, offset + index
 						+ message.length()));
 			}
 		}

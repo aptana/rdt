@@ -128,7 +128,7 @@ public class GemLoadpathAdder extends CompilationParticipant
 					String gemName = args.get(0);
 					if (gemName.startsWith("\"") || gemName.startsWith("'"))
 					{
-						gemName = gemName.substring(1, gemName.length() - 1);
+						gemName = new String(gemName.substring(1, gemName.length() - 1));
 					}
 					gems.add(gemName);
 				}

@@ -32,7 +32,7 @@ public class ASTTaskParser extends AbstractTaskParser
 				if (index != -1)
 				{
 					String message = line.substring(index).trim();
-					TaskTag task = new TaskTag(message, priority, commentNode.getPosition().getStartLine(), commentNode
+					TaskTag task = new TaskTag(new String(message), priority, commentNode.getPosition().getStartLine(), commentNode
 							.getPosition().getStartOffset(), commentNode.getPosition().getEndOffset());
 					tasks.add(task);
 				}

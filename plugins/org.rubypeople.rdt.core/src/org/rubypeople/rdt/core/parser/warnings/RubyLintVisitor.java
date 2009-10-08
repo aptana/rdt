@@ -62,7 +62,7 @@ public abstract class RubyLintVisitor extends InOrderVisitor
 			end = contents.length();
 		if (start < 0)
 			start = 0;
-		return contents.substring(start, end);
+		return new String(contents.substring(start, end));
 	}
 
 	public List<CategorizedProblem> getProblems()

@@ -160,7 +160,7 @@ public class OldCodeFormatter extends CodeFormatter
 				state = new IndentationState(unformatted, leadingWhitespace, initialIndentLevel);
 			}
 			state.incPos(leadingWhitespace);
-			String strippedLine = lines[i].substring(leadingWhitespace);
+			String strippedLine = new String(lines[i].substring(leadingWhitespace));
 			AbstractBlockMarker newBlockMarker = this.findNextBlockMarker(abstractBlockMarker, state.getPos(), state);
 			if (newBlockMarker != null)
 			{
@@ -597,12 +597,12 @@ public class OldCodeFormatter extends CodeFormatter
 	protected boolean isNonBlockDo(String unformatted, int pos)
 	{
 		int lineStart = this.posOfLineStart(unformatted, pos);
-		return this.matchREBackward(unformatted.substring(lineStart, pos), NON_BLOCK_DO_RE);
+		return this.matchREBackward(new String(unformatted.substring(lineStart, pos)), NON_BLOCK_DO_RE);
 	}
 
 	public TextEdit format(int kind, String source, int offset, int length, int indentationLevel, String lineSeparator)
 	{
-		String newText = formatString(source.substring(offset, length), indentationLevel);
+		String newText = formatString(new String(source.substring(offset, length)), indentationLevel);
 		return new ReplaceEdit(offset, length, newText);
 	}
 

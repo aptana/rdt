@@ -22,7 +22,7 @@ public class GemRequirement {
 		// FIXME When would it be using commas? Multiple version matches?
 		if (raw.endsWith(","))
 		{
-			raw = raw.substring(0, raw.length() - 1);
+			raw = new String(raw.substring(0, raw.length() - 1));
 		}
 		return new Version(raw);
 	}
