@@ -32,6 +32,7 @@ import org.jruby.ast.LocalAsgnNode;
 import org.jruby.ast.LocalVarNode;
 import org.jruby.ast.ModuleNode;
 import org.jruby.ast.Node;
+import org.jruby.ast.RootNode;
 import org.jruby.ast.StrNode;
 import org.jruby.ast.VCallNode;
 import org.jruby.ast.types.INameNode;
@@ -208,7 +209,7 @@ public class RubyCodeResolver extends CodeResolver
 		}
 	}
 
-	private void putResolved(ResolveContext context, IRubyElement[] resolved)
+	protected void putResolved(ResolveContext context, IRubyElement[] resolved)
 	{
 		if (resolved != null && resolved.length > 0)
 			context.putResolved(resolved);
@@ -220,7 +221,7 @@ public class RubyCodeResolver extends CodeResolver
 		if (methodName.equals(NEW)) // Special case where new resolves to initialize
 			methodName = INITIALIZE;
 		Set<IRubyElement> possible = new HashSet<IRubyElement>();
-		IType[] types = getReceiver(context.getScript(), selected, context.getAST(), context.getStartOffset());
+		IType[] types = getReceiver(context, selected);
 		for (int i = 0; i < types.length; i++)
 		{
 			IType type = types[i];
@@ -480,13 +481,13 @@ public class RubyCodeResolver extends CodeResolver
 		return namespace + "::" + name;
 	}
 
-	private List<SearchMatch> search(int type, String patternString, int limitTo, int matchRule) throws CoreException
+	protected List<SearchMatch> search(int type, String patternString, int limitTo, int matchRule) throws CoreException
 	{
 		return search(SearchEngine.createWorkspaceScope(), type, patternString, limitTo, matchRule);
 	}
 
-	private List<SearchMatch> search(IRubySearchScope scope, int type, String patternString, int limitTo, int matchRule)
-			throws CoreException
+	protected List<SearchMatch> search(IRubySearchScope scope, int type, String patternString, int limitTo,
+			int matchRule) throws CoreException
 	{
 		SearchEngine engine = new SearchEngine();
 		SearchPattern pattern = SearchPattern.createPattern(type, patternString, limitTo, matchRule);
@@ -496,16 +497,16 @@ public class RubyCodeResolver extends CodeResolver
 		return requestor.getResults();
 	}
 
-	private IType[] getReceiver(IRubyScript script, Node selected, Node root, int start)
+	private IType[] getReceiver(ResolveContext context, Node selected) throws RubyModelException
 	{
-
 		List<IType> types = new ArrayList<IType>();
 		if ((selected instanceof FCallNode) || (selected instanceof VCallNode))
 		{
-			types = resolveImplicitReceiver(script, root, start);
+			types = resolveImplicitReceiver(context, selected);
 		}
 		else
 		{
+			int start = context.getStartOffset();
 			if (selected instanceof CallNode)
 			{
 				// The problem here is that we want to infer the type of the receiver, not the method (which would
@@ -514,6 +515,7 @@ public class RubyCodeResolver extends CodeResolver
 				Node receiver = call.getReceiverNode();
 				start = receiver.getPosition().getStartOffset();
 			}
+			IRubyScript script = context.getScript();
 			ITypeInferrer inferrer = RubyCore.getTypeInferrer();
 			Collection<ITypeGuess> guesses = new ArrayList<ITypeGuess>();
 			try
@@ -568,8 +570,11 @@ public class RubyCodeResolver extends CodeResolver
 		return types.toArray(new IType[types.size()]);
 	}
 
-	protected List<IType> resolveImplicitReceiver(IRubyScript script, Node root, int start)
+	protected List<IType> resolveImplicitReceiver(ResolveContext context, Node selected) throws RubyModelException
 	{
+		IRubyScript script = context.getScript();
+		RootNode root = context.getAST();
+		int start = context.getStartOffset();
 		List<IType> types = new ArrayList<IType>();
 		Node receiver = ClosestSpanningNodeLocator.Instance().findClosestSpanner(root, start, new INodeAcceptor()
 		{

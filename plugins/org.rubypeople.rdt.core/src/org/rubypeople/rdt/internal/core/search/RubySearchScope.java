@@ -350,8 +350,15 @@ public class RubySearchScope extends AbstractSearchScope implements IRubySearchS
 			if ((currentPath = this.relativePaths[i]) != null)
 			{
 				int idx = this.projectIndexes[i];
-				String projectPath = idx == -1 ? null : (String) this.projectPaths.get(idx);
-				newScope.add(projectPath, currentPath, this.containerPaths[i], this.isPkgPath[i]);
+				if (this.projectPaths.size() <= idx)
+				{
+					newScope.add(currentPath, this.containerPaths[i], this.isPkgPath[i]);
+				}
+				else
+				{
+					String projectPath = idx == -1 ? null : (String) this.projectPaths.get(idx);
+					newScope.add(projectPath, currentPath, this.containerPaths[i], this.isPkgPath[i]);
+				}
 			}
 
 		this.relativePaths = newScope.relativePaths;
