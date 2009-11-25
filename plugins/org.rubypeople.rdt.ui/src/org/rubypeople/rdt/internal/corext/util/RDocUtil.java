@@ -8,10 +8,12 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.Region;
 import org.jruby.Ruby;
+import org.jruby.RubyString;
 import org.jruby.ast.CommentNode;
 import org.jruby.lexer.yacc.ISourcePosition;
 import org.jruby.lexer.yacc.SyntaxException;
 import org.jruby.runtime.builtin.IRubyObject;
+import org.jruby.util.KCode;
 import org.rubypeople.rdt.core.IMember;
 import org.rubypeople.rdt.core.IRubyElement;
 import org.rubypeople.rdt.core.ISourceRange;
@@ -129,20 +131,25 @@ public class RDocUtil {
 		if (docs == null) return null;
 		try {
 			docs = removeUnecessaryIndent(docs);
-			String script = "require 'rdoc/markup/simple_markup'\n" +
+			String script = "$KCODE = 'utf8'\n" +
+						"require 'rdoc/markup/simple_markup'\n" +
 						"require 'rdoc/markup/simple_markup/to_html'\n" +
-						"p = SM::SimpleMarkup.new\n" +
-						"h = SM::ToHtml.new\n" +
-						"input_string =<<EOF\n" + docs + "\nEOF\n" +
-						"p.convert(input_string, h)\n";
-			Ruby ruby = getJRubyInstance();					
+						"p = SM::SimpleMarkup.new\n";
+			String script2 = "require 'rdoc/markup/simple_markup'\n" +
+			"require 'rdoc/markup/simple_markup/to_html'\n" +
+			"h = SM::ToHtml.new\n";
+			Ruby ruby = getJRubyInstance();
+			RubyString blah = RubyString.newUnicodeString(ruby, docs);
 			ruby.setCurrentDirectory(getRDocScriptPath());
-			IRubyObject object = ruby.evalScriptlet(script);
-			docs = object.toString();
+			ruby.setKCode(KCode.UTF8);
+			IRubyObject p = ruby.evalScriptlet(script);
+			IRubyObject html = ruby.evalScriptlet(script2);
+			IRubyObject output = p.callMethod(ruby.getCurrentContext(), "convert", new IRubyObject[] {blah, html});
+			docs = output.asString().getUnicodeValue();
 		} catch (Exception e) {
 			// ignore
 		}
-		return docs;		
+		return docs;
 	}
 
 	private static String removeUnecessaryIndent(String docs) {
