@@ -68,12 +68,22 @@ public class RDebugVMDebugger extends StandardVMDebugger
 	{
 		return new RubyDebuggerProxy(debugTarget, true);
 	}
+	
+	private static IPath tryToGetRDebugExecutablePath(File vmInstallLocation)
+	{
+		IPath path = RubyRuntime.checkAnyInterpreterBin(RDEBUG_EXECUTABLE, vmInstallLocation);
+		if (path == null)
+		{
+			path = RubyRuntime.checkInterpreterBin(RDEBUG_EXECUTABLE);
+		}
+		return path;
+	}
 
 	public static String findRDebugExecutable(File vmInstallLocation)
 	{
 		// check in bin directory where ruby interpreter is
-		IPath path = RubyRuntime.checkInterpreterBin(RDEBUG_EXECUTABLE);
-		if (path != null && path.toFile().exists())
+		IPath path = tryToGetRDebugExecutablePath(vmInstallLocation);
+		if (path != null && path.toFile().exists()) // why duplicate the exists check????
 			return path.toOSString();
 
 		// Check bin dirs of gems paths

@@ -1788,17 +1788,30 @@ public class RubyRuntime {
 		return RubyRuntime.getDefaultVMInstall().getVMInstallType().getId().equals(RubyRuntime.JRUBY_VMTYPE);
 	}
 	
-	public static IPath checkInterpreterBin(String exe) {
+	public static IPath checkInterpreterBin(String exe)
+	{
 		IVMInstall vm = getDefaultVMInstall();
-		if (vm == null) return null;
+		if (vm == null)
+			return null;
 		File installLocation = vm.getInstallLocation();
-		if (installLocation == null) return null;
+		if (installLocation == null)
+			return null;
+		return checkAnyInterpreterBin(exe, installLocation);
+	}
+
+	/**
+	 * Similar to checkInterpreterBin, but allows for checking of rdebug-ide in non default InterpreterVM (e.g. a jruby
+	 * interpreter)
+	 */
+	public static IPath checkAnyInterpreterBin(String exe, File installLocation)
+	{
 		IPath path = new Path(installLocation.getAbsolutePath());
-		if (!installLocation.getName().equals("bin")) {
+		if (!installLocation.getName().equals("bin"))
+		{
 			path = path.append("bin");
 		}
-		path = path.append(exe);		
-		if (path.toFile().exists()) 
+		path = path.append(exe);
+		if (path.toFile().exists())
 			return path;
 		return null;
 	}
