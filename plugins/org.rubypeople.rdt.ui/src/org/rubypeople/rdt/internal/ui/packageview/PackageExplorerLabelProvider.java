@@ -80,9 +80,12 @@ public class PackageExplorerLabelProvider extends AppearanceAwareLabelProvider {
 		
 		if(topName.equals(bottomName))
 			return topName;
-		
-		String deltaname= bottomName.substring(topName.length()+1);	
-		return deltaname;
+		if(bottomName.startsWith(topName)) {
+			String deltaname= bottomName.substring(topName.length()+1);	
+			return deltaname;
+		}else {
+			return bottomName;
+		}
 	}
 	
 	public void setIsFlatLayout(boolean state) {
