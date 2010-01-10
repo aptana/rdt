@@ -32,6 +32,13 @@ public class RSpecStructureCreator extends InOrderVisitor
 			int start = visited.getPosition().getStartOffset();
 			peek().addExample(new Example(description, start, visited.getPosition().getEndOffset() - start));
 		}
+		else if (visited.getName().equals("shared_examples_for"))
+		{ // start of shared example 
+			List<String> args = ASTUtil.getArgumentsFromFunctionCall(visited);
+			String description = args.get(0);
+			int start = visited.getPosition().getStartOffset();
+			push(visited, description, start);
+		}
 		return super.visitFCallNode(visited);
 	}
 
