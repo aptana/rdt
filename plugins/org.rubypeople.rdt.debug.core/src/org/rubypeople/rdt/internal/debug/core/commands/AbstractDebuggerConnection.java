@@ -84,7 +84,7 @@ public abstract class AbstractDebuggerConnection {
 
 	protected static Socket acquireSocket(String host, int port) throws IOException {
 		Socket socket = null ;
-		int tryCount = 10;
+		int tryCount = 50;
 		for (int i = 0; i < tryCount; i++) {
 			try {
 				socket = new Socket(host, port);
