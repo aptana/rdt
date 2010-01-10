@@ -114,7 +114,7 @@ public class AptanaProcessConsoleManager extends ProcessConsoleManager {
 	private IConsole findConsole(String type) {
 		IConsole[] consoles = ConsolePlugin.getDefault().getConsoleManager().getConsoles();
 		for (int i = 0; i < consoles.length; i++) {
-			if (consoles[i].getType().equals(type)) 
+			if (consoles[i].getType() != null && consoles[i].getType().equals(type)) 
 				return consoles[i];
 		}
 		// If there are no instances, open a brand new one!
