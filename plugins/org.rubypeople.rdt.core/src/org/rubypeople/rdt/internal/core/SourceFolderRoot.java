@@ -55,7 +55,7 @@ public class SourceFolderRoot extends Openable implements ISourceFolderRoot {
 		
 		// check whether this source folder root can be opened
 		IStatus status = validateOnLoadpath();
-		if (!status.isOK()) throw newRubyModelException(status);
+//		if (!status.isOK()) throw newRubyModelException(status);
 		if (!resourceExists()) throw newNotPresentException();
 
 		return computeChildren(info, newElements);
@@ -241,7 +241,7 @@ public class SourceFolderRoot extends Openable implements ISourceFolderRoot {
 	 * @see IRubyElement
 	 */
 	public boolean exists() {
-		return super.exists() && validateOnLoadpath().isOK();
+		return super.exists(); // && validateOnLoadpath().isOK();
 	}
 	
 	public SourceFolder getSourceFolder(String[] names) {
