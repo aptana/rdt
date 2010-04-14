@@ -147,12 +147,16 @@ public class DataFlowTypeInferrer implements ITypeInferrer
 		int sum = 0;
 		for (ITypeGuess guess : guesses)
 		{
+			if (guess == null)
+				continue;
 			sum += guess.getConfidence();
 		}
 
 		List<ITypeGuess> newGuesses = new ArrayList<ITypeGuess>(guesses.size());
 		for (ITypeGuess guess : guesses)
 		{
+			if (guess == null)
+				continue;
 			ITypeGuess newGuess = new BasicTypeGuess(guess.getType(), (int) (((double) guess.getConfidence())
 					/ ((double) sum) * 100.0));
 			newGuesses.add(newGuess);
@@ -184,7 +188,9 @@ public class DataFlowTypeInferrer implements ITypeInferrer
 
 		if (isSelfReferenceNode(node))
 		{
-			guesses.add(getSelfReferenceNodeType(node));
+			ITypeGuess guess = getSelfReferenceNodeType(node);
+			if (guess != null)
+				guesses.add(guess);
 		}
 
 		if (isAssignmentNode(node))
@@ -194,7 +200,9 @@ public class DataFlowTypeInferrer implements ITypeInferrer
 
 		if (isTypeDefinitionNode(node))
 		{
-			guesses.add(getTypeDefinitionNodeType(node));
+			ITypeGuess guess = getTypeDefinitionNodeType(node);
+			if (guess != null)
+				guesses.add(guess);
 		}
 
 		if (isConstantNode(node))
@@ -264,7 +272,6 @@ public class DataFlowTypeInferrer implements ITypeInferrer
 		inferNodeStack.remove(0);
 
 		return guesses;
-
 	}
 
 	private boolean isConstantNode(Node node)
@@ -280,15 +287,12 @@ public class DataFlowTypeInferrer implements ITypeInferrer
 		{
 			return new BasicTypeGuess(((ConstNode) node).getName(), 100);
 		}
-		else if (node instanceof Colon2Node)
+		if (node instanceof Colon2Node)
 		{
 			String name = ASTUtil.getFullyQualifiedName((Colon2Node) node);
 			return new BasicTypeGuess(name, 100);
 		}
-		else
-		{
-			return new BasicTypeGuess(LiteralNodeTypeNames.get(node.getClass().getSimpleName()), 100);
-		}
+		return new BasicTypeGuess(LiteralNodeTypeNames.get(node.getClass().getSimpleName()), 100);
 	}
 
 	private boolean isTypeDefinitionNode(Node node)
@@ -303,6 +307,7 @@ public class DataFlowTypeInferrer implements ITypeInferrer
 		{
 			return new BasicTypeGuess(typeNodeName, 100);
 		}
+		RubyCore.log("Unable to determine type node's name: " + node);
 		return null;
 	}
 
