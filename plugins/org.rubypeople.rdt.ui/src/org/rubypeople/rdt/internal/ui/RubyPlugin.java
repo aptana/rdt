@@ -40,6 +40,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.EditorsUI;
 import org.eclipse.ui.navigator.ICommonMenuConstants;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -170,16 +171,6 @@ public class RubyPlugin extends AbstractUIPlugin
 		plugin = this;
 		super.start(context);
 
-		context.registerService(IRubyInformation.class.getName(), new RiUtility(), null);
-		// initialize textTools before any RubyEditor gets initialized, so that
-		// textTools can
-		// register for property change events first. If the registration takes
-		// place in the
-		// wrong order, changes to properties in the preferences page are not
-		// immediately updated
-		// within the ruby editors.
-		// getTextTools();
-
 		// Here's where the magic happens that makes the IRubyScript's contents
 		// get re-routed to the IDocument's latest contents
 		WorkingCopyOwner.setPrimaryBufferProvider(new WorkingCopyOwner()
@@ -196,17 +187,13 @@ public class RubyPlugin extends AbstractUIPlugin
 		});
 
 		ensurePreferenceStoreBackwardsCompatibility();
+		
+		if (PlatformUI.isWorkbenchRunning()) {
+			// Initialize AST provider
+			getASTProvider();		
 
-		// Swap in our process console manager for theirs
-		launchListener = new AptanaProcessConsoleManager();
-		DebugPlugin.getDefault().getLaunchManager().addLaunchListener(launchListener);
-
-		// Initialize AST provider
-		getASTProvider();
-
-		fRubyExplorerTracker = new RubyExplorerTracker();
-
-		new InitializeAfterLoadJob().schedule();
+			new InitializeAfterLoadJob().schedule();
+		}
 	}
 
 	/**
@@ -222,8 +209,14 @@ public class RubyPlugin extends AbstractUIPlugin
 		fMembersOrderPreferenceCache.install(store);
 	}
 
-	/* package */static void initializeAfterLoad(IProgressMonitor monitor)
+	/* package */ void initializeAfterLoad(IProgressMonitor monitor)
 	{
+		// Swap in our process console manager for theirs
+		launchListener = new AptanaProcessConsoleManager();
+		DebugPlugin.getDefault().getLaunchManager().addLaunchListener(launchListener);
+		
+		getBundle().getBundleContext().registerService(IRubyInformation.class.getName(), new RiUtility(), null);
+		
 		OpenTypeHistory.getInstance().checkConsistency(monitor);
 
 		new RubyInstalledDetector().schedule();
@@ -285,14 +278,21 @@ public class RubyPlugin extends AbstractUIPlugin
 				fMembersOrderPreferenceCache = null;
 			}
 
-			PackageExplorerPart explorer = PackageExplorerPart.getFromActivePerspective();
-			if (explorer != null)
+			if (fRubyExplorerTracker != null)
 			{
-				explorer.getSite().getSelectionProvider().removeSelectionChangedListener(fRubyExplorerTracker);
+				PackageExplorerPart explorer = PackageExplorerPart.getFromActivePerspective();
+				if (explorer != null)
+				{
+					explorer.getSite().getSelectionProvider().removeSelectionChangedListener(fRubyExplorerTracker);
+				}
+				fRubyExplorerTracker = null;
 			}
 
-			DebugPlugin.getDefault().getLaunchManager().removeLaunchListener(launchListener);
-			launchListener = null;
+			if (launchListener != null)
+			{
+				DebugPlugin.getDefault().getLaunchManager().removeLaunchListener(launchListener);
+				launchListener = null;
+			}
 		}
 		finally
 		{
@@ -813,6 +813,10 @@ public class RubyPlugin extends AbstractUIPlugin
 	 */
 	public RubyExplorerTracker getProjectTracker()
 	{
+		if (fRubyExplorerTracker == null)
+		{
+			fRubyExplorerTracker = new RubyExplorerTracker();
+		}
 		return fRubyExplorerTracker;
 	}
 

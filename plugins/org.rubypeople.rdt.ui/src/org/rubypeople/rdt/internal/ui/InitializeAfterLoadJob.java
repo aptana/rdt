@@ -30,7 +30,7 @@ public class InitializeAfterLoadJob extends UIJob {
 			monitor.beginTask("", 10); //$NON-NLS-1$
 			try {
 				RubyCore.initializeAfterLoad(new SubProgressMonitor(monitor, 6));
-				RubyPlugin.initializeAfterLoad(new SubProgressMonitor(monitor, 4));
+				RubyPlugin.getDefault().initializeAfterLoad(new SubProgressMonitor(monitor, 4));
 			} catch (CoreException e) {
 				RubyPlugin.log(e);
 				return e.getStatus();
