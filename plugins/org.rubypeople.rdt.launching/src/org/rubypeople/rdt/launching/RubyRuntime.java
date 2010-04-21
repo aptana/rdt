@@ -1778,6 +1778,7 @@ public class RubyRuntime {
 				IRubyLaunchConfigurationConstants.ATTR_REQUIRES_REFRESH, true);
 		wc.setAttribute(IRubyLaunchConfigurationConstants.ATTR_PROJECT_NAME,
 				project.getName());
+		wc.setAttribute(DebugPlugin.ATTR_CONSOLE_ENCODING, "UTF-8");
 		return wc;
 	}
 
