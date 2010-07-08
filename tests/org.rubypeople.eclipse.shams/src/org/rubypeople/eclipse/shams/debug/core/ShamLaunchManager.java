@@ -209,7 +209,16 @@ public class ShamLaunchManager implements ILaunchManager {
 
 	public String getEncoding(ILaunchConfiguration configuration) throws CoreException
 	{
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public String generateLaunchConfigurationName(String namePrefix)
+	{
+		return null;
+	}
+
+	public boolean isValidLaunchConfigurationName(String configname) throws IllegalArgumentException
+	{
+		return false;
 	}
 }

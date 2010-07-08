@@ -15,6 +15,7 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IPathVariableManager;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IResource;
@@ -287,66 +288,68 @@ public class ShamResource implements IResource {
 	}
 
     public URI getRawLocationURI() {
-        // TODO Auto-generated method stub
         return null;
     }
 
     public boolean isLinked(int options) {
-        // TODO Auto-generated method stub
         return false;
     }
 
 	public IResourceProxy createProxy() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public int findMaxProblemSeverity(String type, boolean includeSubtypes, int depth) throws CoreException
 	{
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	public Map getPersistentProperties() throws CoreException
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public Map getSessionProperties() throws CoreException
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public boolean isDerived(int options)
 	{
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	public boolean isHidden()
 	{
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	public void setHidden(boolean isHidden) throws CoreException
 	{
-		// TODO Auto-generated method stub
-		
 	}
 
 	public boolean isHidden(int options)
 	{
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	public boolean isTeamPrivateMember(int options)
 	{
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public IPathVariableManager getPathVariableManager()
+	{
+		return null;
+	}
+
+	public boolean isVirtual()
+	{
+		return false;
+	}
+
+	public void setDerived(boolean isDerived, IProgressMonitor monitor) throws CoreException
+	{
 	}
 
 }

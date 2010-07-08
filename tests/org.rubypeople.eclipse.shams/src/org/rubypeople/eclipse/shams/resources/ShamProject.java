@@ -10,6 +10,7 @@
  */
 package org.rubypeople.eclipse.shams.resources;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -323,31 +324,29 @@ public class ShamProject extends ShamContainer implements IProject, IContainer {
 	}
 
 	public IContentTypeMatcher getContentTypeMatcher() throws CoreException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public ResourceAttributes getResourceAttributes() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public void revertModificationStamp(long value) throws CoreException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void setResourceAttributes(ResourceAttributes attributes) throws CoreException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void create(IProjectDescription description, int updateFlags, IProgressMonitor monitor) throws CoreException
 	{
-		// TODO Auto-generated method stub
-		
 	}
 
+	public void loadSnapshot(int options, URI snapshotLocation, IProgressMonitor monitor) throws CoreException
+	{
+	}
 
+	public void saveSnapshot(int options, URI snapshotLocation, IProgressMonitor monitor) throws CoreException
+	{
+	}
 
 }

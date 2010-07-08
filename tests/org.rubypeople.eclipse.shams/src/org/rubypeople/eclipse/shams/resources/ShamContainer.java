@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.resources.FileInfoMatcherDescription;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IPathVariableManager;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceFilterDescription;
 import org.eclipse.core.resources.IResourceProxyVisitor;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -95,5 +98,30 @@ public class ShamContainer extends ShamResource implements IContainer {
     public void addResource(IResource resource) {
         childResources.add(resource);
     }
+
+	public IPathVariableManager getPathVariableManager()
+	{
+		return null;
+	}
+
+	public boolean isVirtual()
+	{
+		return false;
+	}
+
+	public void setDerived(boolean isDerived, IProgressMonitor monitor) throws CoreException
+	{
+	}
+
+	public IResourceFilterDescription createFilter(int type, FileInfoMatcherDescription matcherDescription,
+			int updateFlags, IProgressMonitor monitor) throws CoreException
+	{
+		return null;
+	}
+
+	public IResourceFilterDescription[] getFilters() throws CoreException
+	{
+		return null;
+	}
 
 }

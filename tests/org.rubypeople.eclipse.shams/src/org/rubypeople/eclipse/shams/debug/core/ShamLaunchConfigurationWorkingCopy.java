@@ -172,88 +172,71 @@ public class ShamLaunchConfigurationWorkingCopy implements ILaunchConfigurationW
 	}
 
     public void setMappedResources(IResource[] resources) {
-        // TODO Auto-generated method stub
-        
     }
 
     public IResource[] getMappedResources() throws CoreException {
-        // TODO Auto-generated method stub
         return null;
     }
 
     public boolean isMigrationCandidate() throws CoreException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     public void migrate() throws CoreException {
-        // TODO Auto-generated method stub
-        
     }
 
 	public void addModes(Set modes)
 	{
-		// TODO Auto-generated method stub
-		
 	}
 
 	public ILaunchConfigurationWorkingCopy getParent()
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public Object removeAttribute(String attributeName)
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public void removeModes(Set modes)
 	{
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void setModes(Set modes)
 	{
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void setPreferredLaunchDelegate(Set modes, String delegateId)
 	{
-		// TODO Auto-generated method stub
-		
 	}
 
 	public Set getAttribute(String attributeName, Set defaultValue) throws CoreException
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public Set getModes() throws CoreException
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public ILaunchDelegate getPreferredDelegate(Set modes) throws CoreException
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public boolean hasAttribute(String attributeName) throws CoreException
 	{
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	public boolean isReadOnly()
 	{
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public void setAttribute(String attributeName, Set value)
+	{
 	}
 }
