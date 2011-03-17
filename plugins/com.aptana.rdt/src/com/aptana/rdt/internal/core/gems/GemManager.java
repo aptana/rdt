@@ -758,8 +758,6 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 			for (int i = parts.length - 1; i >= 0; i--)
 			{
 				String version = parts[i];
-				if (!Version.correctFormat(version))
-					continue;
 				try
 				{
 					Version duh = new Version(version);
@@ -781,8 +779,6 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 			String version = null;
 			for (int i = parts.length - 1; i >= 0; i--)
 			{
-				if (!Version.correctFormat(parts[i]))
-					continue;
 				version = parts[i];
 				try
 				{
