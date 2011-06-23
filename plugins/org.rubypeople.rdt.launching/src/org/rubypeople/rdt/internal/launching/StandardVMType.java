@@ -2,6 +2,7 @@ package org.rubypeople.rdt.internal.launching;
 
 import java.io.File;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,8 +18,9 @@ import org.eclipse.osgi.service.environment.Constants;
 import org.rubypeople.rdt.core.util.Util;
 import org.rubypeople.rdt.launching.AbstractVMInstallType;
 import org.rubypeople.rdt.launching.IVMInstall;
+import org.rubypeople.rdt.launching.IVMInstallType2;
 
-public class StandardVMType extends AbstractVMInstallType
+public class StandardVMType extends AbstractVMInstallType implements IVMInstallType2
 {
 
 	private static final String DEFAULT_MAJOR_MINOR_VERSION = "1.8";
@@ -203,12 +205,53 @@ public class StandardVMType extends AbstractVMInstallType
 		return paths;
 	}
 
+	public List<File> detectInstallLocations() {
+		List<File> locations = new ArrayList<File>();
+		
+		// Check for rvm rubies!
+		if (!Platform.OS_WIN32.equals(Platform.getOS()))
+		{
+			String userHome = System.getProperty("user.home");
+			if (userHome != null)
+			{
+				IPath rvm = Path.fromOSString(userHome).append(".rvm");
+				if (rvm.toFile().isDirectory())
+				{
+					File rubiesDir = rvm.append("rubies").toFile();
+					if (rubiesDir.isDirectory())
+					{
+						File dfRuby = new File(rubiesDir, "default");
+						if (dfRuby.exists())
+						{
+							locations.add(dfRuby);
+						}
+						for (String dirName : rubiesDir.list())
+						{
+							if (dirName.startsWith("ruby-"))
+							{
+								locations.add(new File(rubiesDir, dirName));
+							}
+						}
+					}
+				}
+			}
+		}
+		// Do normal old-school detection
+		File file = detectInstallLocation();
+		if (file != null)
+		{
+			locations.add(file);
+		}
+		return locations;
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see org.rubypeople.rdt.launching.IVMInstallType#detectInstallLocation()
 	 */
 	public File detectInstallLocation()
 	{
+		// FIXME Handle detecting VMs via RVM!
 		if (Platform.getOS().equals(Constants.OS_WIN32))
 		{
 			return tryLocation(detectInstallOnWindows());
@@ -264,6 +307,7 @@ public class StandardVMType extends AbstractVMInstallType
 				return possible;
 			}
 		}
+		// TODO Where does RailsInstaller.org put it? What about Ruby installer for windows?
 		// if all else fails, just try "C:/ruby"
 		return new File("C:" + File.separator + "ruby" + File.separator + "bin" + File.separator + "ruby.exe");
 	}

@@ -376,18 +376,23 @@ public class RubyRuntime {
 						else {
 							if (noJRubyVM(vmDefs)) {
 								IVMInstallType type = getVMInstallType(JRUBY_VMTYPE);
-								VMStandin vm = detectDefaultVM(type);	
-								if (vm != null) vmDefs.addVM(vm);
+								List<VMStandin> vms = detectDefaultVM(type);	
+								if (vms != null) {
+									for (VMStandin vm : vms)
+									{
+										vmDefs.addVM(vm);
+									}
+								}
 							}	
 							if (noStdRubyVM(vmDefs)) {								
 								IVMInstallType type = getVMInstallType(STD_RUBY_VMTYPE);
-								VMStandin vm = detectDefaultVM(type);		
-								if (vm != null) {
-									vmDefs.addVM(vm);
-//									if (!LaunchingPlugin.getDefault().getPluginPreferences().getBoolean(LaunchingPlugin.USING_INCLUDED_JRUBY)) {
-//										vmDefs.setDefaultVMInstallCompositeID(getCompositeIdFromVM(vm));
-//									}
-								}
+								List<VMStandin> vms = detectDefaultVM(type);		
+								if (vms != null) {
+									for (VMStandin vm : vms)
+									{
+										vmDefs.addVM(vm);
+									}
+								}								
 							}	
 						}					
 						// 5. load contributed VM installs
@@ -503,31 +508,50 @@ public class RubyRuntime {
 		// Try to detect a VM for each declared VM type
 		IVMInstallType[] vmTypes= getVMInstallTypes();
 		for (int i = 0; i < vmTypes.length; i++) {			
-			VMStandin standin = detectDefaultVM(vmTypes[i]);	
-			if (standin != null) detected.add(standin);
+			List<VMStandin> standins = detectDefaultVM(vmTypes[i]);	
+			if (standins != null){
+				detected.addAll(standins);
+			}
 		}
 		return detected.toArray(new VMStandin[detected.size()]);
 	}
 
-	private static VMStandin detectDefaultVM(IVMInstallType vmType) {
+	private static List<VMStandin> detectDefaultVM(IVMInstallType vmType) {
 		if (vmType == null) return null;
-		File detectedLocation= vmType.detectInstallLocation();
-		if (detectedLocation != null) {
+		
+		List<File> locations = new ArrayList<File>();
+		if (vmType instanceof IVMInstallType2)
+		{
+			IVMInstallType2 type2 = (IVMInstallType2) vmType;
+			locations.addAll(type2.detectInstallLocations());
 			
-			// Make sure the VM id is unique
-			long unique = System.currentTimeMillis();	
-			while (vmType.findVMInstall(String.valueOf(unique)) != null) {
-				unique++;
-			}
-
-			// Create a standin for the detected VM and add it to the result collector
-			String vmID = String.valueOf(unique);
-			VMStandin detectedVMStandin = new VMStandin(vmType, vmID);
-			detectedVMStandin.setInstallLocation(detectedLocation);
-			detectedVMStandin.setName(generateDetectedVMName(detectedVMStandin));
-			return detectedVMStandin;
 		}
-		return null;
+		else
+		{
+			File detectedLocation= vmType.detectInstallLocation();
+			if (detectedLocation != null) {
+				locations.add(detectedLocation);
+			}
+		}
+		List<VMStandin> standins = new ArrayList<VMStandin>();
+		for (File detectedLocation : locations) {
+			if (detectedLocation != null) {
+				
+				// Make sure the VM id is unique
+				long unique = System.currentTimeMillis();	
+				while (vmType.findVMInstall(String.valueOf(unique)) != null) {
+					unique++;
+				}
+	
+				// Create a standin for the detected VM and add it to the result collector
+				String vmID = String.valueOf(unique);
+				VMStandin detectedVMStandin = new VMStandin(vmType, vmID);
+				detectedVMStandin.setInstallLocation(detectedLocation);
+				detectedVMStandin.setName(generateDetectedVMName(detectedVMStandin));
+				standins.add(detectedVMStandin);
+			}
+		}
+		return standins;
 	}
 	
 	/**

@@ -737,7 +737,11 @@ public class AptanaRDTPlugin extends Plugin
 		{
 			if (path == null)
 				continue;
-			IPath possible = path.removeLastSegments(1).append(BIN).append(command);
+			if ("lib".equals(path.lastSegment()))
+			{
+				path = path.removeLastSegments(1);
+			}
+			IPath possible = path.append(BIN).append(command);
 			if (possible.toFile().exists())
 				return possible;
 		}
@@ -758,6 +762,10 @@ public class AptanaRDTPlugin extends Plugin
 		IPath path = AptanaRDTPlugin.getDefault().getGemManager().getGemPath(gemName);
 		if (path == null)
 			return null;
+		if ("lib".equals(path.lastSegment()))
+		{
+			path = path.removeLastSegments(1);
+		}
 		path = path.append(BIN).append(command);
 		if (path.toFile().exists())
 		{

@@ -390,6 +390,7 @@ public class StandardVMRunner extends AbstractVMRunner
 		String[] cmdLine = new String[arguments.size()];
 		arguments.toArray(cmdLine);
 
+		// FIXME The ENV doesn't match for RVM, and I think that's causing some real issues...
 		String[] envp = getEnvironment(config);
 
 		subMonitor.worked(1);

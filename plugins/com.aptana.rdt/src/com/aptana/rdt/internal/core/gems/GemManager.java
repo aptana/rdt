@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -639,6 +640,33 @@ public class GemManager extends AbstractGemManager implements IGemManager, IVMIn
 		{
 			if (!isRubyGemsInstalled())
 				return null;
+			
+			// FIXME If this is an RVM interpreter
+			IVMInstall vm = RubyRuntime.getDefaultVMInstall();
+			File location = vm.getInstallLocation();
+			if (location.toString().contains(".rvm"))
+			{
+				try {
+					String userHome = System.getProperty("user.home");
+					IPath rvmBinpath = Path.fromOSString(userHome).append(".rvm").append("bin").append("rvm");
+					ProcessBuilder b = new ProcessBuilder(rvmBinpath.toOSString(), "gempath");
+					Process p = b.start();
+					String output = new String(Util.getInputStreamAsCharArray(p.getInputStream(), -1, null));
+					String[] paths = output.split(File.pathSeparator);
+					List<IPath> installPaths = new ArrayList<IPath>();
+					for (String path : paths)
+					{
+						installPaths.add(Path.fromOSString(path.trim()));
+					}
+					fGemInstallPaths = installPaths;
+					return fGemInstallPaths;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			
 			ILaunchConfiguration config = createGemLaunchConfiguration("", false);
 			if (config == null)
 				return null;
